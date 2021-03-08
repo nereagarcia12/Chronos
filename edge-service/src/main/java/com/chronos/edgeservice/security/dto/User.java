@@ -1,21 +1,11 @@
-package com.chronos.userservice.model;
+package com.chronos.edgeservice.security.dto;
 
-import com.chronos.userservice.dto.UserResponseDto;
-import com.chronos.userservice.enums.Status;
-import com.chronos.userservice.exceptions.InsufficientHoursException;
-
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "profile")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String email;
@@ -25,13 +15,7 @@ public class User {
     private LocalDate createdAt;
     private Integer balanceHour;
     private Boolean pendingTransaction;
-    @Enumerated(EnumType.STRING)
     private Status status;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(	name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
 
@@ -52,55 +36,6 @@ public class User {
         this.roles = roles;
     }
 
-    public User(String name, String email, String phone, String city, String password, LocalDate createdAt, Integer balanceHour, Boolean pendingTransaction, Status status) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.city = city;
-        this.password = password;
-        this.createdAt = createdAt;
-        this.balanceHour = balanceHour;
-        this.pendingTransaction = pendingTransaction;
-        this.status = status;
-    }
-    public User(String name, String email, String phone, String city, String password) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.city = city;
-        this.password = password;
-        this.createdAt = LocalDate.now();
-        this.balanceHour = 5;
-        this.pendingTransaction = false;
-        this.status = Status.ACTIVE;
-    }
-
-    public User(String name, String email, String phone, String city, String password, Set<Role>  role) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.city = city;
-        this.password = password;
-        this.createdAt = LocalDate.now();
-        this.balanceHour = 5;
-        this.pendingTransaction = false;
-        this.status = Status.ACTIVE;
-        this.roles = role;
-    }
-
-    public UserResponseDto toConvertDto(){
-        return new UserResponseDto(this.getId(), this.getName(),this.getEmail(),this.getPhone(),this.getCity(),this.getCreatedAt(),this.getBalanceHour(),this.getPendingTransaction());
-    }
-    public void increaseBalance (Integer amount){
-        this.balanceHour += amount;
-    }
-
-    public void decreaseBalance (Integer amount){
-        if (amount > balanceHour){
-            throw new InsufficientHoursException();
-        }
-        this.balanceHour -= amount;
-    }
 
     public Integer getId() {
         return id;
