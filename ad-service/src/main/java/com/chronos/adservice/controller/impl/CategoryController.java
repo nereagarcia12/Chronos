@@ -1,6 +1,7 @@
 package com.chronos.adservice.controller.impl;
 
 import com.chronos.adservice.controller.interfaces.ICategoryController;
+import com.chronos.adservice.dto.CategoryResponseDto;
 import com.chronos.adservice.model.Category;
 import com.chronos.adservice.service.impl.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class CategoryController implements ICategoryController {
 
     @GetMapping("/categories")
     @ResponseStatus(HttpStatus.OK)
-    public List<Category> getAllCategories(){
+    public List<CategoryResponseDto> getAllCategories(){
         return categoryService.getAllCategories();
     }
 }

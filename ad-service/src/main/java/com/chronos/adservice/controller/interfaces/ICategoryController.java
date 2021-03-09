@@ -1,5 +1,6 @@
 package com.chronos.adservice.controller.interfaces;
 
+import com.chronos.adservice.dto.CategoryResponseDto;
 import com.chronos.adservice.model.Category;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,5 +10,5 @@ import java.util.List;
 
 public interface ICategoryController {
 
-    public List<Category> getAllCategories();
+    public List<CategoryResponseDto> getAllCategories();
 }

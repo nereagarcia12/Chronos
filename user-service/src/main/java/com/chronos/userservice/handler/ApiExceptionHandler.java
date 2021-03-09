@@ -25,6 +25,6 @@ public class ApiExceptionHandler {
     @ExceptionHandler(InsufficientHoursException.class)
     public ResponseEntity<Object> insufficientHoursException(InsufficientHoursException insufficientHoursException, HttpServletResponse response) throws IOException {
         return new ResponseEntity<Object>(Map.of("error",  insufficientHoursException.getLocalizedMessage())
-                , new HttpHeaders(), HttpStatus.BAD_REQUEST);
+                , new HttpHeaders(), HttpStatus.BAD_REQUEST);}
 
 }

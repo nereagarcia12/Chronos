@@ -31,15 +31,15 @@ public class AdService implements IAdService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public List<Ad> findAll() {
-        return adRepository.findAll();
+    public List<AdResponseDto> findAll() {
+        return adRepository.findAll().stream().map(Ad::toResponseDto).collect(Collectors.toList());
     }
 
-    public List<Ad> findByStatus(Status status) {
-        return adRepository.findByStatus(status);
+    public List<AdResponseDto> findByStatus(Status status) {
+        return adRepository.findByStatus(status).stream().map(Ad::toResponseDto).collect(Collectors.toList());
     }
-    public List<Ad> adsByUser(Integer id){
-        return adRepository.findByUserId(id);
+    public List<AdResponseDto> adsByUser(Integer id){
+        return adRepository.findByUserId(id).stream().map(Ad::toResponseDto).collect(Collectors.toList());
     }
 
     public AdResponseDto adById(Integer id){

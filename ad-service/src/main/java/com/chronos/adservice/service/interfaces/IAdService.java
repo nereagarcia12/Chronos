@@ -13,10 +13,10 @@ import java.util.List;
 
 public interface IAdService {
 
-    public List<Ad> findAll() ;
+    public List<AdResponseDto> findAll() ;
 
-    public List<Ad> findByStatus(Status status) ;
-    public List<Ad> adsByUser(Integer id);
+    public List<AdResponseDto> findByStatus(Status status) ;
+    public List<AdResponseDto> adsByUser(Integer id);
 
     public AdResponseDto adById(Integer id);
 

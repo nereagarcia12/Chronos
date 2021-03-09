@@ -1,5 +1,7 @@
 package com.chronos.adservice.model;
 
+import com.chronos.adservice.dto.CategoryResponseDto;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -27,6 +29,10 @@ public class Category {
         this.name = name;
         this.photo = photo;
         this.ads = ads;
+    }
+
+    public CategoryResponseDto toResponseDto(){
+        return new CategoryResponseDto(this.getId(),this.getName(),this.getPhoto());
     }
 
     public Integer getId() {

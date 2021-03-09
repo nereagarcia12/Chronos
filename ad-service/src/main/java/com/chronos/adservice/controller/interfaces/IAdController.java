@@ -14,12 +14,12 @@ import java.util.List;
 public interface IAdController {
 
 
-    public List<Ad> getAllAds ();
+    public List<AdResponseDto> getAllAds ();
 
-    public List<Ad> getAdsByUserId (@PathVariable(name = "id") Integer userId);
+    public List<AdResponseDto> getAdsByUserId (@PathVariable(name = "id") Integer userId);
 
 
-    public List<Ad> getAdsByStatus (@PathVariable (name = "status") String status);
+    public List<AdResponseDto> getAdsByStatus (@PathVariable (name = "status") String status);
 
     public AdResponseDto getAdById (@PathVariable (name = "id") Integer id);
 

@@ -5,7 +5,6 @@ import com.chronos.adservice.dto.AdRequestDto;
 import com.chronos.adservice.dto.AdResponseDto;
 import com.chronos.adservice.dto.FilterSearchDto;
 import com.chronos.adservice.enums.Status;
-import com.chronos.adservice.model.Ad;
 import com.chronos.adservice.service.impl.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,19 +22,19 @@ public class AdController implements IAdController {
 
     @GetMapping("/ads")
     @ResponseStatus(HttpStatus.OK)
-    public List<Ad> getAllAds (){
+    public List<AdResponseDto> getAllAds (){
         return adService.findAll();
     }
 
     @GetMapping("/ads/user/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Ad> getAdsByUserId (@PathVariable (name = "id") Integer userId){
+    public List<AdResponseDto> getAdsByUserId (@PathVariable (name = "id") Integer userId){
         return adService.adsByUser(userId);
     }
 
     @GetMapping("/ads/{status}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Ad> getAdsByStatus (@PathVariable (name = "status") String status){
+    public List<AdResponseDto> getAdsByStatus (@PathVariable (name = "status") String status){
         return adService.findByStatus(Status.valueOf(status.toLowerCase()));
     }
     @GetMapping("/ad/{id}")
@@ -52,7 +51,7 @@ public class AdController implements IAdController {
 
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    public List<AdResponseDto> filter (@RequestParam (name = "word") String word, @RequestParam (name = "categoryId") Integer categoryId){
+    public List<AdResponseDto> filter (@RequestParam (name = "word",required = false) String word, @RequestParam (name = "categoryId",required = false) Integer categoryId){
         return adService.search(new FilterSearchDto(word, categoryId));
     }
 
