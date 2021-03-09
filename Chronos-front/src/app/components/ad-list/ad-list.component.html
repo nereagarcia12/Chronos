@@ -1,10 +1,84 @@
-
-<div class="adds-wrapper">
-    <div class="tab-content">
-    <div id="grid-view" class="tab-pane fade active show">
-    <div class="row">
-        <app-ad-card *ngFor = "let ad of ads" [ad]= "ad"></app-ad-card>
+<div id="hero-area">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+        <div class="contents">
+          <h1 class="head-title">
+            Bienvenido a <span class="year">Chronus</span>
+          </h1>
+          <p>
+            Registrate, ofrece y recibe servicios de forma totalmente
+            colaborativa y gratuita, intercambiando tu tiempo!!
+          </p>
+          <div class="search-bar">
+            <div class="search-inner">
+              <form class="search-form">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="customword"
+                    class="form-control"
+                    placeholder="Que estas buscando?"
+                  />
+                </div>
+                <button class="btn btn-common" type="button">
+                  <i class="lni-search"></i> BUSCAR
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-</div>
+<div class="main-container section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-12 col-xs-12 page-sidebar">
+        <aside>
+          <div class="widget_search">
+            <form role="search" id="search-form">
+              <input
+                type="search"
+                class="form-control"
+                autocomplete="off"
+                name="s"
+                placeholder="Search..."
+                id="search-input"
+                value=""
+              />
+              <button type="submit" id="search-submit" class="search-btn">
+                <i class="lni-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <div class="widget categories">
+            <h4 class="widget-title">All Categories</h4>
+            <ul class="categories-list">
+              <li *ngFor="let category of categories">
+                <a href="#">
+                  <i class="lni-dinner"></i>
+                  {{category.name}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <div class="col-lg-9 col-md-12 col-xs-12 page-content">
+        <div class="adds-wrapper">
+          <div class="tab-content">
+            <div id="grid-view" class="tab-pane fade active show">
+              <div class="row">
+                <app-ad-card *ngFor="let ad of ads" [ad]="ad"></app-ad-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

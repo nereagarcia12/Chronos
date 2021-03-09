@@ -7,13 +7,13 @@
     <div class="product">
     {{ad.categoryName}}
     </div>
-    <h4><a [routerLink]="['/details/', ad.id]">{{ad.title}}</a></h4>
+    <h4><a [routerLink]="['/details/', ad.id]">{{ad.title.substr(0,10)}}</a></h4>
     <div class="meta-tag">
     <span>
-    <a href="#"><i class="lni-user"></i>{{ad.createAd}}</a>
+    <a href="#"><i class="lni-calendar"></i>{{ad.createAd}}</a>
     </span>
     </div>
-    <p class="dsc">{{ad.description}}</p>
+    <p class="dsc">{{ad.description.substr(0,40)+'...'}}</p>
     <div class="listing-bottom">
     <a [routerLink]="['/details/', ad.id]" class="btn btn-common float-right">Ver detalles</a>
     </div>

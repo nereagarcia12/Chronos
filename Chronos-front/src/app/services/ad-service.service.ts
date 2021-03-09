@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ad, Category } from '../model/ad-interfaces';
+import { Ad, Category, CreateAd } from '../model/ad-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -29,4 +29,13 @@ export class AdServiceService {
   getCategories(): Observable<Category[]>{
     return this.http.get<Category[]>(this.url +'/categories')
   }
+
+  postAd(body: CreateAd): Observable <Ad>{
+    return this.http.post<Ad>(this.url+'/ad', body);
+  }
+
+  deleteAd(id: number): Observable<any>{
+    return this.http.delete(this.url+'/ad/' + id);
+  }
+
 }

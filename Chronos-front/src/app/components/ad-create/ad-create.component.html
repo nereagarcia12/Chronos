@@ -1,0 +1,75 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-wrapper">
+          <h2 class="product-title">Post you Ads</h2>
+          <ol class="breadcrumb">
+            <li><a href="#">Home /</a></li>
+            <li class="current">Post you Ads</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<form [formGroup]="form"  #formDirective="ngForm">
+<div class="col-sm-12 col-md-12 col-lg-12">
+  <div class="row page-content">
+    <div
+      class="col-xs-12 col-sm-12 col-md-6 col-lg-6"
+      style="margin: 2% 18% 2% 18%"
+    >
+      <div class="inner-box">
+        <div class="dashboard-box">
+          <h2 class="dashbord-title">Detalles de tu anuncio</h2>
+        </div>
+        <div class="dashboard-wrapper">
+          <div class="form-group mb-3">
+            <label class="control-label">Titulo</label>
+            <input
+              class="form-control input-md"
+              name="Titulo"
+              placeholder="Titulo"
+              type="text"
+              formControlName="title"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="control-label">Description</label>
+            <textarea rows="6"
+              class="form-control input-md"
+              name="Descripcion"
+              placeholder="Introduce una descripción del servicio que ofreces."
+              type="text"
+              formControlName="description"
+            ></textarea>
+          </div>
+          <div class="form-group mb-3">
+            <label class="control-label">Availability</label>
+            <textarea
+                rows="4"
+              class="form-control input-md"
+              name="Availability"
+              placeholder="Introduce tu disponibilidad para ofrecer el servicio."
+              type="text"
+              formControlName="availability"
+            ></textarea>
+          </div>
+
+          <div class="form-group mb-3 tg-inputwithicon">
+            <label class="control-label">Categories</label>
+            <div class="tg-select form-control">
+              <select formControlName="category">
+                <option value="none">Selecciona una categoria</option>
+                <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+              </select>
+            </div>
+          </div>
+          <button (click)="onSubmit()" class="btn btn-common" type="button">Publicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

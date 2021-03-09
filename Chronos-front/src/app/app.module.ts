@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { AdCardComponent } from './components/ad-card/ad-card.component';
 import { AdDetailsComponent } from './components/ad-details/ad-details.component';
 import { AdListComponent } from './components/ad-list/ad-list.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AdCreateComponent } from './components/ad-create/ad-create.component';
+import {ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +19,15 @@ import { AdListComponent } from './components/ad-list/ad-list.component';
     AdCardComponent,
     AdDetailsComponent,
     AdListComponent,
+    HeaderComponent,
+    FooterComponent,
+    AdCreateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

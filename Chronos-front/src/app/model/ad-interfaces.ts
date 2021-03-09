@@ -1,5 +1,3 @@
-
-
 export interface Ad{
 id: number;
 title:string;
@@ -15,3 +13,12 @@ export interface Category{
     name: string;
     photo: string;
 }
+
+export interface CreateAd{
+    title:string;
+    description: string;
+    availability:string;
+    userId: number;
+    categoryId: number;
+}
+    

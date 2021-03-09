@@ -1,7 +1,5 @@
 package com.chronos.userservice.dto;
 
-import com.chronos.userservice.enums.Status;
-
 import java.time.LocalDate;
 
 public class UserResponseDto {
