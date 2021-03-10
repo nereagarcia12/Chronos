@@ -52,3 +52,6 @@ INSERT INTO public.profile (id, balance_hour, city, created_at, email, name, pas
 INSERT INTO public.user_roles (user_id, role_id) VALUES (1, 1);
 INSERT INTO public.user_roles (user_id, role_id) VALUES (2, 1);
 INSERT INTO public.user_roles (user_id, role_id) VALUES (3, 1);
+
+ALTER SEQUENCE profile_id_seq RESTART WITH 10;
+ALTER SEQUENCE roles_id_seq RESTART WITH 10;

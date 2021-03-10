@@ -43,6 +43,3 @@ INSERT INTO public.ad (id, availability, create_ad, description, status, title, 
 
 ALTER SEQUENCE ad_id_seq RESTART WITH 20;
 ALTER SEQUENCE category_id_seq RESTART WITH 20;
-
-
-
