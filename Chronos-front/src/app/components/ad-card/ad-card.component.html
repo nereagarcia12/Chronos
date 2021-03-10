@@ -1,22 +1,36 @@
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-    <div class="featured-box">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="featured-box">
     <figure>
-    <a [routerLink]="['/details/', ad.id]"><img class="img-fluid" src="assets/img/featured/img-1.jpg" alt=""></a>
+      <div class="icon">
+        <span class="bg-green"><i class="lni-heart"></i></span>
+        <span><i class="lni-bookmark"></i></span>
+      </div>
+      <a href="#"
+        ><img class="img-fluid" src="assets/img/img-1.jpg" alt=""
+      /></a>
     </figure>
     <div class="feature-content">
-    <div class="product">
-    {{ad.categoryName}}
+      <div class="product">
+        <h6>
+          Categoria: <a href="#">{{ ad.categoryName }} </a>
+        </h6>
+      </div>
+      <h4>
+        <a [routerLink]="['/details/', ad.id]">{{ ad.title }}</a>
+      </h4>
+      <div class="meta-tag">
+        <span>
+          <a href="#"><i class="lni-user"></i> {{ ad.createAd }}</a>
+        </span>
+      </div>
+      <p class="dsc">{{ ad.description }}</p>
+      <div class="listing-bottom">
+        <a
+          [routerLink]="['/details/', ad.id]"
+          class="btn btn-common float-right"
+          >Ver detalle</a
+        >
+      </div>
     </div>
-    <h4><a [routerLink]="['/details/', ad.id]">{{ad.title.substr(0,10)}}</a></h4>
-    <div class="meta-tag">
-    <span>
-    <a href="#"><i class="lni-calendar"></i>{{ad.createAd}}</a>
-    </span>
-    </div>
-    <p class="dsc">{{ad.description.substr(0,40)+'...'}}</p>
-    <div class="listing-bottom">
-    <a [routerLink]="['/details/', ad.id]" class="btn btn-common float-right">Ver detalles</a>
-    </div>
-    </div>
-    </div>
-    </div>
+  </div>
+</div>

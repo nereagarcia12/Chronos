@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../model/user-interface';
+import { CreateUser, User } from '../model/user-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class UserService {
     return this.http.get<User>(this.url+ '/user/'+ id)
   }
 
-
-
-
+  deleteUser(id: number): Observable<any>{
+    return this.http.delete(this.url+'/user/' + id);
+  }
 }

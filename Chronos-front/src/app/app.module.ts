@@ -10,7 +10,11 @@ import { AdListComponent } from './components/ad-list/ad-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdCreateComponent } from './components/ad-create/ad-create.component';
-import {ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -22,14 +26,18 @@ import {ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     AdCreateComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

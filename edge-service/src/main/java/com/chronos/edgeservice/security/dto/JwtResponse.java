@@ -8,12 +8,16 @@ public class JwtResponse {
     private Long id;
     private String username;
     private List<String> roles;
+    private Integer balance;
+    private String name;
 
-    public JwtResponse(String accessToken, Long id, String username,List<String> roles) {
+    public JwtResponse(String accessToken, Long id, String username,List<String> roles, Integer balance, String name) {
         this.token = accessToken;
         this.id = id;
         this.username = username;
         this.roles = roles;
+        this.name = name;
+        this.balance = balance;
     }
 
     public String getAccessToken() {
@@ -40,6 +44,21 @@ public class JwtResponse {
         this.id = id;
     }
 
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getUsername() {
         return username;

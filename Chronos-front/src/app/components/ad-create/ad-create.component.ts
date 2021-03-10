@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category, CreateAd } from 'src/app/model/ad-interfaces';
 import { AdServiceService } from 'src/app/services/ad-service.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { AdListComponent } from '../ad-list/ad-list.component';
 
 @Component({
@@ -18,10 +19,13 @@ export class AdCreateComponent implements OnInit {
   availability: FormControl;
   category: FormControl;
   description: FormControl;
+  isLoggedIn = false;
+  user!: any;
 
 
 
-  constructor(private adService: AdServiceService) { 
+  constructor(private adService: AdServiceService,
+    private tokenStorage: TokenStorageService) { 
     this.title = new FormControl('', [Validators.required]);
     this.availability = new FormControl('', [Validators.required]);
     this.category = new FormControl('', [Validators.required]);
@@ -36,6 +40,10 @@ export class AdCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.user = this.tokenStorage.getUser();
+    }
   }
 
   selectCategories(): void{
@@ -46,7 +54,7 @@ export class AdCreateComponent implements OnInit {
   }
  
   onSubmit():void{
-    let ad = {title: this.title.value, description: this.description.value, availability: this.availability.value, categoryId: this.category.value, userId: 1 } as CreateAd
+    let ad = {title: this.title.value, description: this.description.value, availability: this.availability.value, categoryId: this.category.value, userId: this.user.id } as CreateAd
     this.adService.postAd(ad).subscribe( (data) => {})
   }
 

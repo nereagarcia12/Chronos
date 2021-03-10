@@ -34,9 +34,10 @@
               type="text"
               formControlName="title"
             />
+            <span class="error-msg" *ngIf="title.hasError('required') && title.touched">Campo obligatorio</span>
           </div>
           <div class="form-group mb-3">
-            <label class="control-label">Description</label>
+            <label class="control-label">Descripcion</label>
             <textarea rows="6"
               class="form-control input-md"
               name="Descripcion"
@@ -44,9 +45,10 @@
               type="text"
               formControlName="description"
             ></textarea>
+            <span class="error-msg" *ngIf="description.hasError('required') && description.touched">Campo obligatorio</span>
           </div>
           <div class="form-group mb-3">
-            <label class="control-label">Availability</label>
+            <label class="control-label">Disponibilidad</label>
             <textarea
                 rows="4"
               class="form-control input-md"
@@ -55,6 +57,7 @@
               type="text"
               formControlName="availability"
             ></textarea>
+            <span class="error-msg" *ngIf="availability.hasError('required') && availability.touched">Campo obligatorio</span>
           </div>
 
           <div class="form-group mb-3 tg-inputwithicon">
@@ -65,8 +68,9 @@
                 <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
               </select>
             </div>
+            <span class="error-msg" *ngIf="category.hasError('required') && category.touched">Campo obligatorio</span>
           </div>
-          <button (click)="onSubmit()" class="btn btn-common" type="button">Publicar</button>
+          <button (click)="onSubmit()" class="btn btn-common" type="button" [disabled]="form.invalid">Publicar</button>
         </div>
       </div>
     </div>

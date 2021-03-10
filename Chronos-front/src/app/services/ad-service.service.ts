@@ -23,6 +23,9 @@ export class AdServiceService {
     if(word != null && categoryId !=null){
       params = '?word='+word+'&categoryId='+categoryId;
     }
+    if(word!=null && categoryId == null){
+      params = '?word='+word;
+    }
     return this.http.get<Ad[]>(this.url+'/search'+ params)
   }
 

@@ -8,3 +8,11 @@ export interface User {
   createdAt: Date;
   pendingTransaction: boolean;
 }
+
+export interface CreateUser {
+    name: string;
+    email: string;
+    password: string;
+    phone: string;
+    city: string;
+  }

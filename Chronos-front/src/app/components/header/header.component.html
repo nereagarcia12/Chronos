@@ -3,26 +3,26 @@
     <div class="top-bar">
     <div class="container">
     <div class="row">
-    <div class="col-lg-7 col-md-5 col-xs-12">
+    <div class="col-lg-5 col-md-6 col-xs-12">
     
-    <ul class="list-inline">
-    <li><i class="lni-phone"></i> +0123 456 789</li>
-    <li><i class="lni-envelope"></i> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5e2d2b2e2e312c2a1e39333f3732703d3133">[email&#160;protected]</a></li>
+
+    <ul *ngIf="isLoggedIn" class="list-inline">
+    <li><i class="lni-user"></i> Bienvenido {{user.name}}</li>
+    <li><i class="lni-alarm-clock"></i> Tus horas disponibles {{user.balance}}</li>
     </ul>
     
     </div>
-    <div class="col-lg-5 col-md-7 col-xs-12">
-    <div class="roof-social float-right">
-    <a class="facebook" href="#"><i class="lni-facebook-filled"></i></a>
-    <a class="twitter" href="#"><i class="lni-twitter-filled"></i></a>
-    <a class="instagram" href="#"><i class="lni-instagram-filled"></i></a>
-    <a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a>
-    <a class="google" href="#"><i class="lni-google-plus"></i></a>
+    <div class="col-lg-7 col-md-6 col-xs-12">
+    <div *ngIf="!isLoggedIn" class="header-top-right float-right">
+    <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni-lock"></i> Accede </a> |
+    <a routerLink="/register" routerLinkActive="active" class="header-top-button"><i class="lni-pencil"></i> Registrate</a>
     </div>
-    <div class="header-top-right float-right">
-    <a href="login.html" class="header-top-button"><i class="lni-lock"></i> Log In</a> |
-    <a href="register.html" class="header-top-button"><i class="lni-pencil"></i> Register</a>
-    </div>
+    <div *ngIf="isLoggedIn" class="header-top-right float-right">
+        <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni-folder"></i> Mi anuncios </a> |
+        <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni-pencil"></i> Mi transacciones </a> |
+        <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni-user"></i> Mi perfil </a> |
+        <a (click)="logout()" routerLink="" class="header-top-button"><i class="lni-power-switch"></i> Desconectate </a>
+        </div>
     </div>
     </div>
     </div>
@@ -39,56 +39,21 @@
     <span class="lni-menu"></span>
     <span class="lni-menu"></span>
     </button>
-    <a href="index-2.html" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
+    <a routerLink="/" routerLinkActive="active" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
     </div>
     <div class="collapse navbar-collapse" id="main-navbar">
     <ul class="navbar-nav mr-auto w-100 justify-content-center">
         <li class="nav-item dropdown" routerLinkActive="active">
-            <a class="nav-link dropdown-toggle" routerLink="/" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Home
-    </a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="category.html">
-    Categories
+            <a class="nav-link dropdown-toggle" routerLink="" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Inicio
     </a>
     </li>
      <li class="nav-item dropdown" routerLinkActive="active">
-    <a class="nav-link dropdown-toggle" routerLink="/publish" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Listings
+    <a class="nav-link dropdown-toggle" routerLink="/listing" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Servicios
     </a>
     </li>
-    <li class="nav-item dropdown" >
-    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Pages
-    </a>
-    <div class="dropdown-menu">
-    <a class="dropdown-item" href="about.html">About Us</a>
-    <a class="dropdown-item" href="services.html">Services</a>
-    <a class="dropdown-item" href="ads-details.html">Ads Details</a>
-    <a class="dropdown-item" href="post-ads.html">Ads Post</a>
-    <a class="dropdown-item" href="pricing.html">Packages</a>
-    <a class="dropdown-item" href="testimonial.html">Testimonial</a>
-    <a class="dropdown-item" href="faq.html">FAQ</a>
-    <a class="dropdown-item" href="404.html">404</a>
-    </div>
-    </li>
-    <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Blog
-    </a>
-    <div class="dropdown-menu">
-    <a class="dropdown-item" href="blog.html">Blog - Right Sidebar</a>
-    <a class="dropdown-item" href="blog-left-sidebar.html">Blog - Left Sidebar</a>
-    <a class="dropdown-item" href="blog-grid-full-width.html"> Blog full width </a>
-    <a class="dropdown-item" href="single-post.html">Blog Details</a>
-    </div>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="contact.html">
-    Contact
-    </a>
-    </li>
+
     </ul>
     <div class="post-btn">
     <a class="btn btn-common" routerLink="/publish" routerLinkActive="active"><i class="lni-pencil-alt"></i>Publica un anuncio</a>
@@ -99,47 +64,14 @@
     <ul class="mobile-menu">
     <li>
     <a routerLink="" routerLinkActive="active">
-    Home
+    Inicio
     </a>
     </li>
     <li>
-    <a href="category.html">Categories</a>
-    </li>
-    <li>
-    <a routerLink="" routerLinkActive="active">
-    Listings
+    <a routerLink="/listing" routerLinkActive="active">
+    Servicios
     </a>
     </li>
-    <li>
-    <a href="#">Pages</a>
-    <ul class="dropdown">
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="ads-details.html">Ads Details</a></li>
-    <li><a href="post-ads.html">Ads Post</a></li>
-    <li><a href="pricing.html">Packages</a></li>
-    <li><a href="testimonial.html">Testimonial</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="404.html">404</a></li>
     </ul>
-    </li>
-    <li>
-    <a href="#">Blog</a>
-    <ul class="dropdown">
-    <li><a href="blog.html">Blog - Right Sidebar</a></li>
-    <li><a href="blog-left-sidebar.html">Blog - Left Sidebar</a></li>
-    <li><a href="blog-grid-full-width.html"> Blog full width </a></li>
-    <li><a href="single-post.html">Blog Details</a></li>
-    </ul>
-    </li>
-    <li>
-    <a href="contact.html">Contact Us</a>
-    </li>
-    </ul>
-    
     </nav>
-    
-
-    
     </header>
-    
