@@ -77,6 +77,7 @@ public class TransactionService implements ITransactionService {
         }
         transaction.setStatus(Status.COMPLETED);
         userClient.increaseBalanceHours(userId, transaction.getAmount());
+        transactionRepository.save(transaction);
     }
 
     public List<TransactionResponseDto> getTransactionByUser(Integer userId) {

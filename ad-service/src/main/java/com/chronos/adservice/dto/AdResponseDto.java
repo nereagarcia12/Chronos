@@ -13,6 +13,7 @@ public class AdResponseDto {
     private LocalDate createAd;
     private Integer userId;
     private String categoryName;
+    private String categoryImage;
 
     public AdResponseDto(Integer id, String title, String description, String availability, LocalDate createAd, Integer userId, String categoryName) {
         this.id = id;

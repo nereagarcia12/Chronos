@@ -21,4 +21,14 @@ export class TransactionService {
     return this.http.get<CompleteTransaction[]>(this.url + '/transactions/' + id);
   }
 
+  acceptTransaction(id: number, userId : number): Observable<any>{
+    return this.http.put<any>(this.url + '/transaction/' + id + '/user/' + userId + '/accept',{});
+  }
+  refuseTransaction(id: number,userId : number): Observable<CompleteTransaction[]>{
+    return this.http.put<any>(this.url + '/transaction/' + id + '/user/' + userId + '/refuse',{});
+  }
+  completeTransaction(id: number,userId : number): Observable<CompleteTransaction[]>{
+    return this.http.put<any>(this.url + '/transaction/' + id + '/user/' + userId + '/complete',{});
+  }
+
 }

@@ -34,4 +34,27 @@ export class TransactionsComponent implements OnInit {
       this.transactionsReceived = data.filter(trans => trans.receiverUserId.id == this.user.id);
     } )
   }
+
+  acceptTransaction(id:number) :void{
+    this.transactionService.acceptTransaction(id, this.user.id).subscribe(() =>{
+      this.reloadPage();
+    })
+  }
+  refuseTransaction(id:number) :void{
+    this.transactionService.refuseTransaction(id, this.user.id).subscribe(() =>{
+      this.reloadPage();
+    })
+  }
+
+  completeTransaction(id:number) : void{
+    this.transactionService.completeTransaction(id, this.user.id).subscribe(() =>{
+      this.reloadPage();
+    })
+  }
+
+  reloadPage(): void {
+    window.location.reload();
+  }
+
+
 }

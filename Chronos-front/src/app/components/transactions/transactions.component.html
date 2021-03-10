@@ -3,17 +3,17 @@
     <div class="row">
     <div class="col-md-12">
     <div class="breadcrumb-wrapper">
-    <h2 class="product-title">Offers/Messages</h2>
+    <h2 class="product-title">Transacciones enviadas y recibidas</h2>
     <ol class="breadcrumb">
-    <li><a href="#">Home /</a></li>
-    <li class="current">Messages</li>
+    <li><a routerLink="" routerLinkActive="active">Inicio /</a></li>
+    <li class="current">Mis transacciones</li>
     </ol>
     </div>
     </div>
     </div>
     </div>
     </div>
-    
+
 <div class="row">
 <div class="col-sm-12 col-md-6 col-lg-6">
   <div class="page-content">
@@ -58,7 +58,7 @@
                     Transaccion Aceptada, el usuario tiene que dar el servicio
                   </div>
                   <div *ngIf = "trans.status == 'REFUSED'" class="alert alert-danger" role="alert">
-                    Transaccion rechazada, tus horas han sido devueltas lo sentimos :( 
+                    Transaccion rechazada, tus horas han sido devueltas lo sentimos :(
                   </div>
                   <div *ngIf = "trans.status == 'COMPLETED'" class="alert alert-success" role="alert">
                     Transaccion Completada, esperamos que hayas disfrutado del servicio :)
@@ -93,7 +93,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor = "let trans of transactionsInitiated" data-category="active">
+              <tr *ngFor = "let trans of transactionsReceived" data-category="active">
                 <td class="Title">
                   <h3>{{trans.adId.title}}</h3>
                   <span>{{trans.adId.description.substr(0,40)}}</span>
@@ -109,27 +109,27 @@
                 </td>
                 <td data-title="Estado">
                   <div *ngIf = "trans.status == 'PENDING'" class="btns-actions" role="alert">
-                
-                  <a class="btn-action btn-view" href="#"
+
+                  <a (click) = "acceptTransaction(trans.id)" class="btn-action btn-view" 
                     ><i class="lni lni-checkmark-circle"></i
                   ></a>
-                  <a class="btn-action btn-edit" href="#"
+                  <a (click) = "refuseTransaction(trans.id)" class="btn-action btn-edit" 
                     ><i class="lni lni-cross-circle"></i
                   ></a>
                     </div>
-                    <div *ngIf = "trans.status == 'ACCEPTED'" class="alert alert-warning" role="alert">
-                      Transaccion Aceptada, el usuario tiene que dar el servicio
+                    <div *ngIf = "trans.status == 'ACCEPTED'" class="btns-actions" role="alert">
+                        <a (click) = 'completeTransaction(trans.id)' class="btn-action btn-view"
+                        ><i class="lni lni-checkmark-circle"></i
+                      ></a>
                     </div>
                     <div *ngIf = "trans.status == 'REFUSED'" class="alert alert-danger" role="alert">
-                      Transaccion rechazada, tus horas han sido devueltas lo sentimos :( 
+                      Has rechazado la transaccion :(
                     </div>
                     <div *ngIf = "trans.status == 'COMPLETED'" class="alert alert-success" role="alert">
-                      Transaccion Completada, esperamos que hayas disfrutado del servicio :)
+                      Transaccion Completada, se te han sumado las horas del servicio
                     </div>
-                  
                 </td>
               </tr>
-  
             </tbody>
           </table>
         </div>

@@ -16,22 +16,18 @@
 <div class="section-padding">
     <div class="container">
         <div class="product-info row">
-            <div class="col-lg-8 col-md-12 col-xs-12">
+            <div class="col-lg-7 col-md-12 col-xs-12">
                 <div class="ads-details-wrapper">
-                    <div id="owl-demo" class="owl-carousel owl-theme">
                         <div class="item">
-                            <div class="product-img">
-                                <img class="img-fluid" src="assets/img/productinfo/img1.jpg" alt="">
-                            </div>
+                                <img style="width: 95% !important;" class="img-fluid" src="assets/img/img-1.jpg" alt="">
                         </div>
-                    </div>
                 </div>
                 <div class="details-box">
                     <div class="ads-details-info">
                         <h2>{{ad.title}}</h2>
                         <div class="details-meta">
-                            <span><a href="#"><i class="lni-calendar"></i> {{ad.createAd}} </a></span>
-                            <span><a href="#"><i class="lni-map-marker"></i>{{user.city}}</a></span>
+                            <span><a href="#"><i class="lni lni-calendar"></i> {{ad.createAd}} </a></span>
+                            <span><a href="#"><i class="lni lni-map-marker"></i>{{user.city}}</a></span>
                         </div>
                         <h4 class="title-small mb-3">Descripcion :</h4>
                         <p *ngFor="let string of ad.description.split('\n')"class="mb-4">
@@ -46,7 +42,7 @@
                         <div class="float-left">
                             <ul class="advertisement">
                                 <li>
-                                    <p><strong><i class="lni-folder"></i> Categoria: </strong> <a
+                                    <p><strong><i class="lni lni-folder"></i> Categoria: </strong> <a
                                             href="#">{{ad.categoryName}}</a></p>
                                 </li>
                             </ul>
@@ -55,7 +51,6 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-xs-12">
-
                 <aside *ngIf="!transaction" class="details-sidebar">
                     <div  class="widget">
                         <h4 class="widget-title">Anuncio publicado por: </h4>
@@ -63,12 +58,12 @@
                         <div class="agent-inner">
                             <div class="agent-title">
                                 <div class="agent-photo">
-                                    <a href="#"><img src="assets/img/productinfo/agent.jpg" alt=""></a>
+                                    <a href="#"><img src="assets/img/avatar.jpg" alt=""></a>
                                 </div>
                                 <div class="agent-details">
                                     <h3><a href="#">{{user.name}}</a></h3>
-                                    <span><i class="lni-phone-handset"></i>{{user.phone}}</span><br>
-                                    <span><i class="lni-envelope"></i>{{user.email}}</span>
+                                    <span><i class="lni lni-phone-handset"></i>{{user.phone}}</span><br>
+                                    <span><i class="lni lni-envelope"></i>{{user.email}}</span>
                                 </div>
                             </div>
                             <div>

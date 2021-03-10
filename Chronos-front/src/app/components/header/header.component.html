@@ -4,40 +4,40 @@
     <div class="container">
     <div class="row">
     <div class="col-lg-5 col-md-6 col-xs-12">
-    
+
 
     <ul *ngIf="isLoggedIn" class="list-inline">
-    <li><i class="lni-user"></i> Bienvenido {{user.name}}</li>
-    <li><i class="lni-alarm-clock"></i> Tus horas disponibles {{user.balance}}</li>
+    <li><i class="lni lni-user"></i> Bienvenido {{user.name}}</li>
+    <li><i class="lni lni-alarm-clock"></i> Tus horas disponibles {{user.balance}}</li>
     </ul>
-    
+
     </div>
     <div class="col-lg-7 col-md-6 col-xs-12">
     <div *ngIf="!isLoggedIn" class="header-top-right float-right">
-    <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni-lock"></i> Accede </a> |
-    <a routerLink="/register" routerLinkActive="active" class="header-top-button"><i class="lni-pencil"></i> Registrate</a>
+    <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni lni-lock"></i> Accede </a> |
+    <a routerLink="/register" routerLinkActive="active" class="header-top-button"><i class="lni lni-pencil"></i> Registrate</a>
     </div>
     <div *ngIf="isLoggedIn" class="header-top-right float-right">
-        <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni-folder"></i> Mi anuncios </a> |
-        <a class="header-top-button" routerLink="/transactions" routerLinkActive="active"><i class="lni-pencil"></i> Mi transacciones </a> |
-        <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni-user"></i> Mi perfil </a> |
-        <a (click)="logout()" routerLink="" class="header-top-button"><i class="lni-power-switch"></i> Desconectate </a>
+        <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni lni-folder"></i> Mi anuncios </a> |
+        <a class="header-top-button" routerLink="/transactions" routerLinkActive="active"><i class="lni lni-pencil"></i> Mi transacciones </a> |
+        <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni lni-user"></i> Mi perfil </a> |
+        <a (click)="logout()" routerLink="" class="header-top-button"><i class="lni lni-power-switch"></i> Desconectate </a>
         </div>
     </div>
     </div>
     </div>
     </div>
-    
-    
+
+
     <nav class="navbar navbar-expand-lg bg-white fixed-top scrolling-navbar">
     <div class="container">
-    
+
     <div class="navbar-header">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-    <span class="lni-menu"></span>
-    <span class="lni-menu"></span>
-    <span class="lni-menu"></span>
+    <span class="lni lni-menu"></span>
+    <span class="lni lni-menu"></span>
+    <span class="lni lni-menu"></span>
     </button>
     <a routerLink="/" routerLinkActive="active" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
     </div>
@@ -56,11 +56,11 @@
 
     </ul>
     <div class="post-btn">
-    <a class="btn btn-common" routerLink="/publish" routerLinkActive="active"><i class="lni-pencil-alt"></i>Publica un anuncio</a>
+    <a class="btn btn-common" routerLink="/publish" routerLinkActive="active"><i class="lni lni-pencil-alt"></i>Publica un anuncio</a>
     </div>
     </div>
     </div>
-    
+
     <ul class="mobile-menu">
     <li>
     <a routerLink="" routerLinkActive="active">
