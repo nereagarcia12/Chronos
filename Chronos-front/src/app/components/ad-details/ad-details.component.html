@@ -56,9 +56,10 @@
             </div>
             <div class="col-lg-4 col-md-6 col-xs-12">
 
-                <aside class="details-sidebar">
-                    <div class="widget">
+                <aside *ngIf="!transaction" class="details-sidebar">
+                    <div  class="widget">
                         <h4 class="widget-title">Anuncio publicado por: </h4>
+                        <form class="form" [formGroup]="form"  #formDirective="ngForm">
                         <div class="agent-inner">
                             <div class="agent-title">
                                 <div class="agent-photo">
@@ -67,17 +68,29 @@
                                 <div class="agent-details">
                                     <h3><a href="#">{{user.name}}</a></h3>
                                     <span><i class="lni-phone-handset"></i>{{user.phone}}</span><br>
-                                    <span><i class="lni-phone-handset"></i>{{user.email}}</span>
+                                    <span><i class="lni-envelope"></i>{{user.email}}</span>
                                 </div>
                             </div>
-                            <input type="text" class="form-control" placeholder="Your Email">
-                            <input type="text" class="form-control" placeholder="Your Phone">
-                            <p>I'm interested in this property [ID 123456] and I'd like to know more details.</p>
-                            <button class="btn btn-common fullwidth mt-4">Send Message</button>
+                            <div>
+                            <input style="margin-bottom: 10px !important" type="number" min="1" formControlName="amount" class="form-control" placeholder="Introduce las horas de servicio ">
+                            <span class="error-msg" *ngIf="amount.hasError('required') && amount.touched">Campo obligatorio</span>
+                            <textarea style="margin-bottom: 10px !important"  rows="6" type="text" formControlName="description" class="form-control" placeholder="Puedes introducir un mensaje para el receptor..."></textarea>
+                            <span class="error-msg" *ngIf="description.hasError('required') && description.touched">Campo obligatorio</span>
+                            <div
+                            class="alert alert-danger"
+                            role="alert"
+                            *ngIf="serviceRequestFailed">
+                            Transacción no realizada: {{ errorMessage }}
+                          </div>
                         </div>
+                            <button (click)="onSubmit()" class="btn btn-common fullwidth mt-4" [disabled]="form.invalid">Enviar Peticion</button>
+                        </div>
+                    </form>
                     </div>
-
                 </aside>
+                <div *ngIf="transaction" class="widget">
+                    <div class="alert alert-success" role="alert">Tu solicitud ha sido enviada con éxito. Hemos notificado al emisor del servicio, atendera tu solicitud lo antes posible.</div><br>
+                </div>
 
             </div>
         </div>

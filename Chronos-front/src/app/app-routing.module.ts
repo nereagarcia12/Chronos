@@ -6,6 +6,7 @@ import { AdListComponent } from './components/ad-list/ad-list.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
 {
   path: 'register',
   component: RegisterComponent
+},
+{
+  path: 'transactions',
+  component: TransactionsComponent
 }];
 
 @NgModule({

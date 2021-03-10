@@ -1,20 +1,28 @@
 package com.chronos.edgeservice.controller;
 
+import com.chronos.edgeservice.apiresponse.transaction.CompleteTransactionResponseDto;
 import com.chronos.edgeservice.apiresponse.transaction.TransactionRequestDto;
 import com.chronos.edgeservice.apiresponse.transaction.TransactionResponseDto;
+import com.chronos.edgeservice.client.AdClient;
 import com.chronos.edgeservice.client.TransactionClient;
+import com.chronos.edgeservice.client.UserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class TransactionController {
 
     @Autowired
     private TransactionClient transactionClient;
+    @Autowired
+    private UserClient userClient;
+    @Autowired
+    private AdClient adclient;
 
     @PostMapping("/transaction")
     @ResponseStatus(HttpStatus.CREATED)
@@ -41,8 +49,16 @@ public class TransactionController {
 
     @GetMapping("/transactions/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public List<TransactionResponseDto> getAllTransactionByUserId(@PathVariable (name = "id") Integer userId){
-        return transactionClient.getAllTransactionByUserId(userId);
+    public List<CompleteTransactionResponseDto> getAllTransactionByUserId(@PathVariable (name = "id") Integer userId){
+        return transactionClient.getAllTransactionByUserId(userId).stream().map(transactionResponseDto ->
+                new CompleteTransactionResponseDto(
+                        transactionResponseDto.getId(),
+                        userClient.findByUserById(transactionResponseDto.getOriginUserId()),
+                        userClient.findByUserById(transactionResponseDto.getReceiverUserId()),
+                        transactionResponseDto.getAmount(),
+                        transactionResponseDto.getDescription(),
+                        adclient.getAdById(transactionResponseDto.getAdId()),
+                        transactionResponseDto.getStatus())).collect(Collectors.toList());
     }
 
 }
