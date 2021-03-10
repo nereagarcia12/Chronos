@@ -3,10 +3,7 @@ package com.chronos.transactionservice.model;
 import com.chronos.transactionservice.dto.TransactionResponseDto;
 import com.chronos.transactionservice.enums.Status;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Transaction {
@@ -16,6 +13,7 @@ public class Transaction {
     private Integer id;
     private Integer originUserId;
     private Integer receiverUserId;
+    @Enumerated(EnumType.STRING)
     private Status status;
     private Integer amount;
     private String description;

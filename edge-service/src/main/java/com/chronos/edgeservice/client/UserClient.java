@@ -38,7 +38,7 @@ public interface UserClient {
     @ResponseStatus(HttpStatus.OK)
     public void editProfileUser(@PathVariable (name = "id") Integer id, @RequestBody @Valid UserRequestDto userRequestDto);
 
-    @DeleteMapping("user/{id}")
+    @DeleteMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable (name = "id") Integer id);
 }

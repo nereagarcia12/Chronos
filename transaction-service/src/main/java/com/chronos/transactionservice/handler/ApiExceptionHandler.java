@@ -3,6 +3,7 @@ package com.chronos.transactionservice.handler;
 import com.chronos.transactionservice.exception.TransactionNotFoundException;
 import com.chronos.transactionservice.exception.TransactionNotOwnedByUserException;
 import com.chronos.transactionservice.exception.UnexpectedTransactionStatusException;
+import feign.FeignException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +30,10 @@ public class ApiExceptionHandler {
     public ResponseEntity<Object> unexpectedTransactionStatusException(UnexpectedTransactionStatusException unexpectedTransactionStatusException, HttpServletResponse response) throws IOException {
         return new ResponseEntity<Object>(Map.of("error",  unexpectedTransactionStatusException.getLocalizedMessage())
                 , new HttpHeaders(), HttpStatus.PRECONDITION_FAILED);}
+
+    @ExceptionHandler(FeignException.class)
+    public ResponseEntity<Object> noPresentUser(FeignException feignException, HttpServletResponse response) throws IOException {
+        return new ResponseEntity<Object>(feignException.contentUTF8(), new HttpHeaders(), feignException.status());
+    }
 
 }

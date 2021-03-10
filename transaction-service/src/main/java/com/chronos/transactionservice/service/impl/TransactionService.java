@@ -32,37 +32,34 @@ public class TransactionService implements ITransactionService {
     @Autowired
     private UserClient userClient;
 
-    public void makeTransaction(TransactionRequestDto transactionRequestDto){
-        try {
-            UserResponseDto userOrigin = userClient.findByUserById(transactionRequestDto.getOriginUserId());
-            UserResponseDto userReceiver = userClient.findByUserById(transactionRequestDto.getReceiverUserId());
-            AdResponseDto ad = adClient.getAdById(transactionRequestDto.getAdId());
-            userClient.decreaseBalanceHours(userOrigin.getId(), transactionRequestDto.getAmount());
-        } catch (FeignException e) {
-            throw new ResponseStatusException(e.status(), e.getCause().getMessage(), e.getCause());
-        }
+    public void makeTransaction(TransactionRequestDto transactionRequestDto) {
+        UserResponseDto userOrigin = userClient.findByUserById(transactionRequestDto.getOriginUserId());
+        UserResponseDto userReceiver = userClient.findByUserById(transactionRequestDto.getReceiverUserId());
+        AdResponseDto ad = adClient.getAdById(transactionRequestDto.getAdId());
+        userClient.decreaseBalanceHours(userOrigin.getId(), transactionRequestDto.getAmount());
 
-        transactionRepository.save(new Transaction(transactionRequestDto.getOriginUserId(),transactionRequestDto.getReceiverUserId(),transactionRequestDto.getAmount(),transactionRequestDto.getDescription(),transactionRequestDto.getAdId()));
+
+        transactionRepository.save(new Transaction(transactionRequestDto.getOriginUserId(), transactionRequestDto.getReceiverUserId(), transactionRequestDto.getAmount(), transactionRequestDto.getDescription(), transactionRequestDto.getAdId()));
     }
 
-    public void acceptTransaction(Integer id, Integer userId){
+    public void acceptTransaction(Integer id, Integer userId) {
         Transaction transaction = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
-        if (transaction.getReceiverUserId() != userId){
+        if (transaction.getReceiverUserId() != userId) {
             throw new TransactionNotOwnedByUserException();
         }
-        if (transaction.getStatus() != Status.PENDING){
+        if (transaction.getStatus() != Status.PENDING) {
             throw new UnexpectedTransactionStatusException();
         }
         transaction.setStatus(Status.ACCEPTED);
         transactionRepository.save(transaction);
     }
 
-    public void refuseTransaction(Integer id, Integer userId){
+    public void refuseTransaction(Integer id, Integer userId) {
         Transaction transaction = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
-        if (transaction.getReceiverUserId() != userId){
+        if (transaction.getReceiverUserId() != userId) {
             throw new TransactionNotOwnedByUserException();
         }
-        if (transaction.getStatus() != Status.PENDING){
+        if (transaction.getStatus() != Status.PENDING) {
             throw new UnexpectedTransactionStatusException();
         }
         transaction.setStatus(Status.REFUSED);
@@ -70,20 +67,20 @@ public class TransactionService implements ITransactionService {
         userClient.increaseBalanceHours(userId, transaction.getAmount());
     }
 
-    public void completeTransaction(Integer id, Integer userId){
+    public void completeTransaction(Integer id, Integer userId) {
         Transaction transaction = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
-        if (transaction.getReceiverUserId() != userId){
+        if (transaction.getReceiverUserId() != userId) {
             throw new TransactionNotOwnedByUserException();
         }
-        if (transaction.getStatus() != Status.ACCEPTED){
+        if (transaction.getStatus() != Status.ACCEPTED) {
             throw new UnexpectedTransactionStatusException();
         }
         transaction.setStatus(Status.COMPLETED);
         userClient.increaseBalanceHours(userId, transaction.getAmount());
     }
 
-    public List<TransactionResponseDto> getTransactionByUser(Integer userId){
-        return transactionRepository.findByOriginUserIdOrReceiverUserId(userId,userId).stream().map(Transaction::toResponseDto).collect(Collectors.toList());
+    public List<TransactionResponseDto> getTransactionByUser(Integer userId) {
+        return transactionRepository.findByOriginUserIdOrReceiverUserId(userId, userId).stream().map(Transaction::toResponseDto).collect(Collectors.toList());
     }
 
 

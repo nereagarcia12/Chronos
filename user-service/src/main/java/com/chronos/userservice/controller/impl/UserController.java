@@ -61,7 +61,7 @@ public class UserController implements IUserController {
         userService.editUser(userRequestDto, id);
     }
 
-    @DeleteMapping("user/{id}")
+    @DeleteMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable (name = "id") Integer id){
         userService.deleteUser(id);

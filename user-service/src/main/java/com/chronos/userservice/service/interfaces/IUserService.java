@@ -10,7 +10,7 @@ public interface IUserService {
     public void createUser(UserRequestDto userRequestDto);
     public void editUser(UserRequestDto userRequestDto, Integer id);
     public void deleteUser(Integer id);
-    public void increaseBalance(Integer amount, Integer id);
-    public void decreaseBalance(Integer amount, Integer id);
+    public void increaseBalance(Integer id, Integer amount);
+    public void decreaseBalance(Integer id, Integer amount);
 
 }

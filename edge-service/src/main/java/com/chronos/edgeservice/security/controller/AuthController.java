@@ -57,24 +57,16 @@ public class AuthController {
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
-                roles));
+                roles,
+                userDetails.getBalance(), userDetails.getName()));
     }
 
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody UserRequestDto signUpRequest) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void registerUser(@Valid @RequestBody UserRequestDto signUpRequest) {
 
         signUpRequest.setPassword(encoder.encode(signUpRequest.getPassword()));
         userClient.createUser(signUpRequest);
-
-        return ResponseEntity.ok("User registered successfully!");
     }
-
-    @GetMapping("/user/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasRole('USER')")
-    public UserResponseDto findByUserById(@PathVariable (name = "id") Integer id){
-        return userClient.findByUserById(id);
-    }
-
 }

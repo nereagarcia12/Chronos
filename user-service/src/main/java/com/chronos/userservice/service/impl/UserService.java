@@ -55,13 +55,13 @@ public class UserService implements IUserService {
         userRepository.delete(user);
     }
 
-    public void increaseBalance(Integer amount, Integer id){
+    public void increaseBalance(Integer id, Integer amount){
         User user = userRepository.findById(id).orElseThrow(NoPresentUser::new);
         user.increaseBalance(amount);
         userRepository.save(user);
     }
 
-    public void decreaseBalance(Integer amount, Integer id){
+    public void decreaseBalance(Integer id, Integer amount){
         User user = userRepository.findById(id).orElseThrow(NoPresentUser::new);
         user.decreaseBalance(amount);
         userRepository.save(user);
