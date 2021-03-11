@@ -48,7 +48,7 @@ public class AdController {
 
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    public List<AdResponseDto> filter (@RequestParam (name = "word",required = false) String word, @RequestParam (name = "categoryId",required = false) Integer categoryId){
+    public List<AdResponseDto> filter(@RequestParam (name = "word",required = false) String word, @RequestParam (name = "categoryId",required = false) Integer categoryId){
         return adClient.filter(word,categoryId);
     }
 

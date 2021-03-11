@@ -8,7 +8,7 @@ import { Ad, Category, CreateAd } from '../model/ad-interfaces';
 })
 export class AdServiceService {
 
-  readonly url = 'http://localhost:8080';
+  readonly url = 'http://localhost:8083';
 
   constructor(
     private http: HttpClient
