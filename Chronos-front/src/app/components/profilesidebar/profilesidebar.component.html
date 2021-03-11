@@ -1,0 +1,56 @@
+<div>
+  <aside>
+    <div class="sidebar-box">
+      <div class="user">
+        <figure>
+          <a href="#"><img src="assets/img/avatar.jpg" width="100px" alt="" /></a>
+        </figure>
+        <div class="usercontent">
+          <h3>Bienvenido {{user.name}} </h3>
+          <h4>Te quedan {{user.balance}} </h4>
+        </div>
+      </div>
+      <nav class="navdashboard">
+        <ul>
+          <li>
+            <a routerLink="/editUser" routerLinkActive="active">
+              <i class="lni lni-pencil"></i>
+              <span>Editar Perfil</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/myAds" routerLinkActive="active">
+              <i class="lni lni-folder"></i>
+              <span>Mis anuncios</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/transactionsInitiated" routerLinkActive="active">
+              <i class="lni lni-arrow-right"></i>
+              <span>Transacciones iniciadas</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/transactionsReceived" routerLinkActive="active">
+              <i class="lni lni-arrow-left"></i>
+              <span>Transacciones recibidas</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="logout()">
+              <i class="lni lni-power-switch"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="deleteUser()">
+              <i class="lni lni-trash"></i>
+              <span>Eliminar cuenta</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </aside>
+</div>

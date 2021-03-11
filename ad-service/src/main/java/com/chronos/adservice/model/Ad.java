@@ -49,7 +49,7 @@ public class Ad {
     }
 
     public AdResponseDto toResponseDto(){
-        return new AdResponseDto(this.getId(), this.getTitle(), this.getDescription(), this.getAvailability(), this.getCreateAd(), this.getUserId(), this.getCategory().getName());
+        return new AdResponseDto(this.getId(), this.getTitle(), this.getDescription(), this.getAvailability(), this.getCreateAd(), this.getUserId(), this.getCategory().getName(), this.getCategory().getPhoto());
     }
 
     public Integer getId() {

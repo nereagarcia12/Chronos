@@ -2,13 +2,13 @@
   <div class="featured-box">
     <figure>
       <a  [routerLink]="['/details/', ad.id]"
-        ><img class="img-fluid" src="assets/img/img-1.jpg" alt=""
+        ><img class="img-fluid" src="{{ad.categoryImage}}" alt=""
       /></a>
     </figure>
     <div class="feature-content">
       <div class="product">
         <h6>
-          Categoria: <a href="#">{{ ad.categoryName }} </a>
+          Categoria: {{ ad.categoryName }}
         </h6>
       </div>
       <h4>
@@ -16,16 +16,14 @@
       </h4>
       <div class="meta-tag">
         <span>
-          <a href="#"><i class="lni lni-user"></i> {{ ad.createAd }}</a>
+          <i class="lni lni-user"></i> {{ ad.createAd }}
         </span>
       </div>
       <p class="dsc">{{ ad.description }}</p>
       <div class="listing-bottom">
-        <a
-          [routerLink]="['/details/', ad.id]"
+        <a [routerLink]="['/details/', ad.id]"
           class="btn btn-common float-right"
-          >Ver detalle</a
-        >
+          >Ver detalle</a>
       </div>
     </div>
   </div>

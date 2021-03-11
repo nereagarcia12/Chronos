@@ -5,7 +5,7 @@
                 <div class="breadcrumb-wrapper">
                     <h2 class="product-title">Detalle del servicio</h2>
                     <ol class="breadcrumb">
-                        <li><a href="#">Inicio /</a></li>
+                        <li><a routerLink="" routerLinkActive="active">Inicio /</a></li>
                         <li class="current">{{ad.categoryName}}</li>
                     </ol>
                 </div>
@@ -19,7 +19,7 @@
             <div class="col-lg-7 col-md-12 col-xs-12">
                 <div class="ads-details-wrapper">
                         <div class="item">
-                                <img style="width: 95% !important;" class="img-fluid" src="assets/img/img-1.jpg" alt="">
+                                <img style="width: 95% !important;" class="img-fluid" src="{{ad.categoryImage}}" alt="">
                         </div>
                 </div>
                 <div class="details-box">

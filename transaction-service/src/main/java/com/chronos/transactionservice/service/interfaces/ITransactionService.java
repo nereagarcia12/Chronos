@@ -18,5 +18,5 @@ public interface ITransactionService {
 
     public List<TransactionResponseDto> getTransactionByUser(Integer userId);
 
-
+    public void deleteTransactionByUser(Integer userId);
 }

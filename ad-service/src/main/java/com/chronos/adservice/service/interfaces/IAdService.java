@@ -27,4 +27,6 @@ public interface IAdService {
 
 
     public void deleteAd(Integer id);
+
+    public void deleteAdsByUser(Integer userId);
 }

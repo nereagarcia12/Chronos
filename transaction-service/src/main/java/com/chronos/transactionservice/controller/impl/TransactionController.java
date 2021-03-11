@@ -46,4 +46,10 @@ public class TransactionController implements ITransactionController {
         return transactionService.getTransactionByUser(userId);
     }
 
+    @DeleteMapping("/transactions/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteTransactionByUser(@PathVariable (name = "userId") Integer userId){
+         transactionService.deleteTransactionByUser(userId);
+    }
+
 }

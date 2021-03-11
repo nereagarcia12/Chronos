@@ -49,4 +49,7 @@ public interface AdClient {
     @ResponseStatus(HttpStatus.OK)
     public List<CategoryResponseDto> getAllCategories();
 
+    @DeleteMapping("/user/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAdByUser(@PathVariable (name = "userId") Integer userId);
 }

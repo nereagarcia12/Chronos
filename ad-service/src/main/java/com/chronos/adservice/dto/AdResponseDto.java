@@ -15,7 +15,7 @@ public class AdResponseDto {
     private String categoryName;
     private String categoryImage;
 
-    public AdResponseDto(Integer id, String title, String description, String availability, LocalDate createAd, Integer userId, String categoryName) {
+    public AdResponseDto(Integer id, String title, String description, String availability, LocalDate createAd, Integer userId, String categoryName, String categoryImage) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -23,6 +23,7 @@ public class AdResponseDto {
         this.createAd = createAd;
         this.userId = userId;
         this.categoryName = categoryName;
+        this.categoryImage = categoryImage;
     }
 
     public Integer getId() {
@@ -81,4 +82,11 @@ public class AdResponseDto {
         this.categoryName = categoryName;
     }
 
+    public String getCategoryImage() {
+        return categoryImage;
+    }
+
+    public void setCategoryImage(String categoryImage) {
+        this.categoryImage = categoryImage;
+    }
 }

@@ -32,4 +32,8 @@ public interface TransactionClient {
     @ResponseStatus(HttpStatus.OK)
     public List<TransactionResponseDto> getAllTransactionByUserId(@PathVariable (name = "id") Integer userId);
 
+    @DeleteMapping("/transactions/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteTransactionByUser(@PathVariable (name = "userId") Integer userId);
+
 }

@@ -85,5 +85,7 @@ public class AdService implements IAdService {
         adRepository.delete(ad);
     }
 
-
+    public void deleteAdsByUser(Integer userId){
+        adRepository.findByUserId(userId).forEach(ad -> adRepository.delete(ad));
+    }
 }

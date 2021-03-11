@@ -1,5 +1,7 @@
 package com.chronos.edgeservice.controller;
 
+import com.chronos.edgeservice.client.AdClient;
+import com.chronos.edgeservice.client.TransactionClient;
 import com.chronos.edgeservice.client.UserClient;
 import com.chronos.edgeservice.security.UserRequestDto;
 import com.chronos.edgeservice.security.dto.User;
@@ -18,6 +20,10 @@ public class UserController {
 
     @Autowired
     private UserClient userClient;
+    @Autowired
+    private TransactionClient transactionClient;
+    @Autowired
+    private AdClient adClient;
 
     @GetMapping("/user/email/{email}")
     @ResponseStatus(HttpStatus.OK)
@@ -59,7 +65,8 @@ public class UserController {
     @DeleteMapping("user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable (name = "id") Integer id){
+        transactionClient.deleteTransactionByUser(id);
+        adClient.deleteAdByUser(id);
         userClient.deleteUser(id);
     }
-
 }

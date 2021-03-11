@@ -84,5 +84,7 @@ public class TransactionService implements ITransactionService {
         return transactionRepository.findByOriginUserIdOrReceiverUserId(userId, userId).stream().map(Transaction::toResponseDto).collect(Collectors.toList());
     }
 
-
+    public void deleteTransactionByUser(Integer userId){
+        transactionRepository.findByOriginUserIdOrReceiverUserId(userId, userId).forEach(transaction -> transactionRepository.delete(transaction));
+    }
 }

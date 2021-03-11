@@ -6,6 +6,7 @@ availability:string;
 createAd: Date;
 userId: number;
 categoryName:string;
+categoryImage : string;
 }
 
 export interface Category{
