@@ -70,6 +70,6 @@ public class AdController implements IAdController {
     @DeleteMapping("/user/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteAdByUser(@PathVariable (name = "userId") Integer userId){
-        adService.deleteAd(userId);
+        adService.deleteAdsByUser(userId);
     }
 }
