@@ -20,7 +20,7 @@
     <div *ngIf="isLoggedIn" class="header-top-right float-right">
         <a class="header-top-button" routerLink="/myAds" routerLinkActive="active"><i class="lni lni-folder"></i> Mi anuncios </a> |
         <a class="header-top-button" routerLink="/transactions" routerLinkActive="active"><i class="lni lni-pencil"></i> Mi transacciones </a> |
-        <a class="header-top-button" [routerLink]="['/editUser/', user.id]" routerLinkActive="active"><i class="lni lni-user"></i> Mi perfil </a> |
+        <a class="header-top-button" [routerLink]="['/editUser']" routerLinkActive="active"><i class="lni lni-user"></i> Mi perfil </a> |
         <a (click)="logout()" routerLink="" class="header-top-button"><i class="lni lni-power-switch"></i> Desconectate </a>
         </div>
     </div>
@@ -62,7 +62,7 @@
 
     </ul>
     <div class="post-btn">
-    <a class="btn btn-common" routerLink="/publish" routerLinkActive="active"><i class="lni lni-pencil-alt"></i>Publica un anuncio</a>
+    <a class="btn btn-common" routerLink="/publish" routerLinkActive="active"><i class="lni lni-pencil-alt"></i>   Publica un anuncio</a>
     </div>
     </div>
     </div>

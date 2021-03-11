@@ -11,7 +11,6 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class TransactionsComponent implements OnInit {
 
   transactionsInitiated: CompleteTransaction[] =[]
-  transactionsReceived : CompleteTransaction[] =[]
   isLoggedIn = false;
   user!: any;
 
@@ -31,30 +30,11 @@ export class TransactionsComponent implements OnInit {
   getTransaction():void {
     this.transactionService.getTransactionByUserId(this.user.id).subscribe((data)=>{
       this.transactionsInitiated = data.filter(trans => trans.originUserId.id == this.user.id);
-      this.transactionsReceived = data.filter(trans => trans.receiverUserId.id == this.user.id);
     } )
   }
-
-  acceptTransaction(id:number) :void{
-    this.transactionService.acceptTransaction(id, this.user.id).subscribe(() =>{
-      this.reloadPage();
-    })
-  }
-  refuseTransaction(id:number) :void{
-    this.transactionService.refuseTransaction(id, this.user.id).subscribe(() =>{
-      this.reloadPage();
-    })
-  }
-
-  completeTransaction(id:number) : void{
-    this.transactionService.completeTransaction(id, this.user.id).subscribe(() =>{
-      this.reloadPage();
-    })
-  }
-
+  
   reloadPage(): void {
     window.location.reload();
   }
-
 
 }

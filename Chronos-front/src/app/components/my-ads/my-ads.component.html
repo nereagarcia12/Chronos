@@ -13,8 +13,10 @@
     </div>
     </div>
     </div>
+    <div class="container">
 <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-8 offset-md-2 offset-lg-2">
+  <app-profilesidebar class="col-sm-12 col-md-4 col-lg-3 page-sidebar" ></app-profilesidebar>
+  <div class="col-sm-12 col-md-8 col-lg-9">
         <div class="page-content">
           <div class="inner-box">
             <div class="dashboard-box">
@@ -41,10 +43,10 @@
                       <h3>{{ad.title}}</h3>
                     </td>
                     <td data-title="Descripcion">
-                      <span>{{ad.description}}</span>
+                      <span>{{ad.description.substr(0,40)+'...'}}</span>
                     </td>
                     <td data-title="availability">
-                        <span class="adcategories">{{ad.availability}}</span>
+                        <span class="adcategories">{{ad.availability.substr(0,40)+'...'}}</span>
                       </td>
                     <td data-title="createAd">
                       <span class="adcategories">{{ad.createAd}}</span>
@@ -74,3 +76,4 @@
         </div>
       </div>
     </div>
+  </div>

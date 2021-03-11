@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyAdsComponent } from './components/my-ads/my-ads.component';
 import { RegisterComponent } from './components/register/register.component';
+import { TransactionReceivedComponent } from './components/transaction-received/transaction-received.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 
@@ -46,8 +47,12 @@ const routes: Routes = [
   component: RegisterComponent
 },
 {
-  path: 'transactions',
+  path: 'transactionsInitiated',
   component: TransactionsComponent
+},
+{
+  path: 'transactionsReceived',
+  component: TransactionReceivedComponent
 },
 {
   path: 'myAds',
@@ -58,7 +63,7 @@ const routes: Routes = [
   component: AdEditComponent
 },
 {
-  path: 'editUser/:userId',
+  path: 'editUser',
   component: UserEditComponent
 },
 {

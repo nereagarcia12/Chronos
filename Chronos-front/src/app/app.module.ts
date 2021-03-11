@@ -20,6 +20,8 @@ import { MyAdsComponent } from './components/my-ads/my-ads.component';
 import { AdEditComponent } from './components/ad-edit/ad-edit.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { ProfilesidebarComponent } from './components/profilesidebar/profilesidebar.component';
+import { TransactionReceivedComponent } from './components/transaction-received/transaction-received.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { CategoriesComponent } from './components/categories/categories.componen
     AdEditComponent,
     UserEditComponent,
     CategoriesComponent,
+    ProfilesidebarComponent,
+    TransactionReceivedComponent,
   ],
   imports: [
     BrowserModule,

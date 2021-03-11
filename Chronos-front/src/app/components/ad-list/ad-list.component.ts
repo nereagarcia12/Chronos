@@ -27,7 +27,7 @@ export class AdListComponent implements OnInit {
         this.ads = data;
       }
       )
-    } else if(category != null){
+    } else if(category != 0){
       this.adService.filterAds(undefined,category).subscribe((data) => {
         this.ads = data;
       }

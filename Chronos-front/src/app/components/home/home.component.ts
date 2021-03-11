@@ -19,7 +19,11 @@ export class HomeComponent implements OnInit {
 
   search(){
     const { word } = this.form;   
-    this.route.navigate(['/listing/'+word])
+    if(word !== null ){
+      this.route.navigate(['/listing/'+word])
+    } else{
+      this.route.navigate(['/listing'])
+    }
   }
 
 }

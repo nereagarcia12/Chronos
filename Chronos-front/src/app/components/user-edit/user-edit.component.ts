@@ -34,7 +34,7 @@ export class UserEditComponent implements OnInit {
         city: this.city,
         email: this.email
       });
-      this.getUser();
+     
      }
 
   ngOnInit(): void {
@@ -42,11 +42,11 @@ export class UserEditComponent implements OnInit {
       this.isLoggedIn = true;
       this.user = this.tokenStorage.getUser();
   }
+  this.getUser();
   }
 
   getUser():void{
-    const userId: number = Number(this.activatedRoute.snapshot.paramMap.get('userId'));
-    this.userService.getUserByid(userId).subscribe((data) =>{
+    this.userService.getUserByid(this.user.id).subscribe((data) =>{
       this.user = data;
       this.form.patchValue({
         name: this.user.name,
