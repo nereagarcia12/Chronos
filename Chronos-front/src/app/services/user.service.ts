@@ -21,4 +21,10 @@ export class UserService {
   deleteUser(id: number): Observable<any>{
     return this.http.delete(this.url+'/user/' + id);
   }
+
+  editUser(id: number, body: CreateUser): Observable<any>{
+    return this.http.put(this.url+ '/user/' + id, body);
+  }
+
+
 }

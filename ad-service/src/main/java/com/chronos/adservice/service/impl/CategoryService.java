@@ -17,8 +17,6 @@ public class CategoryService implements ICategoryService {
     private CategoryRepository categoryRepository;
 
     public List<CategoryResponseDto> getAllCategories (){
-        return categoryRepository.findAll().stream().map(category -> category.toResponseDto()).collect(Collectors.toList());
+        return categoryRepository.findAll().stream().map(Category::toResponseDto).collect(Collectors.toList());
     }
-
-
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Category, CreateAd } from 'src/app/model/ad-interfaces';
 import { AdServiceService } from 'src/app/services/ad-service.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
@@ -25,7 +26,7 @@ export class AdCreateComponent implements OnInit {
 
 
   constructor(private adService: AdServiceService,
-    private tokenStorage: TokenStorageService) { 
+    private tokenStorage: TokenStorageService, private route: Router) { 
     this.title = new FormControl('', [Validators.required]);
     this.availability = new FormControl('', [Validators.required]);
     this.category = new FormControl('', [Validators.required]);
@@ -55,7 +56,9 @@ export class AdCreateComponent implements OnInit {
  
   onSubmit():void{
     let ad = {title: this.title.value, description: this.description.value, availability: this.availability.value, categoryId: this.category.value, userId: this.user.id } as CreateAd
-    this.adService.postAd(ad).subscribe( (data) => {})
+    this.adService.postAd(ad).subscribe( (data) => {
+      this.route.navigate(['myAds'])
+    })
   }
 
 }

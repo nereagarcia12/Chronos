@@ -17,6 +17,10 @@ export class AdServiceService {
   getAdById(id: number): Observable<Ad>{
     return this.http.get<Ad>(this.url + '/ad/' + id);
   }
+  
+  getAdsById(id: number): Observable<Ad[]>{
+    return this.http.get<Ad[]>(this.url + '/ads/user/' + id);
+  }
 
   filterAds(word?: string, categoryId?: number): Observable<Ad[]>{
     let params = '';
@@ -25,6 +29,9 @@ export class AdServiceService {
     }
     if(word!=null && categoryId == null){
       params = '?word='+word;
+    }
+    if(word==null && categoryId != null){
+      params = '?categoryId='+categoryId;
     }
     return this.http.get<Ad[]>(this.url+'/search'+ params)
   }
@@ -35,6 +42,10 @@ export class AdServiceService {
 
   postAd(body: CreateAd): Observable <Ad>{
     return this.http.post<Ad>(this.url+'/ad', body);
+  }
+
+  editAd(id: number, body: CreateAd): Observable <any>{
+    return this.http.put(this.url+'/ad/'+ id, body);
   }
 
   deleteAd(id: number): Observable<any>{

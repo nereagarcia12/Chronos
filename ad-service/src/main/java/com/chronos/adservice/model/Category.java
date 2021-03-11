@@ -13,6 +13,7 @@ public class Category {
     private Integer id;
     private String name;
     private String photo;
+    private String icon;
 
     @OneToMany(mappedBy = "category")
     private List<Ad> ads;
@@ -20,9 +21,10 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name, String photo) {
+    public Category(String name, String photo, String icon) {
         this.name = name;
         this.photo = photo;
+        this.icon = icon;
     }
 
     public Category(String name, String photo, List<Ad> ads) {
@@ -31,8 +33,8 @@ public class Category {
         this.ads = ads;
     }
 
-    public CategoryResponseDto toResponseDto(){
-        return new CategoryResponseDto(this.getId(),this.getName(),this.getPhoto());
+    public CategoryResponseDto toResponseDto() {
+        return new CategoryResponseDto(this.getId(), this.getName(), this.getPhoto(), this.getIcon());
     }
 
     public Integer getId() {
@@ -65,5 +67,13 @@ public class Category {
 
     public void setAds(List<Ad> ads) {
         this.ads = ads;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

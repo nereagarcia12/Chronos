@@ -10,15 +10,16 @@ public class CategoryResponseDto {
     private Integer id;
     private String name;
     private String photo;
+    private String icon;
 
     public CategoryResponseDto() {
     }
 
-    public CategoryResponseDto(Integer id, String name, String photo) {
+    public CategoryResponseDto(Integer id, String name, String photo, String icon) {
         this.id = id;
         this.name = name;
         this.photo = photo;
-
+        this.icon = icon;
     }
 
     public Integer getId() {
@@ -43,5 +44,13 @@ public class CategoryResponseDto {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

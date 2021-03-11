@@ -16,6 +16,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
+import { MyAdsComponent } from './components/my-ads/my-ads.component';
+import { AdEditComponent } from './components/ad-edit/ad-edit.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 
 @NgModule({
@@ -31,6 +35,10 @@ import { TransactionsComponent } from './components/transactions/transactions.co
     RegisterComponent,
     HomeComponent,
     TransactionsComponent,
+    MyAdsComponent,
+    AdEditComponent,
+    UserEditComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,

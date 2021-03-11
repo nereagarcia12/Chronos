@@ -18,9 +18,9 @@
     <a routerLink="/register" routerLinkActive="active" class="header-top-button"><i class="lni lni-pencil"></i> Registrate</a>
     </div>
     <div *ngIf="isLoggedIn" class="header-top-right float-right">
-        <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni lni-folder"></i> Mi anuncios </a> |
+        <a class="header-top-button" routerLink="/myAds" routerLinkActive="active"><i class="lni lni-folder"></i> Mi anuncios </a> |
         <a class="header-top-button" routerLink="/transactions" routerLinkActive="active"><i class="lni lni-pencil"></i> Mi transacciones </a> |
-        <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni lni-user"></i> Mi perfil </a> |
+        <a class="header-top-button" [routerLink]="['/editUser/', user.id]" routerLinkActive="active"><i class="lni lni-user"></i> Mi perfil </a> |
         <a (click)="logout()" routerLink="" class="header-top-button"><i class="lni lni-power-switch"></i> Desconectate </a>
         </div>
     </div>
@@ -48,11 +48,17 @@
     Inicio
     </a>
     </li>
+    <li class="nav-item dropdown" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" routerLink="/categories" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Categorias
+        </a>
+        </li>
      <li class="nav-item dropdown" routerLinkActive="active">
     <a class="nav-link dropdown-toggle" routerLink="/listing" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Servicios
     </a>
     </li>
+    
 
     </ul>
     <div class="post-btn">
@@ -65,6 +71,11 @@
     <li>
     <a routerLink="" routerLinkActive="active">
     Inicio
+    </a>
+    </li>
+    <li>
+    <a routerLink="/categories" routerLinkActive="active">
+    Categorias
     </a>
     </li>
     <li>

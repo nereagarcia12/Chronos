@@ -6,6 +6,7 @@ import com.chronos.edgeservice.security.dto.User;
 import com.chronos.edgeservice.security.dto.UserResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -51,6 +52,7 @@ public class UserController {
     @PutMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void editProfileUser(@PathVariable (name = "id") Integer id, @RequestBody @Valid UserRequestDto userRequestDto){
+
         userClient.editProfileUser(id, userRequestDto);
     }
 
@@ -59,8 +61,5 @@ public class UserController {
     public void deleteUser(@PathVariable (name = "id") Integer id){
         userClient.deleteUser(id);
     }
-
-
-
 
 }

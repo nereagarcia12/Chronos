@@ -71,16 +71,16 @@ public class AdService implements IAdService {
 
     public void editAd(AdRequestDto adRequestDto, Integer id){
         Ad ad = adRepository.findById(id).orElseThrow(NoAdPresent::new);
+        Category category = categoryRepository.findById(adRequestDto.getCategoryId()).orElseThrow(NoPresentCategory::new);
         ad.setTitle(adRequestDto.getTitle());
         ad.setDescription(adRequestDto.getDescription());
         ad.setAvailability(adRequestDto.getAvailability());
-        ad.setCategory(ad.getCategory());
+        ad.setCategory(category);
         adRepository.save(ad);
     }
 
 
     public void deleteAd(Integer id){
-
         Ad ad = adRepository.findById(id).orElseThrow(NoAdPresent::new);
         adRepository.delete(ad);
     }

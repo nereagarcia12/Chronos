@@ -1,5 +1,6 @@
 <div class="main-container section-padding" style="margin-top: 50px;">
   <div class="container">
+    <h2 style = "padding: 15px;"class="section-title">Todos los Servicios</h2>
     <div class="row">
       <div class="col-lg-3 col-md-12 col-xs-12 page-sidebar">
         <aside>
@@ -13,7 +14,7 @@
                 class="form-control"
                 autocomplete="off"
                 name="word"
-                placeholder="Search..."
+                placeholder="Buscar..."
                 id="search-input"
                 value=""
               />
@@ -24,11 +25,11 @@
           </div>
 
           <div class="widget categories">
-            <h4 class="widget-title">All Categories</h4>
+            <h4 class="widget-title">Categorias</h4>
             <ul class="categories-list">
               <li *ngFor="let category of categories">
                 <a (click)="selectCategory(category.id)">
-                  <i class="lni lni-dinner"></i>
+                  <i class="{{category.icon}}"></i>
                   {{category.name}}
                 </a>
               </li>
