@@ -12,6 +12,7 @@ export interface Category{
     id: number;
     name: string;
     photo: string;
+    icon: string;
 }
 
 export interface CreateAd{

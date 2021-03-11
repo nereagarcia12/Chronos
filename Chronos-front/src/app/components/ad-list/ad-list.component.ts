@@ -20,9 +20,15 @@ export class AdListComponent implements OnInit {
   constructor(private adService: AdServiceService,
     private activatedRoute: ActivatedRoute) { 
     const word: string = String(this.activatedRoute.snapshot.paramMap.get('word'));
+    const category: number = Number(this.activatedRoute.snapshot.paramMap.get('category'));
 
     if(word != "null"){
       this.adService.filterAds(word).subscribe((data) => {
+        this.ads = data;
+      }
+      )
+    } else if(category != null){
+      this.adService.filterAds(undefined,category).subscribe((data) => {
         this.ads = data;
       }
       )
@@ -32,7 +38,6 @@ export class AdListComponent implements OnInit {
       }
       )
     }
-
     this.selectCategories()
   }
 
@@ -46,8 +51,11 @@ export class AdListComponent implements OnInit {
     })
   }
 
-  selectCategory(number: Number){
-
+  selectCategory(categoryId: number){
+    this.adService.filterAds(undefined,categoryId).subscribe((data) => {
+      this.ads = data;
+    }
+    )
   }
 
   search(){
@@ -57,5 +65,4 @@ export class AdListComponent implements OnInit {
     }
     )
   }
-
 }
