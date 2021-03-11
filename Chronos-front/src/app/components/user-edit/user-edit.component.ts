@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CreateUser } from 'src/app/model/user-interface';
+import { CreateUser, User } from 'src/app/model/user-interface';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -19,6 +19,7 @@ export class UserEditComponent implements OnInit {
   email: FormControl;
   isLoggedIn = false;
   user!: any;
+  userLoggedIn!: any;
 
 
   constructor(private userService: UserService,
@@ -40,13 +41,13 @@ export class UserEditComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.user = this.tokenStorage.getUser();
+      this.userLoggedIn = this.tokenStorage.getUser();
   }
   this.getUser();
   }
 
   getUser():void{
-    this.userService.getUserByid(this.user.id).subscribe((data) =>{
+    this.userService.getUserByid(this.userLoggedIn.id).subscribe((data) =>{
       this.user = data;
       this.form.patchValue({
         name: this.user.name,
@@ -60,6 +61,8 @@ export class UserEditComponent implements OnInit {
   onSubmit():void{
     let user ={name: this.name.value, phone: this.phone.value, city: this.city.value, email: this.email.value, password: 'notRequired'} as CreateUser
     this.userService.editUser(this.user.id, user).subscribe(()=>{
+      this.userLoggedIn.name = this.name.value;
+      this.tokenStorage.saveUser(this.userLoggedIn);
     })
   }
 
