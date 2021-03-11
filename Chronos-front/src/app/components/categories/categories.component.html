@@ -1,0 +1,17 @@
+<section class="categories-icon bg-light section-padding">
+    <div style = "padding: 50px;" class="container">
+    <h2 class="section-title">Servicios Por Categoria</h2>
+    <div class="row">
+    <div *ngFor="let category of categories" class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+    <a routerLink="/categorySearch/{{category.id}}" routerLinkActive="active">
+    <div class="icon-box">
+    <div class="icon">
+    <i class="{{category.icon}}"></i>
+    </div>
+    <h4>{{category.name}}</h4>
+    </div>
+    </a>
+    </div>
+    </div>
+    </div>
+    </section>

@@ -1,0 +1,76 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg)">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="breadcrumb-wrapper">
+            <h2 class="product-title">Perfil</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home /</a></li>
+              <li class="current">perfil</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="form"  #formDirective="ngForm">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="row page-content">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 col-lg-6"
+          style="margin: 2% 18% 2% 18%"
+        >
+          <div class="inner-box">
+            <div class="dashboard-box">
+              <h2 class="dashbord-title">Detalles de tu perfil</h2>
+            </div>
+            <div class="dashboard-wrapper">
+              <div class="form-group mb-3">
+                <label class="control-label">Name</label>
+                <input
+                  class="form-control input-md"
+                  name="Titulo"
+                  type="text"
+                  formControlName="name"
+                />
+                <span class="error-msg" *ngIf="name.hasError('required') && name.touched">Campo obligatorio</span>
+              </div>
+              <div class="form-group mb-3">
+                <label class="control-label">Telefono</label>
+                <input
+                  class="form-control input-md"
+                  name="Titulo"
+                  type="text"
+                  formControlName="phone"
+                />
+                <span class="error-msg" *ngIf="phone.hasError('required') && phone.touched">Campo obligatorio</span>
+              </div>
+              <div class="form-group mb-3">
+                <label class="control-label">Ciudad</label>
+                <input
+                  class="form-control input-md"
+                  name="Titulo"
+                  type="text"
+                  formControlName="city"
+                />
+                <span class="error-msg" *ngIf="city.hasError('required') && city.touched">Campo obligatorio</span>
+              </div>
+    
+              <div class="form-group mb-3">
+                <label class="control-label">Email</label>
+                <input
+                  class="form-control input-md"
+                  name="Titulo"
+                  type="text"
+                  formControlName="email"
+                />
+                <span class="error-msg" *ngIf="email.hasError('required') && email.touched">Campo obligatorio</span>
+              </div>
+              <button (click)="onSubmit()" class="btn btn-common" type="button" [disabled]="form.invalid">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
