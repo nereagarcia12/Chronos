@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
@@ -17,14 +17,18 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  unauthorized!: string;
 
-  constructor(private route : Router, private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private route : Router,        private actRoute: ActivatedRoute,
+    private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
     }
+    this.unauthorized = this.actRoute.snapshot.queryParams['unauthorized'] || false;
+
   }
 
   onSubmit(): void {

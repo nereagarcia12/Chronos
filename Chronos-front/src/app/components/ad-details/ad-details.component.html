@@ -55,7 +55,7 @@
                     <div  class="widget">
                         <h4 class="widget-title">Anuncio publicado por: </h4>
                         <form class="form" [formGroup]="form"  #formDirective="ngForm">
-                        <div class="agent-inner">
+                        <div *ngIf="user.id != userLogged.id" class="agent-inner">
                             <div class="agent-title">
                                 <div class="agent-photo">
                                     <a href="#"><img src="assets/img/avatar.jpg" alt=""></a>
@@ -80,6 +80,9 @@
                         </div>
                             <button (click)="onSubmit()" class="btn btn-common fullwidth mt-4" [disabled]="form.invalid">Enviar Peticion</button>
                         </div>
+                        <div class="alert alert-success" role="alert" *ngIf="user.id == userLogged.id">
+                            Este anuncio es de tu propiedad. Editalo desde Mi Perfil.
+                         </div>
                     </form>
                     </div>
                 </aside>

@@ -61,6 +61,8 @@ export class AdDetailsComponent implements OnInit {
     let transaction = {amount: this.amount.value, description: this.description.value, receiverUserId: this.user.id, originUserId: this.userLogged.id, adId: this.ad.id} 
     this.transactionService.postTransaction(transaction).subscribe( (data) => {
       this.transaction = true;
+      this.userLogged.balance = this.userLogged.balance - this.amount.value;
+      this.tokenStorage.saveUser(this.userLogged);
     },
     err => {
       this.errorMessage = err.error.error;

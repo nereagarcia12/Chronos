@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
+import { User } from '../model/user-interface';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -7,7 +10,14 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class TokenStorageService {
-  constructor() { }
+  
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
+  constructor() { 
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(window.sessionStorage.getItem(USER_KEY) || '{}'));
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
 
   signOut(): void {
     window.sessionStorage.clear();
@@ -25,6 +35,7 @@ export class TokenStorageService {
   public saveUser(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    this.currentUserSubject.next(JSON.parse(window.sessionStorage.getItem(USER_KEY) || '{}'));
   }
 
   public getUser(): any {

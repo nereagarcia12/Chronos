@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
       this.isLoggedIn = true;
       this.user = this.tokenStorage.getUser();
     }
+    this.tokenStorage.currentUser.subscribe(user => this.user = user)
   }
 
   logout(): void {

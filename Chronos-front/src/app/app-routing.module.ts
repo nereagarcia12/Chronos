@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TransactionReceivedComponent } from './components/transaction-received/transaction-received.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -32,11 +33,13 @@ const routes: Routes = [
 },
 {
   path: 'details/:adId',
-  component: AdDetailsComponent
+  component: AdDetailsComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'publish',
-  component: AdCreateComponent
+  component: AdCreateComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'login',
@@ -48,23 +51,28 @@ const routes: Routes = [
 },
 {
   path: 'transactionsInitiated',
-  component: TransactionsComponent
+  component: TransactionsComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'transactionsReceived',
-  component: TransactionReceivedComponent
+  component: TransactionReceivedComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'myAds',
-  component: MyAdsComponent
+  component: MyAdsComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'editAd/:adId',
-  component: AdEditComponent
+  component: AdEditComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'editUser',
-  component: UserEditComponent
+  component: UserEditComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: 'categories',
