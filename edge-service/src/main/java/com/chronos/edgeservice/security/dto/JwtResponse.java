@@ -10,14 +10,16 @@ public class JwtResponse {
     private List<String> roles;
     private Integer balance;
     private String name;
+    private boolean pendingTransaction;
 
-    public JwtResponse(String accessToken, Long id, String username,List<String> roles, Integer balance, String name) {
+    public JwtResponse(String accessToken, Long id, String username,List<String> roles, Integer balance, String name,boolean pendingTransaction) {
         this.token = accessToken;
         this.id = id;
         this.username = username;
         this.roles = roles;
         this.name = name;
         this.balance = balance;
+        this.pendingTransaction = pendingTransaction;
     }
 
     public String getAccessToken() {
@@ -70,5 +72,13 @@ public class JwtResponse {
 
     public List<String> getRoles() {
         return roles;
+    }
+
+    public boolean isPendingTransaction() {
+        return pendingTransaction;
+    }
+
+    public void setPendingTransaction(boolean pendingTransaction) {
+        this.pendingTransaction = pendingTransaction;
     }
 }

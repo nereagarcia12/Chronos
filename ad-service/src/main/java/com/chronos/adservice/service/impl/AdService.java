@@ -4,19 +4,18 @@ import com.chronos.adservice.apiresponse.UserResponseDto;
 import com.chronos.adservice.client.UserClient;
 import com.chronos.adservice.dto.AdRequestDto;
 import com.chronos.adservice.dto.AdResponseDto;
-import com.chronos.adservice.dto.FilterSearchDto;
+import com.chronos.adservice.dto.FilterSearchRequestDto;
 import com.chronos.adservice.enums.Status;
-import com.chronos.adservice.exceptions.NoAdPresent;
-import com.chronos.adservice.exceptions.NoPresentCategory;
+import com.chronos.adservice.exceptions.AdNotFoundException;
+import com.chronos.adservice.exceptions.CategoryNotFoundException;
 import com.chronos.adservice.model.Ad;
 import com.chronos.adservice.model.Category;
 import com.chronos.adservice.repository.AdRepository;
 import com.chronos.adservice.repository.CategoryRepository;
 import com.chronos.adservice.service.interfaces.IAdService;
-import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,35 +42,29 @@ public class AdService implements IAdService {
     }
 
     public AdResponseDto adById(Integer id){
-        return adRepository.findById(id).orElseThrow(NoAdPresent::new).toResponseDto();
+        return getAd(id).toResponseDto();
     }
 
     public AdResponseDto createAd(AdRequestDto adRequestDto) {
-        try {
-            UserResponseDto user = userClient.findByUserById(adRequestDto.getUserId());
-        } catch (FeignException e) {
-            throw new ResponseStatusException(e.status(), e.getCause().getMessage(), e.getCause());
-        }
-        Category category = categoryRepository.findById(adRequestDto.getCategoryId()).orElseThrow(NoPresentCategory::new);
-        Ad ad = new Ad(adRequestDto.getTitle(), adRequestDto.getDescription(), adRequestDto.getAvailability(), adRequestDto.getUserId(), category);
+        UserResponseDto user = userClient.findByUserById(adRequestDto.getUserId());
+        Category category = getCategory(adRequestDto);
+        Ad ad = new Ad(adRequestDto.getTitle(), adRequestDto.getDescription(), adRequestDto.getAvailability(), user.getId(), category);
         return adRepository.save(ad).toResponseDto();
     }
 
-    public List<AdResponseDto> search(FilterSearchDto filterSearchDto){
-        if (filterSearchDto.getWord() != null && filterSearchDto.getCategoryId() == null){
-           return adRepository.findByTitleContains(filterSearchDto.getWord()).stream().map(Ad::toResponseDto).collect(Collectors.toList());
-        } else if (filterSearchDto.getWord() == null && filterSearchDto.getCategoryId() != null){
-            return adRepository.findByCategory_Id(filterSearchDto.getCategoryId()).stream().map(Ad::toResponseDto).collect(Collectors.toList());
-        } else if (filterSearchDto.getWord() != null && filterSearchDto.getCategoryId() != null){
-            return adRepository.findByTitleContainsAndCategory_Id(filterSearchDto.getWord(), filterSearchDto.getCategoryId()).stream().map(Ad::toResponseDto).collect(Collectors.toList());
+    public List<AdResponseDto> search(FilterSearchRequestDto filterSearchRequestDto){
+        if (filterSearchRequestDto.getWord() != null && filterSearchRequestDto.getCategoryId() == null){
+           return adRepository.findByTitleContains(filterSearchRequestDto.getWord()).stream().map(Ad::toResponseDto).collect(Collectors.toList());
+        } else if (filterSearchRequestDto.getWord() == null && filterSearchRequestDto.getCategoryId() != null){
+            return adRepository.findByCategory_Id(filterSearchRequestDto.getCategoryId()).stream().map(Ad::toResponseDto).collect(Collectors.toList());
         } else{
             return adRepository.findAll().stream().map(Ad::toResponseDto).collect(Collectors.toList());
         }
     }
 
     public void editAd(AdRequestDto adRequestDto, Integer id){
-        Ad ad = adRepository.findById(id).orElseThrow(NoAdPresent::new);
-        Category category = categoryRepository.findById(adRequestDto.getCategoryId()).orElseThrow(NoPresentCategory::new);
+        Ad ad = getAd(id);
+        Category category = getCategory(adRequestDto);
         ad.setTitle(adRequestDto.getTitle());
         ad.setDescription(adRequestDto.getDescription());
         ad.setAvailability(adRequestDto.getAvailability());
@@ -79,13 +72,21 @@ public class AdService implements IAdService {
         adRepository.save(ad);
     }
 
-
     public void deleteAd(Integer id){
-        Ad ad = adRepository.findById(id).orElseThrow(NoAdPresent::new);
+        Ad ad = getAd(id);
         adRepository.delete(ad);
     }
 
     public void deleteAdsByUser(Integer userId){
         adRepository.findByUserId(userId).forEach(ad -> adRepository.delete(ad));
+    }
+
+
+    private Ad getAd(Integer id) {
+        return adRepository.findById(id).orElseThrow(AdNotFoundException::new);
+    }
+
+    private Category getCategory(AdRequestDto adRequestDto) {
+        return categoryRepository.findById(adRequestDto.getCategoryId()).orElseThrow(CategoryNotFoundException::new);
     }
 }

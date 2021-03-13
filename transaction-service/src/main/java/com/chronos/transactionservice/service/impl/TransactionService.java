@@ -44,7 +44,7 @@ public class TransactionService implements ITransactionService {
 
     public void acceptTransaction(Integer id, Integer userId) {
         Transaction transaction = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
-        if (transaction.getReceiverUserId() != userId) {
+        if (!transaction.getReceiverUserId().equals(userId)) {
             throw new TransactionNotOwnedByUserException();
         }
         if (transaction.getStatus() != Status.PENDING) {
@@ -56,7 +56,7 @@ public class TransactionService implements ITransactionService {
 
     public void refuseTransaction(Integer id, Integer userId) {
         Transaction transaction = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
-        if (transaction.getReceiverUserId() != userId) {
+        if (!transaction.getReceiverUserId().equals(userId)) {
             throw new TransactionNotOwnedByUserException();
         }
         if (transaction.getStatus() != Status.PENDING) {
@@ -69,7 +69,7 @@ public class TransactionService implements ITransactionService {
 
     public void completeTransaction(Integer id, Integer userId) {
         Transaction transaction = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
-        if (transaction.getReceiverUserId() != userId) {
+        if (!transaction.getReceiverUserId().equals(userId)) {
             throw new TransactionNotOwnedByUserException();
         }
         if (transaction.getStatus() != Status.ACCEPTED) {

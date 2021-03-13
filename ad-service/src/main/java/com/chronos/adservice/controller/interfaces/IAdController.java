@@ -2,13 +2,7 @@ package com.chronos.adservice.controller.interfaces;
 
 import com.chronos.adservice.dto.AdRequestDto;
 import com.chronos.adservice.dto.AdResponseDto;
-import com.chronos.adservice.dto.FilterSearchDto;
-import com.chronos.adservice.enums.Status;
-import com.chronos.adservice.model.Ad;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 public interface IAdController {

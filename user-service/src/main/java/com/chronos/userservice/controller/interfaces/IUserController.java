@@ -3,9 +3,6 @@ package com.chronos.userservice.controller.interfaces;
 import com.chronos.userservice.dto.UserRequestDto;
 import com.chronos.userservice.dto.UserResponseDto;
 
-import javax.validation.constraints.Min;
-
-
 public interface IUserController {
     public UserResponseDto findByUserById(Integer id);
     public void createUser( UserRequestDto userRequestDto);

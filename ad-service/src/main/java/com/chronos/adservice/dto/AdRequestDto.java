@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class AdRequestDto {
 
-
     @NotEmpty(message = "the title is required")
     private String title;
     @NotEmpty(message = "the description is required")
@@ -31,40 +30,20 @@ public class AdRequestDto {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getAvailability() {
         return availability;
     }
 
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
     public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public Integer getCategoryId() {
         return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
     }
 
     @Override
@@ -73,10 +52,5 @@ public class AdRequestDto {
         if (o == null || getClass() != o.getClass()) return false;
         AdRequestDto adRequestDto = (AdRequestDto) o;
         return Objects.equals(title, adRequestDto.title) && Objects.equals(description, adRequestDto.description) && Objects.equals(availability, adRequestDto.availability) && Objects.equals(userId, adRequestDto.userId) && Objects.equals(categoryId, adRequestDto.categoryId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, description, availability, userId, categoryId);
     }
 }

@@ -21,30 +21,46 @@ export class TransactionReceivedComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.user = this.tokenStorage.getUser();
-
+      this.getTransaction();
     }
-    this.getTransaction();
   }
 
   getTransaction():void {
     this.transactionService.getTransactionByUserId(this.user.id).subscribe((data)=>{
       this.transactionsReceived = data.filter(trans => trans.receiverUserId.id == this.user.id);
+      if(this.transactionsReceived.filter(transaction => transaction.status =='PENDING').length > 0){
+        this.user.pendingTransaction = true;
+        this.tokenStorage.saveUser(this.user);
+      } else{
+        this.user.pendingTransaction = false;
+        this.tokenStorage.saveUser(this.user);
+      }
     } )
   }
 
   acceptTransaction(id:number) :void{
     this.transactionService.acceptTransaction(id, this.user.id).subscribe(() =>{
+      if(this.transactionsReceived.filter(transaction => transaction.status =='PENDING').length == 1){
+        this.user.pendingTransaction = false;
+        this.tokenStorage.saveUser(this.user);
+      }
       this.reloadPage();
     })
   }
   refuseTransaction(id:number) :void{
     this.transactionService.refuseTransaction(id, this.user.id).subscribe(() =>{
+      if(this.transactionsReceived.filter(transaction => transaction.status =='PENDING').length == 1){
+        this.user.pendingTransaction = false;
+        this.tokenStorage.saveUser(this.user);
+      }
       this.reloadPage();
     })
   }
 
-  completeTransaction(id:number) : void{
+  completeTransaction(id:number, amount: number) : void{
     this.transactionService.completeTransaction(id, this.user.id).subscribe(() =>{
+      this.user.balance = this.user.balance + amount;
+      this.tokenStorage.saveUser(this.user);
       this.reloadPage();
     })
   }

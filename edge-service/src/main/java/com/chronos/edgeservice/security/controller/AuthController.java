@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.chronos.edgeservice.apiresponse.transaction.TransactionResponseDto;
+import com.chronos.edgeservice.client.TransactionClient;
 import com.chronos.edgeservice.client.UserClient;
 import com.chronos.edgeservice.security.JwtUtils;
 import com.chronos.edgeservice.security.UserRequestDto;
@@ -40,6 +42,9 @@ public class AuthController {
     @Autowired
     UserClient userClient;
 
+    @Autowired
+    private TransactionClient transactionClient;
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -54,11 +59,15 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
+        List<TransactionResponseDto> transactions = transactionClient.getAllTransactionByUserId(Math.toIntExact(userDetails.getId())).stream().filter(
+                transaction -> transaction.getStatus().equals("PENDING") && transaction.getReceiverUserId() == Math.toIntExact(userDetails.getId()))
+                .collect(Collectors.toList());
+
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 roles,
-                userDetails.getBalance(), userDetails.getName()));
+                userDetails.getBalance(), userDetails.getName(), !transactions.isEmpty()));
     }
 
 

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Service
 public class UserService implements IUserService {
 
@@ -29,11 +28,9 @@ public class UserService implements IUserService {
        return userRepository.findById(id).orElseThrow(NoPresentUser::new).toConvertDto();
     }
 
-
     public void createUser(UserRequestDto userRequestDto){
         Set<Role> roles = new HashSet<>();
-        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        Role userRole = roleRepository.findByName(ERole.ROLE_USER).orElseThrow(() -> new RuntimeException("Error: Role is not found."));
         roles.add(userRole);
 
         User user = new User(userRequestDto.getName(), userRequestDto.getEmail(), userRequestDto.getPhone(), userRequestDto.getCity(), userRequestDto.getPassword(), roles);
@@ -65,9 +62,4 @@ public class UserService implements IUserService {
         user.decreaseBalance(amount);
         userRepository.save(user);
     }
-
-
-
-
-
 }

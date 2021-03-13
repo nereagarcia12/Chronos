@@ -1,8 +1,7 @@
 package com.chronos.adservice.dto;
 
-
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.Objects;
 
 public class AdResponseDto {
 
@@ -38,55 +37,35 @@ public class AdResponseDto {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getAvailability() {
         return availability;
     }
 
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
     public LocalDate getCreateAd() {
         return createAd;
-    }
-
-    public void setCreateAd(LocalDate createAd) {
-        this.createAd = createAd;
     }
 
     public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public String getCategoryName() {
         return categoryName;
-    }
-
-    public void setCategoryName(Integer categoryId) {
-        this.categoryName = categoryName;
     }
 
     public String getCategoryImage() {
         return categoryImage;
     }
 
-    public void setCategoryImage(String categoryImage) {
-        this.categoryImage = categoryImage;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AdResponseDto that = (AdResponseDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(description, that.description) && Objects.equals(availability, that.availability) && Objects.equals(createAd, that.createAd) && Objects.equals(userId, that.userId) && Objects.equals(categoryName, that.categoryName) && Objects.equals(categoryImage, that.categoryImage);
     }
 }

@@ -4,6 +4,7 @@ import com.chronos.adservice.dto.CategoryResponseDto;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Category {
@@ -25,12 +26,6 @@ public class Category {
         this.name = name;
         this.photo = photo;
         this.icon = icon;
-    }
-
-    public Category(String name, String photo, List<Ad> ads) {
-        this.name = name;
-        this.photo = photo;
-        this.ads = ads;
     }
 
     public CategoryResponseDto toResponseDto() {
@@ -76,4 +71,5 @@ public class Category {
     public void setIcon(String icon) {
         this.icon = icon;
     }
+
 }

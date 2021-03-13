@@ -18,8 +18,7 @@
     <a routerLink="/register" routerLinkActive="active" class="header-top-button"><i class="lni lni-pencil"></i> Registrate</a>
     </div>
     <div *ngIf="isLoggedIn" class="header-top-right float-right">
-        <a class="header-top-button" routerLink="/myAds" routerLinkActive="active"><i class="lni lni-folder"></i> Mi anuncios </a> |
-        <a class="header-top-button" routerLink="/transactions" routerLinkActive="active"><i class="lni lni-pencil"></i> Mi transacciones </a> |
+        <a *ngIf = "user.pendingTransaction" class="header-top-button" routerLink="/transactionsReceived" routerLinkActive="active"><i style="color: #e91e63;" class="lni lni-bullhorn"></i> Transacciones pendientes </a> |
         <a class="header-top-button" [routerLink]="['/editUser']" routerLinkActive="active"><i class="lni lni-user"></i> Mi perfil </a> |
         <a (click)="logout()" routerLink="" class="header-top-button"><i class="lni lni-power-switch"></i> Desconectate </a>
         </div>

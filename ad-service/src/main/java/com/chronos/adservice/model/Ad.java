@@ -6,6 +6,7 @@ import com.chronos.adservice.enums.Status;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Ad {
@@ -115,4 +116,13 @@ public class Ad {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ad ad = (Ad) o;
+        return Objects.equals(id, ad.id) && Objects.equals(title, ad.title) && Objects.equals(description, ad.description) && Objects.equals(availability, ad.availability) && Objects.equals(createAd, ad.createAd) && Objects.equals(userId, ad.userId) && Objects.equals(category, ad.category) && status == ad.status;
+    }
+
 }

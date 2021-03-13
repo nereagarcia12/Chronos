@@ -19,7 +19,7 @@
     <app-profilesidebar
       class="col-sm-12 col-md-4 col-lg-3 page-sidebar"
     ></app-profilesidebar>
-    <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="col-sm-12 col-md-8 col-lg-9">
       <div class="page-content">
         <div class="inner-box">
           <div class="dashboard-box">
@@ -82,7 +82,7 @@
                       role="alert"
                     >
                       <a
-                        (click)="completeTransaction(trans.id)"
+                        (click)="completeTransaction(trans.id, trans.amount)"
                         class="btn-action btn-view"
                         ><i class="lni lni-checkmark-circle"></i
                       ></a>

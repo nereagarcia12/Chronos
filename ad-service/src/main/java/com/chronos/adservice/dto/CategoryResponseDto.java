@@ -4,6 +4,7 @@ import com.chronos.adservice.model.Ad;
 
 
 import java.util.List;
+import java.util.Objects;
 
 public class CategoryResponseDto {
 
@@ -26,31 +27,23 @@ public class CategoryResponseDto {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
     public String getIcon() {
         return icon;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CategoryResponseDto that = (CategoryResponseDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(photo, that.photo) && Objects.equals(icon, that.icon);
     }
 }

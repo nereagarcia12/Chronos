@@ -18,22 +18,22 @@ import java.util.Map;
 public class ApiExceptionHandler {
     @ExceptionHandler(TransactionNotFoundException.class)
     public ResponseEntity<Object> transactionNotFoundException(TransactionNotFoundException transactionNotFoundException, HttpServletResponse response) throws IOException {
-        return new ResponseEntity<Object>(Map.of("error",  transactionNotFoundException.getLocalizedMessage())
+        return new ResponseEntity<>(Map.of("error", transactionNotFoundException.getLocalizedMessage())
                 , new HttpHeaders(), HttpStatus.NOT_FOUND);}
 
     @ExceptionHandler(TransactionNotOwnedByUserException.class)
     public ResponseEntity<Object> transactionNotOwnedByUserException(TransactionNotOwnedByUserException transactionNotOwnedByUserException, HttpServletResponse response) throws IOException {
-        return new ResponseEntity<Object>(Map.of("error",  transactionNotOwnedByUserException.getLocalizedMessage())
+        return new ResponseEntity<>(Map.of("error", transactionNotOwnedByUserException.getLocalizedMessage())
                 , new HttpHeaders(), HttpStatus.FORBIDDEN);}
 
     @ExceptionHandler(UnexpectedTransactionStatusException.class)
     public ResponseEntity<Object> unexpectedTransactionStatusException(UnexpectedTransactionStatusException unexpectedTransactionStatusException, HttpServletResponse response) throws IOException {
-        return new ResponseEntity<Object>(Map.of("error",  unexpectedTransactionStatusException.getLocalizedMessage())
+        return new ResponseEntity<>(Map.of("error", unexpectedTransactionStatusException.getLocalizedMessage())
                 , new HttpHeaders(), HttpStatus.PRECONDITION_FAILED);}
 
     @ExceptionHandler(FeignException.class)
-    public ResponseEntity<Object> noPresentUser(FeignException feignException, HttpServletResponse response) throws IOException {
-        return new ResponseEntity<Object>(feignException.contentUTF8(), new HttpHeaders(), feignException.status());
+    public ResponseEntity<Object> feignException(FeignException feignException, HttpServletResponse response) throws IOException {
+        return new ResponseEntity<>(feignException.contentUTF8(), new HttpHeaders(), feignException.status());
     }
 
 }
