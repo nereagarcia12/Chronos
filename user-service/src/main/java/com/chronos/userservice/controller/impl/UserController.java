@@ -33,9 +33,8 @@ public class UserController implements IUserController {
     @GetMapping("/user/email/{email}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<User> findByEmail(@PathVariable (name = "email") String email){
-        return userRepository.findByEmail(email);
+        return userService.findByEmail(email);
     }
-
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)

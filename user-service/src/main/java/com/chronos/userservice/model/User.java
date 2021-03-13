@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -38,19 +39,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String name, String email, String phone, String city, String password, LocalDate createdAt, Integer balanceHour, Boolean pendingTransaction, Status status, Set<Role> roles) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.city = city;
-        this.password = password;
-        this.createdAt = createdAt;
-        this.balanceHour = balanceHour;
-        this.pendingTransaction = pendingTransaction;
-        this.status = status;
-        this.roles = roles;
-    }
+
 
     public User(String name, String email, String phone, String city, String password, LocalDate createdAt, Integer balanceHour, Boolean pendingTransaction, Status status) {
         this.name = name;
@@ -62,17 +51,6 @@ public class User {
         this.balanceHour = balanceHour;
         this.pendingTransaction = pendingTransaction;
         this.status = status;
-    }
-    public User(String name, String email, String phone, String city, String password) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.city = city;
-        this.password = password;
-        this.createdAt = LocalDate.now();
-        this.balanceHour = 5;
-        this.pendingTransaction = false;
-        this.status = Status.ACTIVE;
     }
 
     public User(String name, String email, String phone, String city, String password, Set<Role>  role) {
@@ -146,40 +124,20 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public LocalDate getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
     }
 
     public Integer getBalanceHour() {
         return balanceHour;
     }
 
-    public void setBalanceHour(Integer balanceHour) {
-        this.balanceHour = balanceHour;
-    }
-
     public Boolean getPendingTransaction() {
         return pendingTransaction;
     }
 
-    public void setPendingTransaction(Boolean pendingTransaction) {
-        this.pendingTransaction = pendingTransaction;
-    }
-
     public Status getStatus() {
         return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     public Set<Role> getRoles() {
@@ -189,4 +147,13 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(phone, user.phone) && Objects.equals(city, user.city) && Objects.equals(password, user.password) && Objects.equals(createdAt, user.createdAt) && Objects.equals(balanceHour, user.balanceHour) && Objects.equals(pendingTransaction, user.pendingTransaction) && status == user.status && Objects.equals(roles, user.roles);
+    }
+
 }

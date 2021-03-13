@@ -10,7 +10,6 @@ import com.chronos.adservice.enums.Status;
 import com.chronos.adservice.model.Ad;
 import com.chronos.adservice.model.Category;
 import com.chronos.adservice.service.impl.AdService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

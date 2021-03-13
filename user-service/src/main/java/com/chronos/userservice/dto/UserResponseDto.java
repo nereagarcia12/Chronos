@@ -1,6 +1,7 @@
 package com.chronos.userservice.dto;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class UserResponseDto {
 
@@ -13,8 +14,6 @@ public class UserResponseDto {
     private Integer balanceHour;
     private Boolean pendingTransaction;
 
-    public UserResponseDto() {
-    }
 
     public UserResponseDto(Integer id, String name, String email, String phone, String city, LocalDate createdAt, Integer balanceHour, Boolean pendingTransaction) {
         this.id = id;
@@ -31,63 +30,41 @@ public class UserResponseDto {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPhone() {
         return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public LocalDate getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
     }
 
     public Integer getBalanceHour() {
         return balanceHour;
     }
 
-    public void setBalanceHour(Integer balanceHour) {
-        this.balanceHour = balanceHour;
-    }
-
     public Boolean getPendingTransaction() {
         return pendingTransaction;
     }
 
-    public void setPendingTransaction(Boolean pendingTransaction) {
-        this.pendingTransaction = pendingTransaction;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserResponseDto that = (UserResponseDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone) && Objects.equals(city, that.city) && Objects.equals(createdAt, that.createdAt) && Objects.equals(balanceHour, that.balanceHour) && Objects.equals(pendingTransaction, that.pendingTransaction);
     }
+
 }

@@ -16,6 +16,7 @@ import java.util.Map;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
+
     @ExceptionHandler(NoPresentUser.class)
     public ResponseEntity<Object> noPresentUser(NoPresentUser noPresentUser, HttpServletResponse response) throws IOException {
         return new ResponseEntity<Object>(Map.of("error",  noPresentUser.getLocalizedMessage())

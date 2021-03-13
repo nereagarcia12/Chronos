@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -25,7 +26,11 @@ public class UserService implements IUserService {
     private RoleRepository roleRepository;
 
     public UserResponseDto findById(Integer id){
-       return userRepository.findById(id).orElseThrow(NoPresentUser::new).toConvertDto();
+       return getUser(id).toConvertDto();
+    }
+
+    public Optional<User> findByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 
     public void createUser(UserRequestDto userRequestDto){
@@ -38,7 +43,7 @@ public class UserService implements IUserService {
     }
 
     public void editUser(UserRequestDto userRequestDto, Integer id){
-        User user = userRepository.findById(id).orElseThrow(NoPresentUser::new);
+        User user = getUser(id);
         user.setName(userRequestDto.getName());
         user.setEmail(userRequestDto.getEmail());
         user.setPhone(userRequestDto.getPhone());
@@ -47,19 +52,23 @@ public class UserService implements IUserService {
     }
 
     public void deleteUser(Integer id){
-        User user = userRepository.findById(id).orElseThrow(NoPresentUser::new);
+        User user = getUser(id);
         userRepository.delete(user);
     }
 
     public void increaseBalance(Integer id, Integer amount){
-        User user = userRepository.findById(id).orElseThrow(NoPresentUser::new);
+        User user = getUser(id);
         user.increaseBalance(amount);
         userRepository.save(user);
     }
 
     public void decreaseBalance(Integer id, Integer amount){
-        User user = userRepository.findById(id).orElseThrow(NoPresentUser::new);
+        User user = getUser(id);
         user.decreaseBalance(amount);
         userRepository.save(user);
+    }
+
+    private User getUser(Integer id) {
+        return userRepository.findById(id).orElseThrow(NoPresentUser::new);
     }
 }
