@@ -1,71 +1,153 @@
-<div class="page-header" style="background: url(assets/img/banner1.jpg);">
-    <div class="container">
+<div class="page-header" style="background: url(assets/img/banner1.jpg)">
+  <div class="container">
     <div class="row">
-    <div class="col-md-12">
-    <div class="breadcrumb-wrapper">
-    <h2 class="product-title">Únete a nosotros</h2>
-    <ol class="breadcrumb">
-    <li><a href="#">Home /</a></li>
-    <li class="current">Registro</li>
-    </ol>
+      <div class="col-md-12">
+        <div class="breadcrumb-wrapper">
+          <h2 class="product-title">Únete a nosotros</h2>
+          <ol class="breadcrumb">
+            <li><a href="#">Home /</a></li>
+            <li class="current">Registro</li>
+          </ol>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <section class="register section-padding">
-        <div class="container">
-        <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-12 col-xs-12">
+  </div>
+</div>
+<section class="register section-padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-12 col-xs-12">
         <div class="register-form login-area">
-        <h3>
-        HAZTE NIEMBRO
-        </h3>
-        <form class="login-form" [formGroup]="form"  #formDirective="ngForm">
-        <div class="form-group">
-        <div class="input-icon">
-        <i class="lni lni-user"></i>
-        <input type="text" id="Name" class="form-control" formControlName="name" name="name" placeholder="introduzca el nombre">
-        </div>
-        <span class="error-msg" *ngIf="name.hasError('required') && name.touched">Campo obligatorio</span>
-        </div>
-        <div class="form-group">
-        <div class="input-icon">
-        <i class="lni lni-envelope"></i>
-        <input type="text" id="sender-email" class="form-control"  formControlName="email" name="email" placeholder="Introduzca email">
-        </div>
-        <span class="error-msg" *ngIf="email.hasError('required') && email.touched">Campo obligatorio</span>
-        </div>
-        <div class="form-group">
-        <div class="input-icon">
-        <i class="lni lni-phone"></i>
-        <input type="text" class="form-control" name="phone"  formControlName="phone" placeholder="Introduzaca telefono">
-        </div>
-        <span class="error-msg" *ngIf="phone.hasError('required') && phone.touched">Campo obligatorio</span>
-        </div>
-        <div class="form-group">
-        <div class="input-icon">
-        <i class="lni lni-home"></i>
-        <input type="text" class="form-control"  formControlName="city" name="city" placeholder="Introduzca Ciudad">
-        </div>
-        <span class="error-msg" *ngIf="city.hasError('required') && city.touched">Campo obligatorio</span>
-        </div>
-        <div class="form-group">
-            <div class="input-icon">
-            <i class="lni lni-lock"></i>
-            <input type="password" class="form-control"  formControlName="password" placeholder="Introduzca contraseña">
+          <h3>HAZTE NIEMBRO</h3>
+          <form class="login-form" [formGroup]="form" #formDirective="ngForm">
+            <div class="form-group">
+              <div class="input-icon">
+                <i class="lni lni-user"></i>
+                <input
+                  type="text"
+                  id="Name"
+                  class="form-control"
+                  formControlName="name"
+                  name="name"
+                  placeholder="introduzca el nombre"
+                />
+              </div>
+              <span
+                class="error-msg"
+                *ngIf="name.hasError('required') && name.touched"
+                >Campo obligatorio</span
+              >
             </div>
-            <span class="error-msg" *ngIf="password.hasError('required') && password.touched">Campo obligatorio</span>
-            <span class="error-msg" *ngIf="password.hasError('minlength')">Minimo 6 caracteres </span>
-            <span class="error-msg" *ngIf="password.hasError('maxlength')">Maximo 12 caracteres</span>
+            <div class="form-group">
+              <div class="input-icon">
+                <i class="lni lni-envelope"></i>
+                <input
+                  type="text"
+                  id="sender-email"
+                  class="form-control"
+                  formControlName="email"
+                  name="email"
+                  placeholder="Introduzca email"
+                />
+              </div>
+              <span
+                class="error-msg"
+                *ngIf="email.hasError('required') && email.touched"
+                >Campo obligatorio</span
+              >
+              <span
+                class="error-msg"
+                *ngIf="email.hasError('email') && email.touched"
+                >El email no tiene el formato correcto nombre@dominio.tld</span
+              >
+            </div>
+            <div class="form-group">
+              <div class="input-icon">
+                <i class="lni lni-phone"></i>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="phone"
+                  formControlName="phone"
+                  placeholder="Introduzca telefono"
+                />
+              </div>
+              <span
+                class="error-msg"
+                *ngIf="phone.hasError('required') && phone.touched"
+                >Campo obligatorio</span
+              >
+              <span
+                class="error-msg"
+                *ngIf="phone.hasError('pattern') && phone.touched"
+                >El teléfono solo puede tener caracteres numericos.</span
+              >
+              <span
+              class="error-msg"
+              *ngIf="phone.hasError('maxlength') && phone.touched"
+              >El teléfono debe tener 9 caracteres.</span
+            >
+            </div>
+            <div class="form-group">
+              <div class="input-icon">
+                <i class="lni lni-home"></i>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="city"
+                  name="city"
+                  placeholder="Introduzca Ciudad"
+                />
+              </div>
+              <span
+                class="error-msg"
+                *ngIf="city.hasError('required') && city.touched"
+                >Campo obligatorio</span
+              >
+              <span
+              class="error-msg"
+              *ngIf="city.hasError('pattern') && city.touched"
+              >La ciudad sólo puede tener letras.</span
+            >
+            </div>
+            <div class="form-group">
+              <div class="input-icon">
+                <i class="lni lni-lock"></i>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                  placeholder="Introduzca contraseña"
+                />
+              </div>
+              <span
+                class="error-msg"
+                *ngIf="password.hasError('required') && password.touched"
+                >Campo obligatorio</span
+              >
+              <span class="error-msg" *ngIf="password.hasError('minlength')"
+                >Minimo 6 caracteres
+              </span>
+              <span class="error-msg" *ngIf="password.hasError('maxlength')"
+                >Maximo 12 caracteres</span
+              >
             </div>
 
-        <div class="text-center">
-        <button (click)="onSubmit()" class="btn btn-common log-btn" [disabled]="form.invalid">Register</button>
+            <div class="text-center">
+              <button
+                (click)="onSubmit()"
+                class="btn btn-common log-btn"
+                [disabled]="form.invalid"
+              >
+                Register
+              </button>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage != ''">
+                {{ errorMessage }}
+              </div>
+          </form>
         </div>
-        </form>
-        </div>
-        </div>
-        </div>
-        </div>
-        </section>
+      </div>
+    </div>
+  </div>
+</section>

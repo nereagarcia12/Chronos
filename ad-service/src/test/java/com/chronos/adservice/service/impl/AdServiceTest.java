@@ -130,7 +130,7 @@ class AdServiceTest {
     }
     @Test
     void search() {
-        when(adRepository.findByTitleContains("title")).thenReturn(List.of(ad));
+        when(adRepository.findByTitleContainingIgnoreCase("title")).thenReturn(List.of(ad));
         when(adRepository.findByCategory_Id(1)).thenReturn(List.of(ad));
         when(adRepository.findAll()).thenReturn(List.of(ad));
 
@@ -140,7 +140,7 @@ class AdServiceTest {
     }
     @Test
     void search_Word() {
-        when(adRepository.findByTitleContains("title")).thenReturn(List.of(ad));
+        when(adRepository.findByTitleContainingIgnoreCase("title")).thenReturn(List.of(ad));
 
         List<AdResponseDto> adResponseDtos = adService.search(new FilterSearchRequestDto("title",null));
 

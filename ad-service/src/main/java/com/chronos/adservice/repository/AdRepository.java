@@ -11,7 +11,7 @@ import java.util.List;
 public interface AdRepository extends JpaRepository<Ad,Integer> {
 
     public List<Ad> findByStatus(Status status);
-    public List<Ad> findByTitleContains(String word);
+    public List<Ad> findByTitleContainingIgnoreCase(String word);
     public List<Ad> findByCategory_Id(Integer categoryId);
     public List<Ad> findByTitleContainsAndCategory_Id(String word, Integer id);
     public List<Ad> findByUserId(Integer id);

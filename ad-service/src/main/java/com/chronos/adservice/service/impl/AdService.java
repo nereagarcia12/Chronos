@@ -54,7 +54,7 @@ public class AdService implements IAdService {
 
     public List<AdResponseDto> search(FilterSearchRequestDto filterSearchRequestDto){
         if (filterSearchRequestDto.getWord() != null && filterSearchRequestDto.getCategoryId() == null){
-           return adRepository.findByTitleContains(filterSearchRequestDto.getWord()).stream().map(Ad::toResponseDto).collect(Collectors.toList());
+           return adRepository.findByTitleContainingIgnoreCase(filterSearchRequestDto.getWord()).stream().map(Ad::toResponseDto).collect(Collectors.toList());
         } else if (filterSearchRequestDto.getWord() == null && filterSearchRequestDto.getCategoryId() != null){
             return adRepository.findByCategory_Id(filterSearchRequestDto.getCategoryId()).stream().map(Ad::toResponseDto).collect(Collectors.toList());
         } else{
