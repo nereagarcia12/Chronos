@@ -26,7 +26,7 @@ The application are composed by five microservice.We have an edge service, its a
 
 The ad, transaction and user microservices are accessible internally through the edge service, so they do not "know" about authentication, they are in a demilitarized zone. This services are registered on eureka.
 
-![Test Coverage](https://github.com/nereagarcia12/Chronos/blob/master/doc/diagram.png)
+![Architecture](https://github.com/nereagarcia12/Chronos/blob/master/doc/diagram.png)
 
 
 |Microservice | Objective | Database | API Documentation |
@@ -72,9 +72,43 @@ I have done the testing in three layers:
 |user-service| 100% | 98% | 96% |
 |transaction-service| 100% | 90% | 91% |
 
+# Authentication
+
 # Features - Screenshots
 
+Home
+![Home](https://github.com/nereagarcia12/Chronos/blob/master/doc/Inicio.PNG)
 
-# Authentication
+Ad Listing
+![Ad Listing](https://github.com/nereagarcia12/Chronos/blob/master/doc/Listado.PNG)
+
+Ad Detail
+![Ad Detail](https://github.com/nereagarcia12/Chronos/blob/master/doc/Detalle.PNG)
+
+Category List
+![Category List](https://github.com/nereagarcia12/Chronos/blob/master/doc/Categorias.PNG)
+
+Login
+![Login](https://github.com/nereagarcia12/Chronos/blob/master/doc/Login.PNG)
+
+Sign Up
+![Sign Up](https://github.com/nereagarcia12/Chronos/blob/master/doc/Registro.PNG)
+
+Profile
+![Profile](https://github.com/nereagarcia12/Chronos/blob/master/doc/Perfil.PNG)
+
+Publish a ad
+![Publish a ad](https://github.com/nereagarcia12/Chronos/blob/master/doc/Publicar.PNG)
+
+Transactions
+![Publish a ad](https://github.com/nereagarcia12/Chronos/blob/master/doc/Transacciones.PNG)
+
+My Ads
+![My Ads](https://github.com/nereagarcia12/Chronos/blob/master/doc/MisAnuncios.PNG)
+
+
+
+
+
 
 
