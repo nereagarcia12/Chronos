@@ -77,7 +77,26 @@ The authentication are done with JWT tokens.  When a user sign up on the platfor
 
 When a user login on the platform we verify the user details and if username and password are correct we return a JWT token.  Frontend store this JWT token on localStorage and send it via Filter on each request to the backend.
 
-# Features - Screenshots
+
+#Features
+
+|Feature  | Link | Log in necessary |
+|---|---|---|
+|Home | https://mychronos.herokuapp.com | No  |
+|Log in | https://mychronos.herokuapp.com/login | No  | 
+|Register | https://mychronos.herokuapp.com/register | No | 
+|Show categories| https://mychronos.herokuapp.com/categories | No | 
+|View ad services, with filters and pagination| https://mychronos.herokuapp.com/listing | No | 
+|View ad detail| https://mychronos.herokuapp.com/details/1 | Yes | 
+|Publish an ad| https://mychronos.herokuapp.com/publish | Yes | 
+|Request a service| https://mychronos.herokuapp.com/details/1 | Yes | 
+|User Profile | https://mychronos.herokuapp.com/editUser | Yes | 
+|Show/Edit/Delete my ads | https://mychronos.herokuapp.com/myAds | Yes | 
+|Show transactions sent | https://mychronos.herokuapp.com/transactionsInitiated | Yes | 
+|Show transactions received | https://mychronos.herokuapp.com/transactionsReceived | Yes | 
+
+
+# Screenshots
 
 Home
 ![Home](https://github.com/nereagarcia12/Chronos/blob/master/doc/Inicio.PNG)
