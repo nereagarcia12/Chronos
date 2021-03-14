@@ -1,87 +1,139 @@
 <header id="header-wrap">
-
-    <div class="top-bar">
+  <div class="top-bar">
     <div class="container">
-    <div class="row">
-    <div class="col-lg-5 col-md-6 col-xs-12">
-
-
-    <ul *ngIf="isLoggedIn" class="list-inline">
-    <li><i class="lni lni-user"></i> Bienvenido {{user.name}}</li>
-    <li><i class="lni lni-alarm-clock"></i> Tus horas disponibles {{user.balance}}</li>
-    </ul>
-
-    </div>
-    <div class="col-lg-7 col-md-6 col-xs-12">
-    <div *ngIf="!isLoggedIn" class="header-top-right float-right">
-    <a class="header-top-button" routerLink="/login" routerLinkActive="active"><i class="lni lni-lock"></i> Accede </a> |
-    <a routerLink="/register" routerLinkActive="active" class="header-top-button"><i class="lni lni-pencil"></i> Registrate</a>
-    </div>
-    <div *ngIf="isLoggedIn" class="header-top-right float-right">
-        <a *ngIf = "user.pendingTransaction" class="header-top-button" routerLink="/transactionsReceived" routerLinkActive="active"><i style="color: #e91e63;" class="lni lni-bullhorn"></i> Transacciones pendientes </a> |
-        <a class="header-top-button" [routerLink]="['/editUser']" routerLinkActive="active"><i class="lni lni-user"></i> Mi perfil </a> |
-        <a (click)="logout()" routerLink="" class="header-top-button"><i class="lni lni-power-switch"></i> Desconectate </a>
+      <div class="row">
+        <div class="col-lg-5 col-md-6 col-xs-12">
+          <ul *ngIf="isLoggedIn" class="list-inline">
+            <li><i class="lni lni-user"></i> Bienvenido {{ user.name }}</li>
+            <li>
+              <i class="lni lni-alarm-clock"></i> Tus horas disponibles
+              {{ user.balance }}
+            </li>
+          </ul>
         </div>
+        <div class="col-lg-7 col-md-6 col-xs-12">
+          <div *ngIf="!isLoggedIn" class="header-top-right float-right">
+            <a
+              class="header-top-button"
+              routerLink="/login"
+              routerLinkActive="active"
+              ><i class="lni lni-lock"></i> Accede
+            </a>
+            |
+            <a
+              routerLink="/register"
+              routerLinkActive="active"
+              class="header-top-button"
+              ><i class="lni lni-pencil"></i> Registrate</a
+            >
+          </div>
+          <div *ngIf="isLoggedIn" class="header-top-right float-right">
+            <a
+              *ngIf="user.pendingTransaction"
+              class="header-top-button"
+              routerLink="/transactionsReceived"
+              routerLinkActive="active"
+              ><i style="color: #e91e63" class="lni lni-bullhorn"></i>
+              Transacciones pendientes
+            </a>
+            |
+            <a
+              class="header-top-button"
+              [routerLink]="['/editUser']"
+              routerLinkActive="active"
+              ><i class="lni lni-user"></i> Mi perfil
+            </a>
+            |
+            <a (click)="logout()" routerLink="" class="header-top-button"
+              ><i class="lni lni-power-switch"></i> Desconectate
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </div>
+  </div>
 
-
-    <nav class="navbar navbar-expand-lg bg-white fixed-top scrolling-navbar">
+  <nav class="navbar navbar-expand-lg bg-white fixed-top scrolling-navbar">
     <div class="container">
-
-    <div class="navbar-header">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    <span class="lni lni-menu"></span>
-    <span class="lni lni-menu"></span>
-    <span class="lni lni-menu"></span>
-    </button>
-    <a routerLink="/" routerLinkActive="active" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
-    </div>
-    <div class="collapse navbar-collapse" id="main-navbar">
-    <ul class="navbar-nav mr-auto w-100 justify-content-center">
-        <li class="nav-item dropdown" routerLinkActive="active">
-            <a class="nav-link dropdown-toggle" routerLink="" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Inicio
-    </a>
-    </li>
-    <li class="nav-item dropdown" routerLinkActive="active">
-        <a class="nav-link dropdown-toggle" routerLink="/categories" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Categorias
-        </a>
-        </li>
-     <li class="nav-item dropdown" routerLinkActive="active">
-    <a class="nav-link dropdown-toggle" routerLink="/listing" routerLinkActive="active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Servicios
-    </a>
-    </li>
-    
-
-    </ul>
-    <div class="post-btn">
-    <a class="btn btn-common" routerLink="/publish" routerLinkActive="active"><i class="lni lni-pencil-alt"></i>   Publica un anuncio</a>
-    </div>
-    </div>
+      <div class="navbar-header">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#main-navbar"
+          aria-controls="main-navbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+          <span class="lni lni-menu"></span>
+          <span class="lni lni-menu"></span>
+          <span class="lni lni-menu"></span>
+        </button>
+        <a routerLink="/" routerLinkActive="active" class="navbar-brand"
+          ><img src="assets/img/logo.png" alt=""
+        /></a>
+      </div>
+      <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="navbar-nav mr-auto w-100 justify-content-center">
+          <li class="nav-item dropdown" routerLinkActive="active">
+            <a
+              class="nav-link dropdown-toggle"
+              routerLink=""
+              routerLinkActive="active"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Inicio
+            </a>
+          </li>
+          <li class="nav-item dropdown" routerLinkActive="active">
+            <a
+              class="nav-link dropdown-toggle"
+              routerLink="/categories"
+              routerLinkActive="active"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Categorias
+            </a>
+          </li>
+          <li class="nav-item dropdown" routerLinkActive="active">
+            <a
+              class="nav-link dropdown-toggle"
+              routerLink="/listing"
+              routerLinkActive="active"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Servicios
+            </a>
+          </li>
+        </ul>
+        <div class="post-btn">
+          <a
+            class="btn btn-common"
+            routerLink="/publish"
+            routerLinkActive="active"
+            ><i class="lni lni-pencil-alt"></i> Publica un anuncio</a
+          >
+        </div>
+      </div>
     </div>
 
     <ul class="mobile-menu">
-    <li>
-    <a routerLink="" routerLinkActive="active">
-    Inicio
-    </a>
-    </li>
-    <li>
-    <a routerLink="/categories" routerLinkActive="active">
-    Categorias
-    </a>
-    </li>
-    <li>
-    <a routerLink="/listing" routerLinkActive="active">
-    Servicios
-    </a>
-    </li>
+      <li>
+        <a routerLink="" routerLinkActive="active"> Inicio </a>
+      </li>
+      <li>
+        <a routerLink="/categories" routerLinkActive="active"> Categorias </a>
+      </li>
+      <li>
+        <a routerLink="/listing" routerLinkActive="active"> Servicios </a>
+      </li>
     </ul>
-    </nav>
-    </header>
+  </nav>
+</header>

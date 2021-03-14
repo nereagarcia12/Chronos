@@ -29,7 +29,10 @@
             <div class="dashboardboxtitle">
               <h2>Transacciones Iniciadas</h2>
             </div>
-            <table class="table table-responsive dashboardtable tablemyads">
+            <div *ngIf="transactionsInitiated.length == 0 " class="row">
+              No hay transacciones iniciadas. Animate a solicitar un servicio.
+           </div>
+            <table *ngIf="transactionsInitiated.length > 0" class="table table-responsive dashboardtable tablemyads">
               <thead>
                 <tr>
                   <th>Titulo</th>
@@ -41,7 +44,7 @@
               </thead>
               <tbody>
                 <tr
-                  *ngFor="let trans of transactionsInitiated"
+                  *ngFor="let trans of pageOfTransactions"
                   data-category="active"
                 >
                   <td class="Title">
@@ -94,6 +97,9 @@
                 </tr>
               </tbody>
             </table>
+            <div>
+              <app-paginator [items]="transactionsInitiated" (changePage)="onChangePage($event)"></app-paginator>
+             </div>
           </div>
         </div>
       </div>

@@ -26,7 +26,10 @@
               <div class="dashboardboxtitle">
                 <h2>Mis anuncios</h2>
               </div>
-              <table class="table table-responsive dashboardtable tablemyads">
+              <div *ngIf="myAds.length == 0" class="row">
+                No tienes anuncios. <a [routerLink]="['/publish']">Publica un anuncio ahora!</a>
+             </div>
+              <table *ngIf="myAds.length > 0" class="table table-responsive dashboardtable tablemyads">
                 <thead>
                   <tr>
                     <th>Titulo</th>
@@ -38,7 +41,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor = "let ad of myAds" data-category="active">
+                  <tr *ngFor = "let ad of pageOfAds" data-category="active">
                     <td class="Title">
                       <h3>{{ad.title}}</h3>
                     </td>
@@ -71,6 +74,9 @@
       
                 </tbody>
               </table>
+              <div>
+                <app-paginator [items]="myAds" (changePage)="onChangePage($event)"></app-paginator>
+               </div>
             </div>
           </div>
         </div>

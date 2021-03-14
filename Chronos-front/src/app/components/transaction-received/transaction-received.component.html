@@ -29,7 +29,10 @@
             <div class="dashboardboxtitle">
               <h2>Transacciones Recibidas</h2>
             </div>
-            <table class="table table-responsive dashboardtable tablemyads">
+            <div *ngIf="transactionsReceived.length == 0 " class="row">
+              No hay transacciones recibidas. Publica un servicio para recibir solicitudes.
+           </div>
+            <table  *ngIf="transactionsReceived.length > 0" class="table table-responsive dashboardtable tablemyads">
               <thead>
                 <tr>
                   <th>Titulo</th>
@@ -41,7 +44,7 @@
               </thead>
               <tbody>
                 <tr
-                  *ngFor="let trans of transactionsReceived"
+                  *ngFor="let trans of pageOfTransactions"
                   data-category="active"
                 >
                   <td class="Title">
@@ -106,6 +109,9 @@
                 </tr>
               </tbody>
             </table>
+            <div>
+              <app-paginator [items]="transactionsReceived" (changePage)="onChangePage($event)"></app-paginator>
+             </div>
           </div>
         </div>
       </div>
