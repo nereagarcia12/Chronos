@@ -2,7 +2,7 @@
   <div class="top-bar">
     <div class="container">
       <div class="row">
-        <div class="col-lg-5 col-md-6 col-xs-12">
+        <div class="col-lg-6 col-md-7 col-xs-12">
           <ul *ngIf="isLoggedIn" class="list-inline">
             <li><i class="lni lni-user"></i> Bienvenido {{ user.name }}</li>
             <li>
@@ -10,8 +10,11 @@
               {{ user.balance }}
             </li>
           </ul>
+          <ul *ngIf="!isLoggedIn" class="list-inline">
+            <a routerLink="/register" routerLinkActive="active"><li><i class="lni lni-user"></i> Registrate ahora</li></a>
+          </ul>
         </div>
-        <div class="col-lg-7 col-md-6 col-xs-12">
+        <div class="col-lg-6 col-md-5 col-xs-12">
           <div *ngIf="!isLoggedIn" class="header-top-right float-right">
             <a
               class="header-top-button"

@@ -26,8 +26,8 @@
                     <div class="ads-details-info">
                         <h2>{{ad.title}}</h2>
                         <div class="details-meta">
-                            <span><a href="#"><i class="lni lni-calendar"></i> {{ad.createAd}} </a></span>
-                            <span><a href="#"><i class="lni lni-map-marker"></i>{{user.city}}</a></span>
+                            <span><i class="lni lni-calendar"></i> {{ad.createAd}} </span>
+                            <span><i class="lni lni-map-marker"></i>{{user.city}} </span>
                         </div>
                         <h4 class="title-small mb-3">Descripcion :</h4>
                         <p *ngFor="let string of ad.description.split('\n')"class="mb-4">
