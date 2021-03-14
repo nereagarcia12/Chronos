@@ -5,6 +5,7 @@ import com.chronos.transactionservice.enums.Status;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 public class TransactionRequestDto {
 
@@ -70,4 +71,13 @@ public class TransactionRequestDto {
     public void setAdId(Integer adId) {
         this.adId = adId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransactionRequestDto that = (TransactionRequestDto) o;
+        return Objects.equals(originUserId, that.originUserId) && Objects.equals(receiverUserId, that.receiverUserId) && Objects.equals(amount, that.amount) && Objects.equals(description, that.description) && Objects.equals(adId, that.adId);
+    }
+
 }

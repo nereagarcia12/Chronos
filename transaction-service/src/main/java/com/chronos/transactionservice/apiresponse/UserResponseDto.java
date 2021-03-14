@@ -13,8 +13,6 @@ public class UserResponseDto {
     private Integer balanceHour;
     private Boolean pendingTransaction;
 
-    public UserResponseDto() {
-    }
 
     public UserResponseDto(Integer id, String name, String email, String phone, String city, LocalDate createdAt, Integer balanceHour, Boolean pendingTransaction) {
         this.id = id;

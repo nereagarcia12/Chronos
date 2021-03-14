@@ -13,10 +13,9 @@ import com.chronos.transactionservice.exception.UnexpectedTransactionStatusExcep
 import com.chronos.transactionservice.model.Transaction;
 import com.chronos.transactionservice.repository.TransactionRepository;
 import com.chronos.transactionservice.service.interfaces.ITransactionService;
-import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,38 +42,29 @@ public class TransactionService implements ITransactionService {
     }
 
     public void acceptTransaction(Integer id, Integer userId) {
-        Transaction transaction = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
-        if (!transaction.getReceiverUserId().equals(userId)) {
-            throw new TransactionNotOwnedByUserException();
-        }
-        if (transaction.getStatus() != Status.PENDING) {
-            throw new UnexpectedTransactionStatusException();
-        }
+        Transaction transaction = getTransaction(id);
+        receiverOwnedTransaction(userId, transaction);
+        haveCorrectStatus(transaction, Status.PENDING);
+
         transaction.setStatus(Status.ACCEPTED);
         transactionRepository.save(transaction);
     }
 
     public void refuseTransaction(Integer id, Integer userId) {
-        Transaction transaction = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
-        if (!transaction.getReceiverUserId().equals(userId)) {
-            throw new TransactionNotOwnedByUserException();
-        }
-        if (transaction.getStatus() != Status.PENDING) {
-            throw new UnexpectedTransactionStatusException();
-        }
+        Transaction transaction = getTransaction(id);
+        receiverOwnedTransaction(userId, transaction);
+        haveCorrectStatus(transaction, Status.PENDING);
+
         transaction.setStatus(Status.REFUSED);
         transactionRepository.save(transaction);
         userClient.increaseBalanceHours(userId, transaction.getAmount());
     }
 
     public void completeTransaction(Integer id, Integer userId) {
-        Transaction transaction = transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
-        if (!transaction.getReceiverUserId().equals(userId)) {
-            throw new TransactionNotOwnedByUserException();
-        }
-        if (transaction.getStatus() != Status.ACCEPTED) {
-            throw new UnexpectedTransactionStatusException();
-        }
+        Transaction transaction = getTransaction(id);
+        receiverOwnedTransaction(userId, transaction);
+        haveCorrectStatus(transaction, Status.ACCEPTED);
+
         transaction.setStatus(Status.COMPLETED);
         userClient.increaseBalanceHours(userId, transaction.getAmount());
         transactionRepository.save(transaction);
@@ -86,5 +76,21 @@ public class TransactionService implements ITransactionService {
 
     public void deleteTransactionByUser(Integer userId){
         transactionRepository.findByOriginUserIdOrReceiverUserId(userId, userId).forEach(transaction -> transactionRepository.delete(transaction));
+    }
+
+    private void haveCorrectStatus(Transaction transaction, Status accepted) {
+        if (transaction.getStatus() != accepted) {
+            throw new UnexpectedTransactionStatusException();
+        }
+    }
+
+    private Transaction getTransaction(Integer id) {
+        return transactionRepository.findById(id).orElseThrow(TransactionNotFoundException::new);
+    }
+
+    private void receiverOwnedTransaction(Integer userId, Transaction transaction) {
+        if (!transaction.getReceiverUserId().equals(userId)) {
+            throw new TransactionNotOwnedByUserException();
+        }
     }
 }

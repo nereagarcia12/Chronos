@@ -7,7 +7,6 @@ import com.chronos.userservice.enums.Status;
 import com.chronos.userservice.model.Role;
 import com.chronos.userservice.model.User;
 import com.chronos.userservice.service.impl.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

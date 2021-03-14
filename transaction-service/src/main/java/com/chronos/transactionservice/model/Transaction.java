@@ -4,6 +4,7 @@ import com.chronos.transactionservice.dto.TransactionResponseDto;
 import com.chronos.transactionservice.enums.Status;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Transaction {
@@ -89,5 +90,13 @@ public class Transaction {
 
     public void setAdId(Integer adId) {
         this.adId = adId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return Objects.equals(id, that.id) && Objects.equals(originUserId, that.originUserId) && Objects.equals(receiverUserId, that.receiverUserId) && status == that.status && Objects.equals(amount, that.amount) && Objects.equals(description, that.description) && Objects.equals(adId, that.adId);
     }
 }
