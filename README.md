@@ -51,7 +51,9 @@ Git for version control.
 Spring Security and JWT for authentication   
 Heroku with CI/CD for deployments.   
 Controller Advices for Exception Handling   
-Docker for create databases.   
+Docker for create databases.  
+Flyway for database migration.
+Swagger for API Documentation
 
 AngularJS with typescript.   
 HTML5, CSS and Boostrap 5.   
