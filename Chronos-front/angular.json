@@ -32,15 +32,16 @@
             ],
             "scripts": [
               "src/assets/js/jquery-min.js",
+              "src/assets/js/jquery.slicknav.js",
               "src/assets/js/popper.min.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/jquery.counterup.min.js",
               "src/assets/js/waypoints.min.js",
               "src/assets/js/wow.js",
               "src/assets/js/owl.carousel.min.js",
-              "src/assets/js/jquery.slicknav.js",
               "src/assets/js/main.js",
-              "src/assets/js/summernote.js"
+              "src/assets/js/summernote.js",
+              "src/assets/js/navbar.js"
             ]
           },
           "configurations": {

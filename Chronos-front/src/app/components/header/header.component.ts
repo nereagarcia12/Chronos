@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
+declare function menu() : any;
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,6 +20,7 @@ export class HeaderComponent implements OnInit {
       this.user = this.tokenStorage.getUser();
     }
     this.tokenStorage.currentUser.subscribe(user => this.user = user)
+    menu();
   }
 
   logout(): void {
