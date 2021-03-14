@@ -4,7 +4,8 @@ import com.chronos.userservice.dto.UserRequestDto;
 import com.chronos.userservice.dto.UserResponseDto;
 import com.chronos.userservice.enums.ERole;
 import com.chronos.userservice.enums.Status;
-import com.chronos.userservice.exceptions.NoPresentUser;
+import com.chronos.userservice.exceptions.EmailAlreadyRegisteredException;
+import com.chronos.userservice.exceptions.UserNotFoundException;
 import com.chronos.userservice.model.Role;
 import com.chronos.userservice.model.User;
 import com.chronos.userservice.repository.RoleRepository;
@@ -15,9 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 
 import java.util.Optional;
 
@@ -26,6 +24,8 @@ import java.util.Set;
 
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class UserServiceTest {
@@ -71,7 +71,7 @@ class UserServiceTest {
     void findById_Exception() {
         when(userRepository.findById(1)).thenReturn(Optional.empty());
 
-       assertThrows(NoPresentUser.class, () -> userService.findById(1));
+       assertThrows(UserNotFoundException.class, () -> userService.findById(1));
 
     }
 
@@ -88,10 +88,22 @@ class UserServiceTest {
     void createUser() {
         user.setId(null);
         when(roleRepository.findByName(ERole.ROLE_USER)).thenReturn(Optional.ofNullable(role));
+        when(userRepository.findByEmail(userRequestDto.getEmail())).thenReturn(Optional.empty());
 
         userService.createUser(userRequestDto);
 
         verify(userRepository).save(user);
+    }
+
+    @Test
+    void createUser_userAlreadyRegistered() {
+        user.setId(null);
+        when(roleRepository.findByName(ERole.ROLE_USER)).thenReturn(Optional.ofNullable(role));
+        when(userRepository.findByEmail(userRequestDto.getEmail())).thenReturn(Optional.of(user));
+
+        assertThrows(EmailAlreadyRegisteredException.class, () -> userService.createUser(userRequestDto));
+
+        verify(userRepository, times(0)).save(any());
     }
 
     @Test

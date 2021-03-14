@@ -1,15 +1,12 @@
 package com.chronos.userservice.handler;
 
-import com.chronos.userservice.dto.UserRequestDto;
-import com.chronos.userservice.dto.UserResponseDto;
 import com.chronos.userservice.enums.ERole;
 import com.chronos.userservice.enums.Status;
 import com.chronos.userservice.exceptions.InsufficientHoursException;
-import com.chronos.userservice.exceptions.NoPresentUser;
+import com.chronos.userservice.exceptions.UserNotFoundException;
 import com.chronos.userservice.model.Role;
 import com.chronos.userservice.model.User;
 import com.chronos.userservice.service.impl.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +55,7 @@ class ApiExceptionHandlerTest {
     @Test
     void noPresentUser() throws Exception {
         String expectedJson = "{\"error\":\"User is not present \"}";
-        NoPresentUser exception = new NoPresentUser();
+        UserNotFoundException exception = new UserNotFoundException();
         doThrow(exception).when(userService).findById(1);
 
         MvcResult result = mockMvc

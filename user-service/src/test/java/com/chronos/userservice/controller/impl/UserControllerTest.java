@@ -96,8 +96,7 @@ class UserControllerTest {
     void createUser() throws Exception {
         String body = objectMapper.writeValueAsString(userRequestDto);
 
-        MvcResult result = mockMvc
-                .perform(post("/user")
+        mockMvc.perform(post("/user")
                         .content(body)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
@@ -111,8 +110,7 @@ class UserControllerTest {
     void increaseBalanceHours() throws Exception {
         String body = objectMapper.writeValueAsString(amount);
 
-        MvcResult result = mockMvc
-                .perform(put("/user/1/increase/balance")
+        mockMvc.perform(put("/user/1/increase/balance")
                         .content(body)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -125,8 +123,7 @@ class UserControllerTest {
     void decreaseBalanceHours() throws Exception {
         String body = objectMapper.writeValueAsString(amount);
 
-        MvcResult result = mockMvc
-                .perform(put("/user/1/decrease/balance")
+        mockMvc.perform(put("/user/1/decrease/balance")
                         .content(body)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -139,8 +136,7 @@ class UserControllerTest {
     void editProfileUser() throws Exception {
         String body = objectMapper.writeValueAsString(userRequestDto);
 
-        MvcResult result = mockMvc
-                .perform(put("/user/1")
+        mockMvc.perform(put("/user/1")
                         .content(body)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -151,8 +147,7 @@ class UserControllerTest {
 
     @Test
     void deleteUser() throws Exception {
-        MvcResult result = mockMvc
-                .perform(delete("/user/1"))
+        mockMvc.perform(delete("/user/1"))
                 .andExpect(status().isOk())
                 .andReturn();
 
