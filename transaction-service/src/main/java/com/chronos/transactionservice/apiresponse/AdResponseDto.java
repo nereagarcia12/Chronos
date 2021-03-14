@@ -35,48 +35,24 @@ public class AdResponseDto {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getAvailability() {
         return availability;
     }
 
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
     public LocalDate getCreateAd() {
         return createAd;
-    }
-
-    public void setCreateAd(LocalDate createAd) {
-        this.createAd = createAd;
     }
 
     public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public String getCategoryName() {
         return categoryName;
-    }
-
-    public void setCategoryName(Integer categoryId) {
-        this.categoryName = categoryName;
     }
 
 }

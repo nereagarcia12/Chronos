@@ -97,7 +97,4 @@ class ApiExceptionHandlerTest {
         assertEquals(expectedJson, result.getResponse().getContentAsString());
     }
 
-    @Test
-    void feignException() {
-    }
 }

@@ -48,16 +48,8 @@ public class Transaction {
         return originUserId;
     }
 
-    public void setOriginUserId(Integer originUserId) {
-        this.originUserId = originUserId;
-    }
-
     public Integer getReceiverUserId() {
         return receiverUserId;
-    }
-
-    public void setReceiverUserId(Integer receiverUserId) {
-        this.receiverUserId = receiverUserId;
     }
 
     public Status getStatus() {
@@ -72,24 +64,12 @@ public class Transaction {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Integer getAdId() {
         return adId;
-    }
-
-    public void setAdId(Integer adId) {
-        this.adId = adId;
     }
 
     @Override

@@ -1,8 +1,5 @@
 package com.chronos.transactionservice.dto;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class TransactionResponseDto {
@@ -40,48 +37,24 @@ public class TransactionResponseDto {
         return originUserId;
     }
 
-    public void setOriginUserId(Integer originUserId) {
-        this.originUserId = originUserId;
-    }
-
     public Integer getReceiverUserId() {
         return receiverUserId;
-    }
-
-    public void setReceiverUserId(Integer receiverUserId) {
-        this.receiverUserId = receiverUserId;
     }
 
     public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Integer getAdId() {
         return adId;
     }
 
-    public void setAdId(Integer adId) {
-        this.adId = adId;
-    }
-
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     @Override
