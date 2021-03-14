@@ -22,7 +22,9 @@ The website are online and completely deployed on Heroku. (Wait a minute for the
 [My Profile Page](https://mychronos.herokuapp.com/editUser) - You must be registered before access.
 
 # Architecture diagram
-The application are composed by five microservice.
+The application are composed by five microservice.We have an edge service, its an API Gateway, it is the only public accessible microservice. This microservice also has the authentication made by JWT, it is in charge of managing it just to avoid replicating it in the rest of the microservices.
+
+The ad, transaction and user microservices are accessible internally through the edge service, so they do not "know" about authentication, they are in a demilitarized zone. This services are registered on eureka.
 
 ![Test Coverage](https://github.com/nereagarcia12/Chronos/blob/master/doc/diagram.png)
 
@@ -36,18 +38,41 @@ The application are composed by five microservice.
 | eureka-service  | For service discovery and service registry |  no database |  https://chronos-eureka.herokuapp.com/ |   
 
 
-
-
 # Tech stack
 
+The project are done with:
 
+Java 11 with Spring Boot.   
+For testing JUnit, Mockito and MockMVC.   
+PostgreSQL Database with Spring Data JPA using stack.yml for start databases with docker.   
+Service Discovery with Eureka.   
+Maven for build tool/dependency.   
+Git for version control.   
+Spring Security and JWT for authentication   
+Heroku with CI/CD for deployments.   
+Controller Advices for Exception Handling   
+Docker for create databases.   
 
+AngularJS with typescript.   
+HTML5, CSS and Boostrap 5.   
 
 
 # Testing
 
+I have done the testing in three layers:
+- Controller Layer: I did the test mocking the service and testing request/response with MockMVC
+- Service Layer: I did the test mocking the repository and calling directly the service for test the business logic
+- Repository Layer: I did the repository test saving/retrieving information from database.
 
-# Features
+## Coverage
+
+|Service  |Class | Method | Line |
+|---|---|---|---|
+|ad-service| 100% | 85% | 86% |
+|user-service| 100% | 98% | 96% |
+|transaction-service| 100% | 90% | 91% |
+
+# Features - Screenshots
 
 
 # Authentication
