@@ -20,7 +20,9 @@ export class HeaderComponent implements OnInit {
       this.user = this.tokenStorage.getUser();
     }
     this.tokenStorage.currentUser.subscribe(user => this.user = user)
-    menu();
+    setTimeout(() => {
+      menu()
+  }, 100/60);
   }
 
   logout(): void {
@@ -28,4 +30,7 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
   }
 
+  empty(): void{
+
+  }
 }

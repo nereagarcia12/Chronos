@@ -14,6 +14,7 @@
         $("html, body").animate({scrollTop: 0}, "slow");
         return false;
     });
+    
     $('.mobile-menu').slicknav({
         prependTo: '.navbar-header',
         parentTag: 'liner',
