@@ -22,6 +22,8 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ProfilesidebarComponent } from './components/profilesidebar/profilesidebar.component';
 import { TransactionReceivedComponent } from './components/transaction-received/transaction-received.component';
+import { JwPaginationModule } from 'jw-angular-pagination';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 
 @NgModule({
@@ -43,13 +45,15 @@ import { TransactionReceivedComponent } from './components/transaction-received/
     CategoriesComponent,
     ProfilesidebarComponent,
     TransactionReceivedComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    JwPaginationModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

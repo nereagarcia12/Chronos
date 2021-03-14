@@ -11,6 +11,8 @@ import { AdServiceService } from 'src/app/services/ad-service.service';
 export class AdListComponent implements OnInit {
 
   ads!: Ad[];
+  pageOfAds!: Array<Ad>;
+
   categories: Category[] =[]
   selectedCategory = null
   form: any = {
@@ -25,16 +27,19 @@ export class AdListComponent implements OnInit {
     if(word != "null"){
       this.adService.filterAds(word).subscribe((data) => {
         this.ads = data;
+        this.pageOfAds = data;
       }
       )
     } else if(category != 0){
       this.adService.filterAds(undefined,category).subscribe((data) => {
         this.ads = data;
+        this.pageOfAds = data;
       }
       )
     } else {
       this.adService.filterAds().subscribe((data) => {
         this.ads = data;
+        this.pageOfAds = data;
       }
       )
     }
@@ -65,4 +70,9 @@ export class AdListComponent implements OnInit {
     }
     )
   }
+
+  onChangePage(pageOfAds: Array<Ad>) {
+    // update current page of items
+    this.pageOfAds = pageOfAds;
+}
 }
