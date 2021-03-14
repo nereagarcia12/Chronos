@@ -135,10 +135,36 @@
         <a routerLink="/categories" routerLinkActive="active"> Categorias </a>
       </li>
       <li  >
-        <a 
-        routerLink="/listing"
-        routerLinkActive="active">
-         Servicios </a>
+        <a routerLink="/listing" outerLinkActive="active"> Servicios </a>
+      </li>
+      <li *ngIf="!isLoggedIn">
+        <a
+          class="header-top-button"
+          routerLink="/login"
+          routerLinkActive="active"
+          ><i class="lni lni-lock"></i> Accede
+        </a>
+      </li>
+      <li *ngIf="!isLoggedIn">
+        <a
+          class="header-top-button"
+          routerLink="/register"
+          routerLinkActive="active"
+          ><i class="lni lni-lock"></i> Registrate
+        </a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a
+          class="header-top-button"
+          routerLink="/editUser"
+          routerLinkActive="active"
+          ><i class="lni lni-lock"></i> Mi perfil
+        </a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a (click)="logout()" routerLink="" class="header-top-button"
+        ><i class="lni lni-power-switch"></i> Desconectate
+      </a>
       </li>
     </ul>
   </nav>
