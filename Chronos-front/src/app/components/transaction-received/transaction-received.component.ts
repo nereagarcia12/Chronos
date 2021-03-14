@@ -11,6 +11,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class TransactionReceivedComponent implements OnInit {
 
   transactionsReceived : CompleteTransaction[] =[]
+  pageOfTransactions!: Array<CompleteTransaction>;
   isLoggedIn = false;
   user!: any;
 
@@ -69,6 +70,8 @@ export class TransactionReceivedComponent implements OnInit {
     window.location.reload();
   }
 
-
+  onChangePage(pageOfTransactions: Array<CompleteTransaction>) {
+    this.pageOfTransactions = pageOfTransactions;
+}
 
 }

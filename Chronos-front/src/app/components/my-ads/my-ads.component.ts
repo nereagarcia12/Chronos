@@ -12,7 +12,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 export class MyAdsComponent implements OnInit {
 
   myAds: Ad[] = []
-
+  pageOfAds!: Array<Ad>;
   isLoggedIn = false;
   user!: any;
 
@@ -41,6 +41,10 @@ deleteAd(id: number){
 
 reloadPage(): void {
   window.location.reload();
+}
+
+onChangePage(pageOfAds: Array<Ad>) {
+  this.pageOfAds = pageOfAds;
 }
 
 }
