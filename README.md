@@ -73,6 +73,9 @@ I have done the testing in three layers:
 |transaction-service| 100% | 90% | 91% |
 
 # Authentication
+The authentication are done with JWT tokens.  When a user sign up on the platform we encode the password and save it encoded.
+
+When a user login on the platform we verify the user details and if username and password are correct we return a JWT token.  Frontend store this JWT token on localStorage and send it via Filter on each request to the backend.
 
 # Features - Screenshots
 
