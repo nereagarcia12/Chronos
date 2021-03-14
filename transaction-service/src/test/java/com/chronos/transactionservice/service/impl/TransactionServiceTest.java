@@ -63,11 +63,11 @@ class TransactionServiceTest {
         when(userClient.findByUserById(transaction.getOriginUserId())).thenReturn(userResponseDtoOrigin);
         when(userClient.findByUserById(transaction.getReceiverUserId())).thenReturn(userResponseDtoOrigin);
         when(adClient.getAdById(transaction.getAdId())).thenReturn(adResponseDto);
-        userClient.decreaseBalanceHours(userResponseDtoOrigin.getId(), transactionRequestDto.getAmount());
 
         transactionService.makeTransaction(transactionRequestDto);
 
         verify(transactionRepository).save(transaction);
+        verify(userClient).decreaseBalanceHours(1,5);
     }
 
     @Test
@@ -115,6 +115,7 @@ class TransactionServiceTest {
         transactionService.refuseTransaction(1, 2);
 
         verify(transactionRepository).save(expectedTransaction);
+        verify(userClient).increaseBalanceHours(1,5);
     }
 
     @Test
@@ -128,11 +129,11 @@ class TransactionServiceTest {
         transactionService.completeTransaction(1, 2);
 
         verify(transactionRepository).save(expectedTransaction);
+        verify(userClient).increaseBalanceHours(2,5);
     }
 
     @Test
     void getTransactionByUser() {
-
         when(transactionRepository.findByOriginUserIdOrReceiverUserId(1,1)).thenReturn(List.of(transaction));
 
         List<TransactionResponseDto> transactionResponseDtos = transactionService.getTransactionByUser(1);

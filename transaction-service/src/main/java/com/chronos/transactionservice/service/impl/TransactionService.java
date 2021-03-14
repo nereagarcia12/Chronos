@@ -57,7 +57,7 @@ public class TransactionService implements ITransactionService {
 
         transaction.setStatus(Status.REFUSED);
         transactionRepository.save(transaction);
-        userClient.increaseBalanceHours(userId, transaction.getAmount());
+        userClient.increaseBalanceHours(transaction.getOriginUserId(), transaction.getAmount());
     }
 
     public void completeTransaction(Integer id, Integer userId) {
@@ -66,7 +66,7 @@ public class TransactionService implements ITransactionService {
         haveCorrectStatus(transaction, Status.ACCEPTED);
 
         transaction.setStatus(Status.COMPLETED);
-        userClient.increaseBalanceHours(userId, transaction.getAmount());
+        userClient.increaseBalanceHours(transaction.getReceiverUserId(), transaction.getAmount());
         transactionRepository.save(transaction);
     }
 
@@ -74,7 +74,7 @@ public class TransactionService implements ITransactionService {
         return transactionRepository.findByOriginUserIdOrReceiverUserId(userId, userId).stream().map(Transaction::toResponseDto).collect(Collectors.toList());
     }
 
-    public void deleteTransactionByUser(Integer userId){
+    public void deleteTransactionByUser(Integer userId) {
         transactionRepository.findByOriginUserIdOrReceiverUserId(userId, userId).forEach(transaction -> transactionRepository.delete(transaction));
     }
 
