@@ -56,11 +56,11 @@ class UserControllerTest {
                 .webAppContextSetup(webApplicationContext)
                 .build();
         role = new Role(ERole.ROLE_USER);
-        user = new User("name","email","phone","city","password", LocalDate.now(),5,false, Status.ACTIVE);
+        user = new User("name", "email", "phone", "city", "password", LocalDate.of(2021, 3, 13), 5, false, Status.ACTIVE);
         user.setId(1);
         user.setRoles(Set.of(role));
-        userRequestDto = new UserRequestDto("name","email","phone","city","password");
-        userResponseDto = new UserResponseDto(1,"name","email","phone","city", LocalDate.now(),5,false);
+        userRequestDto = new UserRequestDto("name", "email", "phone", "city", "password");
+        userResponseDto = new UserResponseDto(1, "name", "email", "phone", "city", LocalDate.of(2021, 3, 13), 5, false);
         amount = 5;
         email = "email";
     }
@@ -80,7 +80,7 @@ class UserControllerTest {
 
     @Test
     void findByEmail() throws Exception {
-        String expectedJson ="{\"id\":1,\"name\":\"name\",\"email\":\"email\",\"phone\":\"phone\",\"city\":\"city\",\"password\":\"password\",\"createdAt\":\"2021-03-13\",\"balanceHour\":5,\"pendingTransaction\":false,\"status\":\"ACTIVE\",\"roles\":[{\"id\":null,\"name\":\"ROLE_USER\"}]}";
+        String expectedJson = "{\"id\":1,\"name\":\"name\",\"email\":\"email\",\"phone\":\"phone\",\"city\":\"city\",\"password\":\"password\",\"createdAt\":\"2021-03-13\",\"balanceHour\":5,\"pendingTransaction\":false,\"status\":\"ACTIVE\",\"roles\":[{\"id\":null,\"name\":\"ROLE_USER\"}]}";
         when(userService.findByEmail(email)).thenReturn(Optional.ofNullable(user));
 
         MvcResult result = mockMvc
@@ -97,8 +97,8 @@ class UserControllerTest {
         String body = objectMapper.writeValueAsString(userRequestDto);
 
         mockMvc.perform(post("/user")
-                        .content(body)
-                        .contentType(MediaType.APPLICATION_JSON))
+                .content(body)
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andReturn();
 
@@ -111,12 +111,12 @@ class UserControllerTest {
         String body = objectMapper.writeValueAsString(amount);
 
         mockMvc.perform(put("/user/1/increase/balance")
-                        .content(body)
-                        .contentType(MediaType.APPLICATION_JSON))
+                .content(body)
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        verify(userService).increaseBalance(1,amount);
+        verify(userService).increaseBalance(1, amount);
     }
 
     @Test
@@ -124,12 +124,12 @@ class UserControllerTest {
         String body = objectMapper.writeValueAsString(amount);
 
         mockMvc.perform(put("/user/1/decrease/balance")
-                        .content(body)
-                        .contentType(MediaType.APPLICATION_JSON))
+                .content(body)
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        verify(userService).decreaseBalance(1,amount);
+        verify(userService).decreaseBalance(1, amount);
     }
 
     @Test
@@ -137,12 +137,12 @@ class UserControllerTest {
         String body = objectMapper.writeValueAsString(userRequestDto);
 
         mockMvc.perform(put("/user/1")
-                        .content(body)
-                        .contentType(MediaType.APPLICATION_JSON))
+                .content(body)
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        verify(userService).editUser(userRequestDto,1);
+        verify(userService).editUser(userRequestDto, 1);
     }
 
     @Test

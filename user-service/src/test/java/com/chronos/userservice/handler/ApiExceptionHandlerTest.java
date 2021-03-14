@@ -2,6 +2,7 @@ package com.chronos.userservice.handler;
 
 import com.chronos.userservice.enums.ERole;
 import com.chronos.userservice.enums.Status;
+import com.chronos.userservice.exceptions.EmailAlreadyRegisteredException;
 import com.chronos.userservice.exceptions.InsufficientHoursException;
 import com.chronos.userservice.exceptions.UserNotFoundException;
 import com.chronos.userservice.model.Role;
@@ -54,7 +55,7 @@ class ApiExceptionHandlerTest {
 
     @Test
     void noPresentUser() throws Exception {
-        String expectedJson = "{\"error\":\"User is not present \"}";
+        String expectedJson = "{\"error\":\"El usuario no existe \"}";
         UserNotFoundException exception = new UserNotFoundException();
         doThrow(exception).when(userService).findById(1);
 
@@ -76,6 +77,21 @@ class ApiExceptionHandlerTest {
         MvcResult result = mockMvc
                 .perform(get("/user/1"))
                 .andExpect(status().isBadRequest())
+                .andReturn();
+
+        assertEquals(expectedJson, result.getResponse().getContentAsString());
+
+    }
+
+    @Test
+    void emailAlreadyRegistered() throws Exception {
+        String expectedJson = "{\"error\":\"Este email ya esta registrado. \"}";
+        EmailAlreadyRegisteredException exception = new EmailAlreadyRegisteredException();
+        doThrow(exception).when(userService).findById(1);
+
+        MvcResult result = mockMvc
+                .perform(get("/user/1"))
+                .andExpect(status().isPreconditionFailed())
                 .andReturn();
 
         assertEquals(expectedJson, result.getResponse().getContentAsString());

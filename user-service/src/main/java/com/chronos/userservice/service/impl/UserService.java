@@ -36,7 +36,7 @@ public class UserService implements IUserService {
 
     public void createUser(UserRequestDto userRequestDto) {
         Set<Role> roles = getRoles();
-        checkEmailAreadyRegistered(userRequestDto);
+        checkEmailAlreadyRegistered(userRequestDto);
 
         User user = new User(userRequestDto.getName(), userRequestDto.getEmail(), userRequestDto.getPhone(), userRequestDto.getCity(), userRequestDto.getPassword(), roles);
         userRepository.save(user);
@@ -79,7 +79,7 @@ public class UserService implements IUserService {
         return roles;
     }
 
-    private void checkEmailAreadyRegistered(UserRequestDto userRequestDto) {
+    private void checkEmailAlreadyRegistered(UserRequestDto userRequestDto) {
         userRepository.findByEmail(userRequestDto.getEmail()).ifPresent(user -> {
             throw new EmailAlreadyRegisteredException();
         });

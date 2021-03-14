@@ -26,9 +26,9 @@ export class UserEditComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private activatedRoute: ActivatedRoute, private route : Router) {
       this.name = new FormControl('', [Validators.required]);
-      this.phone = new FormControl('', [Validators.required]);
-      this.city = new FormControl('', [Validators.required]);
-      this.email = new FormControl('', [Validators.required]);
+      this.phone = new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/), Validators.maxLength(9)]);
+      this.city = new FormControl('', [Validators.required,Validators.pattern(/^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$/)]);
+      this.email = new FormControl('', [Validators.required,Validators.email]);
       this.form = new FormGroup({
         name: this.name,
         phone: this.phone,
