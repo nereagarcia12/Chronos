@@ -81,16 +81,16 @@ public class AdController {
         adClient.createFavorite(favoriteRequestDto);
     }
 
-    @DeleteMapping("/favorites/{id}")
+    @DeleteMapping("/favorites/{adId}/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteFavorites(@PathVariable(name = "id") FavoriteRequestDto favoriteRequestDto){
-       adClient.deleteFavorites(favoriteRequestDto);
+    public void deleteFavorites(@PathVariable Integer adId, @PathVariable Integer userId) {
+       adClient.deleteFavorites(adId,userId);
     }
 
-    @DeleteMapping("/favorites/{userId}")
+    @DeleteMapping("/favorites/{userId}/user")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteFavorites(@PathVariable(name ="userId" ) Integer userId){
-       adClient.deleteFavorites(userId);
+    public void deleteFavoritesByUser(@PathVariable(name ="userId" ) Integer userId){
+       adClient.deleteFavoritesByUser(userId);
     }
 
 }

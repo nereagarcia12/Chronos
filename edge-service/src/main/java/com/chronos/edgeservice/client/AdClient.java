@@ -59,11 +59,11 @@ public interface AdClient {
     @ResponseStatus(HttpStatus.CREATED)
     public void createFavorite(@RequestBody FavoriteRequestDto favoriteRequestDto);
 
-    @DeleteMapping("/favorites/{id}")
+    @DeleteMapping("/favorites/{adId}/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteFavorites(@PathVariable(name = "id") FavoriteRequestDto favoriteRequestDto);
+    public void deleteFavorites(@PathVariable Integer adId, @PathVariable Integer userId);
 
-    @DeleteMapping("/favorites/{userId}")
+    @DeleteMapping("/favorites/{userId}/user")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteFavorites(@PathVariable(name ="userId" ) Integer userId);
+    public void deleteFavoritesByUser(@PathVariable(name ="userId" ) Integer userId);
 }

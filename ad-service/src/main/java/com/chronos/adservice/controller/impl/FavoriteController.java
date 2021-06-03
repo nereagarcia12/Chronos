@@ -36,7 +36,7 @@ public class FavoriteController {
         favoriteService.deleteFavorite(new FavoriteRequestDto(adId, userId));
     }
 
-    @DeleteMapping("/favorites/{userId}")
+    @DeleteMapping("/favorites/{userId}/user")
     @ResponseStatus(HttpStatus.OK)
     public void deleteFavorites(@PathVariable(name = "userId") Integer userId) {
         favoriteService.deleteFavoritesByUser(userId);
