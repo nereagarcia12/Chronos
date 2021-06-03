@@ -12,6 +12,7 @@ import com.chronos.adservice.model.Ad;
 import com.chronos.adservice.model.Category;
 import com.chronos.adservice.repository.AdRepository;
 import com.chronos.adservice.repository.CategoryRepository;
+import com.chronos.adservice.repository.FavoriteRepository;
 import com.chronos.adservice.service.interfaces.IAdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,8 @@ public class AdService implements IAdService {
     private UserClient userClient;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private FavoriteRepository favoriteRepository;
 
     public List<AdResponseDto> findAll() {
         return adRepository.findAll().stream().map(Ad::toResponseDto).collect(Collectors.toList());
@@ -74,11 +77,15 @@ public class AdService implements IAdService {
 
     public void deleteAd(Integer id){
         Ad ad = getAd(id);
+        favoriteRepository.deleteByAdId(id);
         adRepository.delete(ad);
     }
 
     public void deleteAdsByUser(Integer userId){
-        adRepository.findByUserId(userId).forEach(ad -> adRepository.delete(ad));
+        adRepository.findByUserId(userId).forEach(ad -> {
+            favoriteRepository.deleteByAdId(ad.getUserId());
+            adRepository.delete(ad);
+        });
     }
 
 

@@ -1,8 +1,6 @@
 package com.chronos.edgeservice.client;
 
-import com.chronos.edgeservice.apiresponse.ad.AdRequestDto;
-import com.chronos.edgeservice.apiresponse.ad.AdResponseDto;
-import com.chronos.edgeservice.apiresponse.ad.CategoryResponseDto;
+import com.chronos.edgeservice.apiresponse.ad.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -52,4 +50,20 @@ public interface AdClient {
     @DeleteMapping("/user/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteAdByUser(@PathVariable (name = "userId") Integer userId);
+
+    @GetMapping("/favorite/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<FavoriteResponseDto> getAllFavoriteByUser(@PathVariable(name ="userId" ) Integer userId);
+
+    @PostMapping("/favorite")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createFavorite(@RequestBody FavoriteRequestDto favoriteRequestDto);
+
+    @DeleteMapping("/favorites/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteFavorites(@PathVariable(name = "id") FavoriteRequestDto favoriteRequestDto);
+
+    @DeleteMapping("/favorites/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteFavorites(@PathVariable(name ="userId" ) Integer userId);
 }

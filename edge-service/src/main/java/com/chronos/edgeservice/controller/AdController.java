@@ -1,8 +1,6 @@
 package com.chronos.edgeservice.controller;
 
-import com.chronos.edgeservice.apiresponse.ad.AdRequestDto;
-import com.chronos.edgeservice.apiresponse.ad.AdResponseDto;
-import com.chronos.edgeservice.apiresponse.ad.CategoryResponseDto;
+import com.chronos.edgeservice.apiresponse.ad.*;
 import com.chronos.edgeservice.client.AdClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -69,6 +67,30 @@ public class AdController {
     @ResponseStatus(HttpStatus.OK)
     public List<CategoryResponseDto> getAllCategories(){
         return adClient.getAllCategories();
+    }
+
+    @GetMapping("/favorite/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<FavoriteResponseDto> getAllFavoriteByUser(@PathVariable(name ="userId" ) Integer userId){
+        return adClient.getAllFavoriteByUser(userId);
+    }
+
+    @PostMapping("/favorite")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createFavorite(@RequestBody FavoriteRequestDto favoriteRequestDto){
+        adClient.createFavorite(favoriteRequestDto);
+    }
+
+    @DeleteMapping("/favorites/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteFavorites(@PathVariable(name = "id") FavoriteRequestDto favoriteRequestDto){
+       adClient.deleteFavorites(favoriteRequestDto);
+    }
+
+    @DeleteMapping("/favorites/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteFavorites(@PathVariable(name ="userId" ) Integer userId){
+       adClient.deleteFavorites(userId);
     }
 
 }
