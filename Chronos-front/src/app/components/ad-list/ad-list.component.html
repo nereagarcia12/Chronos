@@ -42,7 +42,7 @@
           <div class="tab-content">
             <div id="list-view" class="tab-pane fade active show">
               <div *ngIf="pageOfAds.length > 0" class="row">
-                <app-ad-card style="width: 100%;" *ngFor="let ad of pageOfAds" [ad]="ad"></app-ad-card>
+                <app-ad-card style="width: 100%;" *ngFor="let ad of pageOfAds" [ad]="ad" [favorites] ="favorites"></app-ad-card>
               </div>
               <div *ngIf="pageOfAds.length == 0 " class="row">
                  No hay resultados para la busqueda.

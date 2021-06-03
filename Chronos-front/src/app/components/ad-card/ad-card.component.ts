@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Ad } from 'src/app/model/ad-interfaces';
+import { Favorite } from 'src/app/model/favorite-interface';
+import { FavoritesService } from 'src/app/services/favorites.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-ad-card',
@@ -9,10 +12,34 @@ import { Ad } from 'src/app/model/ad-interfaces';
 export class AdCardComponent implements OnInit {
 
   @Input() ad!: Ad;
-  
-  constructor() { }
+  @Input() favorites: Favorite[] = []
+  isAdFavorite: boolean = false
+  userLogged!: any;
+  isLoggedIn: boolean  = false;
+
+  constructor(private favoriteService: FavoritesService,
+    private tokenStorage: TokenStorageService) {
+      this.isLoggedIn = true;
+      this.userLogged = this.tokenStorage.getUser();
+     }
 
   ngOnInit(): void {
+    if(this.isLoggedIn && this.favorites.length > 0){
+      const favorite = this.favorites.find( favorite => favorite.adId == this.ad.id);
+      if(favorite!=undefined){
+        this.isAdFavorite = true;
+      }
+    }
+  }
+
+  saveFavorite(): void{
+    this.favoriteService.saveFavorite({adId: this.ad.id, userId: this.userLogged.id})
+    .subscribe((value) => {this.isAdFavorite = true});
+  }
+
+  deleteFavorite(): void{
+    this.favoriteService.deleteFavorite(this.ad.id, this.userLogged.id)
+    .subscribe((value) => {this.isAdFavorite = false});
   }
 
 }

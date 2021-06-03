@@ -4,6 +4,13 @@
       <a  [routerLink]="['/details/', ad.id]"
         ><img class="img-fluid" src="{{ad.categoryImage}}" alt=""
       /></a>
+      <div *ngIf="!isAdFavorite && isLoggedIn" class="icon">
+        <span (click)="saveFavorite()"><i class="lni lni-heart"></i></span>
+        </div>
+
+        <div *ngIf="isAdFavorite && isLoggedIn" class="icon">
+          <span (click)="deleteFavorite()"><i class="lni lni-heart-filled"></i></span>
+          </div>
     </figure>
     <div class="feature-content">
       <div class="product">
