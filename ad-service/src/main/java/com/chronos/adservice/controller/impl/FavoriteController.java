@@ -20,25 +20,25 @@ public class FavoriteController {
 
     @GetMapping("/favorite/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<FavoriteResponseDto> getAllFavoriteByUser(@PathVariable(name ="userId" ) Integer userId){
+    public List<FavoriteResponseDto> getAllFavoriteByUser(@PathVariable(name = "userId") Integer userId) {
         return favoriteService.getAllFavorites(userId);
     }
 
     @PostMapping("/favorite")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createFavorite(@RequestBody FavoriteRequestDto favoriteRequestDto){
+    public void createFavorite(@RequestBody FavoriteRequestDto favoriteRequestDto) {
         favoriteService.saveFavorite(favoriteRequestDto);
     }
 
-    @DeleteMapping("/favorites/{id}")
+    @DeleteMapping("/favorites/{adId}/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteFavorites(@PathVariable(name = "id") FavoriteRequestDto favoriteRequestDto){
-        favoriteService.deleteFavorite(favoriteRequestDto);
+    public void deleteFavorites(@PathVariable Integer adId, @PathVariable Integer userId) {
+        favoriteService.deleteFavorite(new FavoriteRequestDto(adId, userId));
     }
 
     @DeleteMapping("/favorites/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteFavorites(@PathVariable(name ="userId" ) Integer userId){
+    public void deleteFavorites(@PathVariable(name = "userId") Integer userId) {
         favoriteService.deleteFavoritesByUser(userId);
     }
 
