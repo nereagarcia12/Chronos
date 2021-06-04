@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService {
@@ -28,6 +30,10 @@ public class UserService implements IUserService {
 
     public UserResponseDto findById(Integer id) {
         return getUser(id).toConvertDto();
+    }
+
+    public List<UserResponseDto> findAllUsers(){
+        return userRepository.findAll().stream().map((user)-> user.toConvertDto()).collect(Collectors.toList());
     }
 
     public Optional<User> findByEmail(String email) {

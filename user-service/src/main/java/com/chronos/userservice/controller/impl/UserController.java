@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,43 +27,49 @@ public class UserController implements IUserController {
 
     @GetMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public UserResponseDto findByUserById(@PathVariable (name = "id") Integer id){
+    public UserResponseDto findByUserById(@PathVariable(name = "id") Integer id) {
         return userService.findById(id);
+    }
+
+    @GetMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserResponseDto> findAllUsers() {
+        return userService.findAllUsers();
     }
 
     @GetMapping("/user/email/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<User> findByEmail(@PathVariable (name = "email") String email){
+    public Optional<User> findByEmail(@PathVariable(name = "email") String email) {
         return userService.findByEmail(email);
     }
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@RequestBody @Valid UserRequestDto userRequestDto){
+    public void createUser(@RequestBody @Valid UserRequestDto userRequestDto) {
         userService.createUser(userRequestDto);
     }
 
     @PutMapping("/user/{id}/increase/balance")
     @ResponseStatus(HttpStatus.OK)
-    public void increaseBalanceHours(@PathVariable (name = "id") Integer id, @RequestBody @Valid @Min(value = 0,message = "i can't less than 0") Integer amount){
-    userService.increaseBalance(id, amount);
+    public void increaseBalanceHours(@PathVariable(name = "id") Integer id, @RequestBody @Valid @Min(value = 0, message = "i can't less than 0") Integer amount) {
+        userService.increaseBalance(id, amount);
     }
 
     @PutMapping("/user/{id}/decrease/balance")
     @ResponseStatus(HttpStatus.OK)
-    public void decreaseBalanceHours(@PathVariable (name = "id") Integer id, @RequestBody @Valid @Min(value = 0,message = "i can't less than 0") Integer amount){
-        userService.decreaseBalance(id,amount);
+    public void decreaseBalanceHours(@PathVariable(name = "id") Integer id, @RequestBody @Valid @Min(value = 0, message = "i can't less than 0") Integer amount) {
+        userService.decreaseBalance(id, amount);
     }
 
     @PutMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void editProfileUser(@PathVariable (name = "id") Integer id, @RequestBody @Valid UserRequestDto userRequestDto){
+    public void editProfileUser(@PathVariable(name = "id") Integer id, @RequestBody @Valid UserRequestDto userRequestDto) {
         userService.editUser(userRequestDto, id);
     }
 
     @DeleteMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@PathVariable (name = "id") Integer id){
+    public void deleteUser(@PathVariable(name = "id") Integer id) {
         userService.deleteUser(id);
     }
 

@@ -3,6 +3,8 @@ package com.chronos.userservice.service.interfaces;
 import com.chronos.userservice.dto.UserRequestDto;
 import com.chronos.userservice.dto.UserResponseDto;
 
+import java.util.List;
+
 
 public interface IUserService {
 
@@ -12,5 +14,5 @@ public interface IUserService {
     public void deleteUser(Integer id);
     public void increaseBalance(Integer id, Integer amount);
     public void decreaseBalance(Integer id, Integer amount);
-
+    public List<UserResponseDto> findAllUsers();
 }
