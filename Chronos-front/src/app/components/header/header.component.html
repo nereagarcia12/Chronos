@@ -115,6 +115,18 @@
               Servicios
             </a>
           </li>
+          <li *ngIf="isLoggedIn"class="nav-item dropdown" routerLinkActive="active">
+            <a
+              class="nav-link dropdown-toggle"
+              routerLink="/favorites"
+              routerLinkActive="active"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Mis Favoritos
+            </a>
+          </li>
         </ul>
         <div class="post-btn">
           <a
@@ -136,6 +148,9 @@
       </li>
       <li  >
         <a routerLink="/listing" outerLinkActive="active"> Servicios </a>
+      </li>
+      <li *ngIf="isLoggedIn" >
+        <a routerLink="/favorites" outerLinkActive="active"> Mis Favoritos </a>
       </li>
       <li *ngIf="!isLoggedIn">
         <a

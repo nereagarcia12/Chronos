@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Ad } from 'src/app/model/ad-interfaces';
 import { Favorite } from 'src/app/model/favorite-interface';
 import { FavoritesService } from 'src/app/services/favorites.service';
@@ -14,13 +15,17 @@ export class AdCardComponent implements OnInit {
   @Input() ad!: Ad;
   @Input() favorites: Favorite[] = []
   isAdFavorite: boolean = false
+  showAd: boolean = true
   userLogged!: any;
   isLoggedIn: boolean  = false;
 
   constructor(private favoriteService: FavoritesService,
-    private tokenStorage: TokenStorageService) {
-      this.isLoggedIn = true;
-      this.userLogged = this.tokenStorage.getUser();
+    private tokenStorage: TokenStorageService,
+    private router: Router) {
+      if (this.tokenStorage.getToken()) {
+        this.isLoggedIn = true;
+        this.userLogged = this.tokenStorage.getUser();
+      }
      }
 
   ngOnInit(): void {
@@ -32,6 +37,10 @@ export class AdCardComponent implements OnInit {
     }
   }
 
+  private isFavoritePage() : Boolean {
+    return this.router.url == '/favorites' && this.isLoggedIn;
+  }
+
   saveFavorite(): void{
     this.favoriteService.saveFavorite({adId: this.ad.id, userId: this.userLogged.id})
     .subscribe((value) => {this.isAdFavorite = true});
@@ -39,7 +48,8 @@ export class AdCardComponent implements OnInit {
 
   deleteFavorite(): void{
     this.favoriteService.deleteFavorite(this.ad.id, this.userLogged.id)
-    .subscribe((value) => {this.isAdFavorite = false});
+    .subscribe((value) => {this.isAdFavorite = false
+    this.showAd = false});
   }
 
 }

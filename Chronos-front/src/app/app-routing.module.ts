@@ -77,6 +77,10 @@ const routes: Routes = [
 {
   path: 'categories',
   component: CategoriesComponent
+},
+{
+  path: 'favorites',
+  component: AdListComponent
 }];
 
 @NgModule({

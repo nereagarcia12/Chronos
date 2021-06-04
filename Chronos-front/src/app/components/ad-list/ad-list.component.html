@@ -1,6 +1,7 @@
 <div class="main-container section-padding" style="margin-top: 50px;">
   <div class="container">
-    <h2 style = "padding: 15px;"class="section-title">Todos los Servicios</h2>
+    <h2 *ngIf="!isFavoritePage()" style = "padding: 15px;"class="section-title">Todos los Servicios</h2>
+    <h2 *ngIf="isFavoritePage()" style = "padding: 15px;"class="section-title">Tus Favoritos</h2>
     <div class="row">
       <div class="col-lg-3 col-md-12 col-xs-12 page-sidebar">
         <aside>
@@ -44,9 +45,12 @@
               <div *ngIf="pageOfAds.length > 0" class="row">
                 <app-ad-card style="width: 100%;" *ngFor="let ad of pageOfAds" [ad]="ad" [favorites] ="favorites"></app-ad-card>
               </div>
-              <div *ngIf="pageOfAds.length == 0 " class="row">
+              <div *ngIf="pageOfAds.length == 0 && !isFavoritePage()" class="row">
                  No hay resultados para la busqueda.
               </div>
+              <div *ngIf="pageOfAds.length == 0 && isFavoritePage()" class="row">
+                No tienes favoritos, añadelos desde cualquier listado.
+             </div>
              <div>
               <app-paginator [items]="ads" (changePage)="onChangePage($event)"></app-paginator>
              </div>

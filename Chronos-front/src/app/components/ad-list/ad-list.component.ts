@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ad, Category } from 'src/app/model/ad-interfaces';
 import { Favorite } from 'src/app/model/favorite-interface';
 import { AdServiceService } from 'src/app/services/ad-service.service';
@@ -28,31 +28,54 @@ export class AdListComponent implements OnInit {
   constructor(private adService: AdServiceService,
     private favoriteService: FavoritesService,
     private tokenStorage: TokenStorageService,
-    private activatedRoute: ActivatedRoute) { 
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { 
     this.checkFavorites();
     const word: string = String(this.activatedRoute.snapshot.paramMap.get('word'));
     const category: number = Number(this.activatedRoute.snapshot.paramMap.get('category'));
 
     if(word != "null"){
       this.adService.filterAds(word).subscribe((data) => {
-        this.ads = data;
-        this.pageOfAds = data;
+        if(this.isFavoritePage()){
+          const ads = data.filter((ad) => this.favorites.find(((favorite)=> favorite.adId == ad.id)) != undefined);
+          this.ads = ads;
+          this.pageOfAds = ads;
+        } else {
+          this.ads = data;
+          this.pageOfAds = data;
+        }
       }
       )
     } else if(category != 0){
       this.adService.filterAds(undefined,category).subscribe((data) => {
-        this.ads = data;
-        this.pageOfAds = data;
+        if(this.isFavoritePage()){
+          const ads = data.filter((ad) => this.favorites.find(((favorite)=> favorite.adId == ad.id)) != undefined);
+          this.ads = ads;
+          this.pageOfAds = ads;
+        } else {
+          this.ads = data;
+          this.pageOfAds = data;
+        }
       }
       )
     } else {
       this.adService.filterAds().subscribe((data) => {
-        this.ads = data;
-        this.pageOfAds = data;
+        if(this.isFavoritePage()){
+          const ads = data.filter((ad) => this.favorites.find(((favorite)=> favorite.adId == ad.id)) != undefined);
+          this.ads = ads;
+          this.pageOfAds = ads;
+        } else {
+          this.ads = data;
+          this.pageOfAds = data;
+        }
       }
       )
     }
     this.selectCategories()
+  }
+
+  public isFavoritePage() : Boolean {
+    return this.router.url == '/favorites' && this.isLoggedIn;
   }
 
   private checkFavorites() {

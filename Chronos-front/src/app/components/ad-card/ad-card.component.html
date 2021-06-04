@@ -1,14 +1,14 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div *ngIf="showAd" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="featured-box">
     <figure>
       <a  [routerLink]="['/details/', ad.id]"
         ><img class="img-fluid" src="{{ad.categoryImage}}" alt=""
       /></a>
-      <div *ngIf="!isAdFavorite && isLoggedIn" class="icon">
+      <div *ngIf="isLoggedIn && !isAdFavorite" class="icon">
         <span (click)="saveFavorite()"><i class="lni lni-heart"></i></span>
         </div>
 
-        <div *ngIf="isAdFavorite && isLoggedIn" class="icon">
+        <div *ngIf="isLoggedIn && isAdFavorite" class="icon">
           <span (click)="deleteFavorite()"><i class="lni lni-heart-filled"></i></span>
           </div>
     </figure>
