@@ -18,12 +18,8 @@ import java.util.Optional;
 @RestController
 public class UserController implements IUserController {
 
-
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @GetMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
