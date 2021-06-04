@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -58,15 +59,20 @@ public class UserController {
     @PutMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void editProfileUser(@PathVariable (name = "id") Integer id, @RequestBody @Valid UserRequestDto userRequestDto){
-
         userClient.editProfileUser(id, userRequestDto);
     }
 
-    @DeleteMapping("user/{id}")
+    @DeleteMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable (name = "id") Integer id){
         transactionClient.deleteTransactionByUser(id);
         adClient.deleteAdByUser(id);
         userClient.deleteUser(id);
+    }
+
+    @GetMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserResponseDto> findAllUsers() {
+        return userClient.findAllUsers();
     }
 }

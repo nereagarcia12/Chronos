@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import java.util.List;
 import java.util.Optional;
 
 @FeignClient("user-service")
@@ -41,4 +42,9 @@ public interface UserClient {
     @DeleteMapping("/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable (name = "id") Integer id);
+
+    @GetMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserResponseDto> findAllUsers();
+
 }
