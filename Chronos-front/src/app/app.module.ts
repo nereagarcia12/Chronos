@@ -24,6 +24,8 @@ import { ProfilesidebarComponent } from './components/profilesidebar/profileside
 import { TransactionReceivedComponent } from './components/transaction-received/transaction-received.component';
 import { JwPaginationModule } from 'jw-angular-pagination';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { AdminUserComponent } from './components/admin-user/admin-user.component';
+import { AdminAdComponent } from './components/admin-ad/admin-ad.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     ProfilesidebarComponent,
     TransactionReceivedComponent,
     PaginatorComponent,
+    AdminUserComponent,
+    AdminAdComponent,
   ],
   imports: [
     BrowserModule,

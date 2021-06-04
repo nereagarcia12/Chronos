@@ -1,0 +1,78 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Administración de Anuncios</h2>
+    <ol class="breadcrumb">
+    <li><a routerLink="" routerLinkActive="active">Inicio /</a></li>
+    <li class="current">Administración de anuncios</li>
+    </ol>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="container">
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="page-content">
+          <div class="inner-box">
+            <div class="dashboard-box">
+              <h2 class="dashbord-title"></h2>
+            </div>
+            <div class="dashboard-wrapper">
+              <div class="dashboardboxtitle">
+                <h2>Anuncios a administrar</h2>
+              </div>
+              <table *ngIf="myAds.length > 0" class="table table-responsive dashboardtable tablemyads">
+                <thead>
+                  <tr>
+                    <th>Titulo</th>
+                    <th>Descripcion</th>
+                    <th>Diponibilidad</th>
+                    <th>Fecha de creacion</th>
+                    <th>Categoria</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor = "let ad of pageOfAds" data-category="active">
+                    <td class="Title">
+                      <h3>{{ad.title}}</h3>
+                    </td>
+                    <td data-title="Descripcion">
+                      <span>{{ad.description.substr(0,40)+'...'}}</span>
+                    </td>
+                    <td data-title="availability">
+                        <span class="adcategories">{{ad.availability.substr(0,40)+'...'}}</span>
+                      </td>
+                    <td data-title="createAd">
+                      <span class="adcategories">{{ad.createAd}}</span>
+                    </td>
+                    <td data-title="category">
+                      <h3>{{ad.categoryName}}</h3>
+                    </td>
+                    <td data-title="Estado">
+                        <div class="btns-actions" role="alert">
+                            <a [routerLink]="['/details/', ad.id]" class="btn-action btn-view" 
+                              ><i class="lni lni-eye"></i
+                            ></a>
+                            <a (click) = 'deleteAd(ad.id)'  class="btn-action btn-delete" 
+                            ><i class="lni lni-trash"></i
+                          ></a>
+                     </div>
+                    </td>
+                  </tr>
+      
+                </tbody>
+              </table>
+              <div>
+                <app-paginator [items]="myAds" [pageSize]=10 (changePage)="onChangePage($event)"></app-paginator>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

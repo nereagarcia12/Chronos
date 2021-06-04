@@ -1,0 +1,71 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Administración de Usuarios</h2>
+    <ol class="breadcrumb">
+    <li><a routerLink="" routerLinkActive="active">Inicio /</a></li>
+    <li class="current">Administración de usuarios</li>
+    </ol>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="container">
+<div class="row">
+  <div class="col-sm-10 col-md-10 col-lg-10">
+        <div class="page-content">
+          <div class="inner-box">
+            <div class="dashboard-box">
+              <h2 class="dashbord-title"></h2>
+            </div>
+            <div class="dashboard-wrapper">
+              <div class="dashboardboxtitle">
+                <h2>Usuarios a administrar</h2>
+              </div>
+              <table *ngIf="users.length > 0" class="table table-responsive dashboardtable tablemyads">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Ciudad</th>
+                   <th>Opciones</th> 
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor = "let user of pageOfUsers" data-category="active">
+                    <td class="Title">
+                      <h3>{{user.name}}</h3>
+                    </td>
+                    <td data-title="Descripcion">
+                      <span>{{user.email}}</span>
+                    </td>
+                    <td data-title="availability">
+                        <span class="adcategories">{{user.phone}}</span>
+                      </td>
+                    <td data-title="createAd">
+                      <span class="adcategories">{{user.city}}</span>
+                    </td>
+                    <td data-title="Estado">
+                        <div class="btns-actions" role="alert">
+                            <a (click) = 'deleteUser(user.id)'  class="btn-action btn-delete" 
+                            ><i class="lni lni-trash"></i
+                          ></a>
+                     </div>
+                    </td>
+                  </tr>
+      
+                </tbody>
+              </table>
+              <div>
+                <app-paginator [items]="users" [pageSize]=10 (changePage)="onChangePage($event)"></app-paginator>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

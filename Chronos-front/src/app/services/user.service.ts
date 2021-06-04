@@ -18,6 +18,10 @@ export class UserService {
     return this.http.get<User>(this.url+ '/user/'+ id)
   }
 
+  getAllUsers(): Observable<User[]>{
+    return this.http.get<User[]>(this.url+ '/users/')
+  }
+
   deleteUser(id: number): Observable<any>{
     return this.http.delete(this.url+'/user/' + id);
   }
