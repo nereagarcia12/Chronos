@@ -115,7 +115,7 @@
               Servicios
             </a>
           </li>
-          <li *ngIf="isLoggedIn"class="nav-item dropdown" routerLinkActive="active">
+          <li *ngIf="isLoggedIn && !isAdmin" class="nav-item dropdown" routerLinkActive="active">
             <a
               class="nav-link dropdown-toggle"
               routerLink="/favorites"
@@ -125,6 +125,31 @@
               aria-expanded="false"
             >
               Mis Favoritos
+            </a>
+          </li>
+          <li *ngIf="isLoggedIn && isAdmin" class="nav-item dropdown" routerLinkActive="active">
+            <a
+              class="nav-link dropdown-toggle"
+              routerLink="/adminAd"
+              routerLinkActive="active"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Admin anuncios
+            </a>
+          </li>
+
+          <li *ngIf="isLoggedIn && isAdmin" class="nav-item dropdown" routerLinkActive="active">
+            <a
+              class="nav-link dropdown-toggle"
+              routerLink="/adminUser"
+              routerLinkActive="active"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Admin Usuarios
             </a>
           </li>
         </ul>
@@ -149,8 +174,14 @@
       <li  >
         <a routerLink="/listing" outerLinkActive="active"> Servicios </a>
       </li>
-      <li *ngIf="isLoggedIn" >
+      <li *ngIf="isLoggedIn && !isAdmin" >
         <a routerLink="/favorites" outerLinkActive="active"> Mis Favoritos </a>
+      </li>
+      <li *ngIf="isLoggedIn && isAdmin" >
+        <a routerLink="/adminAd" outerLinkActive="active"> Admin Anuncios </a>
+      </li>
+      <li *ngIf="isLoggedIn && isAdmin" >
+        <a routerLink="/adminUser" outerLinkActive="active"> Admin Usuarios </a>
       </li>
       <li *ngIf="!isLoggedIn">
         <a
