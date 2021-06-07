@@ -12,12 +12,16 @@ declare function menu() : any;
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   user!: any;
+  isAdmin: boolean = false;
   constructor(private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.user = this.tokenStorage.getUser();
+      if(this.user.username.includes('admin')){
+        this.isAdmin = true;
+      }
     }
     this.tokenStorage.currentUser.subscribe(user => this.user = user)
     setTimeout(() => {
@@ -33,4 +37,6 @@ export class HeaderComponent implements OnInit {
   empty(): void{
 
   }
+
+
 }
