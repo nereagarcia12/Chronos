@@ -14,7 +14,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 export class AdListComponent implements OnInit {
 
   ads!: Ad[];
-  pageOfAds!: Array<Ad>;
+  pageOfAds: Array<Ad> = [];
   userLogged!: any;
   isLoggedIn: boolean  = false;
   categories: Category[] =[]

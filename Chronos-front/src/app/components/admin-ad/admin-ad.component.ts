@@ -13,7 +13,7 @@ export class AdminAdComponent implements OnInit {
 
 
   myAds: Ad[] = []
-  pageOfAds!: Array<Ad>;
+  pageOfAds: Array<Ad> = [];
   isLoggedIn = false;
   user!: any;
 

@@ -42,6 +42,8 @@ export class AdDetailsComponent implements OnInit {
       amount: this.amount,
       description: this.description
     });
+
+    
     }
 
   ngOnInit(): void {
