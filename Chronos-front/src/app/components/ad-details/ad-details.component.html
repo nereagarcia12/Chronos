@@ -1,4 +1,4 @@
-<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+<div *ngIf="ad" class="page-header" style="background: url(assets/img/banner1.jpg);">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -13,7 +13,7 @@
         </div>
     </div>
 </div>
-<div class="section-padding">
+<div *ngIf="ad" class="section-padding">
     <div class="container">
         <div class="product-info row">
             <div class="col-lg-7 col-md-12 col-xs-12">
@@ -27,8 +27,8 @@
                         <h2>{{ad.title}}</h2>
                         <div class="details-meta">
                             <span><i class="lni lni-calendar"></i> {{ad.createAd}} </span>
-                            <span><i class="lni lni-map-marker"></i>{{user.city}} </span>
-                        </div>
+                            <span *ngIf="user" ><i class="lni lni-map-marker"></i>{{user.city}} </span>
+                        </div> 
                         <h4 class="title-small mb-3">Descripcion :</h4>
                         <p *ngFor="let string of ad.description.split('\n')"class="mb-4">
                             {{string}}
@@ -55,7 +55,7 @@
                     <div  class="widget">
                         <h4 class="widget-title">Anuncio publicado por: </h4>
                         <form class="form" [formGroup]="form"  #formDirective="ngForm">
-                        <div *ngIf="user.id != userLogged.id" class="agent-inner">
+                        <div *ngIf="user && userLogged && user.id != userLogged.id" class="agent-inner">
                             <div class="agent-title">
                                 <div class="agent-photo">
                                     <a href="#"><img src="assets/img/avatar.jpg" alt=""></a>
@@ -80,7 +80,7 @@
                         </div>
                             <button (click)="onSubmit()" class="btn btn-common fullwidth mt-4" [disabled]="form.invalid">Enviar Peticion</button>
                         </div>
-                        <div class="alert alert-success" role="alert" *ngIf="user.id == userLogged.id">
+                        <div class="alert alert-success" role="alert" *ngIf="user && userLogged && user.id == userLogged.id">
                             Este anuncio es de tu propiedad. Editalo desde Mi Perfil.
                          </div>
                     </form>
