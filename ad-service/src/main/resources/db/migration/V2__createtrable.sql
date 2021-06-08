@@ -7,4 +7,3 @@ create table favorite
     ad_id integer,
     user_id integer
 );
-
