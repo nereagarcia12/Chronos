@@ -26,7 +26,7 @@ The application are composed by five microservice.We have an edge service, its a
 
 The ad, transaction and user microservices are accessible internally through the edge service, so they do not "know" about authentication, they are in a demilitarized zone. This services are registered on eureka.
 
-![Architecture](https://github.com/nereagarcia12/Chronos/blob/master/doc/diagram.png)
+![Architecture](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/diagram.png)
 
 
 |Microservice | Objective | Database | API Documentation |
@@ -101,34 +101,34 @@ When a user login on the platform we verify the user details and if username and
 # Screenshots
 
 Home
-![Home](https://github.com/nereagarcia12/Chronos/blob/master/doc/Inicio.PNG)
+![Home](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/Inicio.PNG)
 
 Ad Listing
-![Ad Listing](https://github.com/nereagarcia12/Chronos/blob/master/doc/Listado.PNG)
+![Ad Listing](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/Listado.PNG)
 
 Ad Detail
-![Ad Detail](https://github.com/nereagarcia12/Chronos/blob/master/doc/Detalle.PNG)
+![Ad Detail](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/Detalle.PNG)
 
 Category List
-![Category List](https://github.com/nereagarcia12/Chronos/blob/master/doc/Categorias.PNG)
+![Category List](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/Categorias.PNG)
 
 Login
-![Login](https://github.com/nereagarcia12/Chronos/blob/master/doc/Login.PNG)
+![Login](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/Login.PNG)
 
 Sign Up
-![Sign Up](https://github.com/nereagarcia12/Chronos/blob/master/doc/Registro.PNG)
+![Sign Up](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/Registro.PNG)
 
 Profile
-![Profile](https://github.com/nereagarcia12/Chronos/blob/master/doc/Perfil.PNG)
+![Profile](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/Perfil.PNG)
 
 Publish a ad
-![Publish a ad](https://github.com/nereagarcia12/Chronos/blob/master/doc/Publicar.PNG)
+![Publish a ad](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/Publicar.PNG)
 
 Transactions
-![Publish a ad](https://github.com/nereagarcia12/Chronos/blob/master/doc/Transacciones.PNG)
+![Publish a ad](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/Transacciones.PNG)
 
 My Ads
-![My Ads](https://github.com/nereagarcia12/Chronos/blob/master/doc/MisAnuncios.PNG)
+![My Ads](https://github.com/nereagarcia12/Chronos/blob/master/screenshot/MisAnuncios.PNG)
 
 
 
